@@ -3,41 +3,34 @@
 <% end %>
 
 
-<div class="wrapper-blue">
+<div class="wrapper-primary-light">
   <div class="book-summary-holder">
-    <!--   <div class="wrapper-white"> -->
-  <!--   <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-8 col-sm-offset-2"> -->
-          <div class="book-summary">
-            <% profile_image_path = "profile.jpg" %>
 
-            <div class="book-summary-owner avatar-square-lg", style="background-image: url(<%= image_path profile_image_path %>);">
-              <div class="profile-image-overlay text-center">
-                John has this book!
-              </div>
-            </div>
+    <div class="book-summary">
+      <% profile_image_path = "profilepic_1.jpg" %>
 
-            <div class="book-summary-book-info">
-              <p><strong><%= @book.title %></strong></p>
-              <p><em><%= @book.author %></em></p>
-            </div>
-          </div>
+      <div class="book-summary-owner avatar-square-lg", style="background-image: url(<%= image_path profile_image_path %>);">
+        <div class="profile-image-overlay text-center">
+          John has this book!
+        </div>
+      </div>
+
+      <div class="book-summary-book-info">
+        <p><strong><%= @book.title %></strong> (<%= @book.language %>)</p>
+        <p><em><%= @book.author %></em></p>
+      </div>
+    </div>
   </div>
   <div class="text-center">
-    <%= link_to "Request Book!", "#", class: "btn btn-warning" %>
+    <%= link_to "Request Book!", "#", class: "btn btn-primary" %>
   </div>
 </div>
-<!--       </div>
-    </div>
-  </div> -->
-  <!--   </div> -->
 
-  <!--   <div class="wrapper-gray"> -->
+<div id="show-description", class="show-content padded-2em">
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-        <h3>John says:</h3>
+        <h3>John's Description</h3>
         <div class="box-white">
           <%= @book.description %>
         </div>
@@ -46,8 +39,49 @@
     </div>
   </div>
 </div>
+</div>
 
-<!-- </div>
--->
+
+<div id="show-discussion", class="show-content padded-2em">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+
+        <h3>Discussion</h3>
+
+        <div class="discussion-row">
+          <div class="row">
+
+            <div class="col-xs-4 text-center">
+              <%= image_tag 'profilepic_3.jpg', class: "avatar-large" %>
+              Gary
+            </div>
+
+            <div class="col-xs-8">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae cum cumque commodi minima numquam quis consequatur mollitia aliquam fuga vel amet soluta placeat, deserunt qui laboriosam, nostrum sint sunt debitis.
+            </div>
+
+          </div>
+        </div>
+        <div class="discussion-row">
+          <div class="row">
+
+            <div class="col-xs-4 text-center">
+              <%= image_tag 'profilepic_4.jpg', class: "avatar-large" %>
+              Sturm
+            </div>
+
+            <div class="col-xs-8">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae cum cumque commodi minima numquam quis consequatur mollitia aliquam fuga vel amet soluta placeat, deserunt qui laboriosam, nostrum sint sunt debitis.
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
 
 
