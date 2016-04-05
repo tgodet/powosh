@@ -1,2 +1,36 @@
 <h1>Books#index</h1>
 <p>Find me in app/views/books/index.html.erb</p>
+
+<div class="add-margin-top">
+  <div class="container">
+    <div class="row">
+      <% @books.all.take(32).each do |book| %>
+      <div class="col-xs-6 col-sm-3 add-margin-top">
+        <%=  link_to book_path(book.id) do %>
+        <div class="card" style="background-image: linear-gradient(to top,  rgba(81,51,27,0.7) 25%,rgba(255,255,255,0.1) 100%), url('<%= image_url @profile_pics.sample %>');">
+          <div class="card-description-bis">
+            <p>Get it from <%=book.author%>!</p>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<!--
+<div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
+  <div class="card-category">Popular</div>
+  <div class="card-description">
+    <h2>Some stuff</h2>
+    <p>Very cool stuff, useful and smart</p>
+  </div>
+  <img class="card-user avatar" src="user.jpg">
+  <a class="card-link" href="#" ></a>
+</div> -->
+
+<!--
+-webkit-linear-gradient(to bottom, #E3CBB8 0%, #FFFFFF 29%)
+ -->
