@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :request_book]
 
   # need to add authorization for edit/update/destroy
   def index
@@ -43,6 +43,11 @@ class BooksController < ApplicationController
     @book.destroy
     flash[:notice] = "Book deleted"
     redirect_to books_path
+  end
+
+  def request_book
+    flash[:notice] = "Request sent to your friend!"
+    redirect_to book_path(@book)
   end
 
   private
