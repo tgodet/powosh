@@ -4,6 +4,7 @@ class BooksController < ApplicationController
   # need to add authorization for edit/update/destroy
   def index
     @books = Book.all
+    @profile_pics = User::PROFILES_PICS
   end
 
   def show
