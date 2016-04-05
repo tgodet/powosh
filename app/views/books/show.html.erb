@@ -3,14 +3,14 @@
 <% end %>
 
 
-<div class="wrapper-blue">
+<div class="wrapper-primary-light">
   <div class="book-summary-holder">
     <!--   <div class="wrapper-white"> -->
   <!--   <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2"> -->
           <div class="book-summary">
-            <% profile_image_path = "profile.jpg" %>
+            <% profile_image_path = "profilepic_1.jpg" %>
 
             <div class="book-summary-owner avatar-square-lg", style="background-image: url(<%= image_path profile_image_path %>);">
               <div class="profile-image-overlay text-center">
@@ -19,13 +19,13 @@
             </div>
 
             <div class="book-summary-book-info">
-              <p><strong><%= @book.title %></strong></p>
+              <p><strong><%= @book.title %></strong> (<%= @book.language %>)</p>
               <p><em><%= @book.author %></em></p>
             </div>
           </div>
   </div>
   <div class="text-center">
-    <%= link_to "Request Book!", "#", class: "btn btn-warning" %>
+    <%= link_to "Request Book!", "#", class: "btn btn-primary" %>
   </div>
 </div>
 <!--       </div>
