@@ -1,8 +1,53 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-      <h1><%= @book.title %></h1>
+<% content_for :title do %>
+<%= @book.title %> on PowOSh
+<% end %>
+
+
+<div class="wrapper-blue">
+  <div class="book-summary-holder">
+    <!--   <div class="wrapper-white"> -->
+  <!--   <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2"> -->
+          <div class="book-summary">
+            <% profile_image_path = "profile.jpg" %>
+
+            <div class="book-summary-owner avatar-square-lg", style="background-image: url(<%= image_path profile_image_path %>);">
+              <div class="profile-image-overlay text-center">
+                John has this book!
+              </div>
+            </div>
+
+            <div class="book-summary-book-info">
+              <p><strong><%= @book.title %></strong></p>
+              <p><em><%= @book.author %></em></p>
+            </div>
+          </div>
+  </div>
+  <div class="text-center">
+    <%= link_to "Request Book!", "#", class: "btn btn-warning" %>
+  </div>
+</div>
+<!--       </div>
+    </div>
+  </div> -->
+  <!--   </div> -->
+
+  <!--   <div class="wrapper-gray"> -->
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <h3>John says:</h3>
+        <div class="box-white">
+          <%= @book.description %>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
+
+<!-- </div>
+-->
+
 

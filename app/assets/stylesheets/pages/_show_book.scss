@@ -1,0 +1,58 @@
+.book-summary-holder {
+  display: flex;
+  justify-content: center;
+  height: 200px;
+  align-items: center;
+  padding: 10px;
+
+}
+
+.book-summary {
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  border-radius: 2px;
+}
+
+.book-summary-owner {
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  position: relative;
+}
+
+.profile-image-overlay {
+  position: absolute;
+  background-color: #50331B;
+  width: 100%;
+  opacity: 0.9;
+  bottom: 0px;
+  left: 0px;
+  padding: 5px;
+  color: white;
+  font-size: 10px;
+  border-radius-bottom-left: 2px;
+  border-radius-bottom-right: 2px;
+}
+
+.book-summary-book-info {
+  flex: 1 1 auto;
+  padding: 20px;
+  background-color: #81BED5;
+
+  p {
+    font-size: 14px;
+    color: $gray-lighter;
+  }
+}
+
+.box-no-color {
+  background-color: inherit;
+  padding: 20px;
+}
+
+.box-white {
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}

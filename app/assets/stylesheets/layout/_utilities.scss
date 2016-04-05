@@ -10,11 +10,16 @@
   padding-bottom: 5em;
 }
 
+.padded-2em {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
 // Backgrounds
 .bg-black {
   background: #4a4a4a;
 }
-.bg-grey {
+.bg-gray {
   background: #aeaeae;
 }
 .bg-blue {
@@ -22,4 +27,8 @@
 }
 .bg-dark-blue {
   background: #3b5998;
+}
+
+.bg-gray-lighter {
+  background: $gray-lighter;
 }
