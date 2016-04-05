@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+
+      <h1>Your Loans</h1>
+      <% @loans.each do |loan| %>
+      <ul class="list-inline">
+        <li><%= loan.book.title %></li>
+        <li><%= loan.user.email %></li>
+        <% if loan.pending %>
+        <li>
+        <%= link_to "Approve", approve_loan_path(loan), {class: "btn btn-primary", :method => :patch} %>
+        </li>
+        <% else %>
+        <% end %>
+        <%= loan.confirmed %>
+      </ul>
+      <% end %>
+
+    </div>
+  </div>
+</div>

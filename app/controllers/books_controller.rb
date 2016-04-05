@@ -45,10 +45,10 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
-  def request_book
-    flash[:notice] = "Request sent to your friend!"
-    redirect_to book_path(@book)
-  end
+  # def request_book
+  #   flash[:notice] = "Request sent to your friend!"
+  #   redirect_to book_path(@book)
+  # end
 
   private
 
