@@ -14,39 +14,39 @@
 
           <% @requests_from_friends.each do |request| %>
           <div class="row-bordered-top list-row-library">
-
+            <div class="row">
             <div class="col-xs-6 col-md-2">
-              <div class="flex-container-centered-vh list-row-130">
-                <% profile_image_path = (User::PROFILES_PICS).sample %>
-                <div class="loan-requester avatar-square-md", style="background-image: url(<%= image_path profile_image_path %>);">
-                  <div class="profile-image-overlay text-center">
-                    <%= request.user.email %> wants this!
+                <div class="flex-container-centered-vh list-row-130">
+                  <% profile_image_path = (User::PROFILES_PICS).sample %>
+                  <div class="loan-requester avatar-square-md", style="background-image: url(<%= image_path profile_image_path %>);">
+                    <div class="profile-image-overlay text-center">
+                      <%= request.user.email %> wants this!
+                    </div>
                   </div>
-                </div>
 
-              </div>
-            </div>
-
-            <div class="col-xs-6 col-md-6">
-              <div class="flex-container-centered-v list-row-130">
-                <div>
-                  <strong><%= request.book.title %></strong>
-                  <em><%= request.book.author %></em>
-
-                  <div class="padded-top-2em">
-                    Requested on <%= request.created_at.strftime('%d/%m/%Y') %>
-                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="col-xs-12 col-md-4">
-              <div class="flex-container-centered-vh list-row-130">
-                <%= link_to "Approve", approve_loan_path(request), {class: "btn btn-primary btn-half-width", :method => :patch} %>
-                <%= link_to "Reject", "#", {class: "btn btn-warning btn-half-width", :method => :patch} %>
+              <div class="col-xs-6 col-md-6">
+                <div class="flex-container-centered-v list-row-130">
+                  <div>
+                    <strong><%= request.book.title %></strong>
+                    <em><%= request.book.author %></em>
+
+                    <div class="padded-top-2em">
+                      Requested on <%= request.created_at.strftime('%d/%m/%Y') %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-4">
+                <div class="flex-container-centered-vh list-row-130">
+                  <%= link_to "Approve", approve_loan_path(request), {class: "btn btn-primary btn-half-width", :method => :patch} %>
+                  <%= link_to "Reject", "#", {class: "btn btn-warning btn-half-width", :method => :patch} %>
+                </div>
               </div>
             </div>
-
           </div>
           <% end %>
 
@@ -91,9 +91,9 @@
             <div class="col-xs-12 col-md-4">
               <div class="flex-container-centered-vh list-row-130">
                 <% if request.rejected == true %>
-                  <div class="label label-danger" type="submit">Rejected</div>
+                <div class="label label-danger" type="submit">Rejected</div>
                 <% else %>
-                  <div class="label label-default" type="submit">Open</div>
+                <div class="label label-default" type="submit">Open</div>
                 <% end %>
               </div>
             </div>
@@ -103,7 +103,7 @@
 
           <% end %>
 
-          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -1,6 +1,7 @@
 .list-row-library {
   min-height: 130px;
-  // height: 100
+  // height: 50vh;
+  padding-top: 10px;
 }
 
 .loan-requester {
@@ -10,11 +11,11 @@
   position: relative;
 }
 
-.list-row-130 {
-  margin-top: 0px;
-  padding-top: 0px;
-  height: 130px;
-}
+// .list-row-130 {
+//   margin-top: 0px;
+//   padding-top: 0px;
+//   height: 130px;
+// }
 
 #library-page {
   h3 {

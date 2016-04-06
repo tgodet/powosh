@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :loans
   has_one :profile
-
   has_many :books
 
   devise :database_authenticatable, :registerable,
