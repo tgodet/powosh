@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
   has_one :profile
   has_many :books
 
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
