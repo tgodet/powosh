@@ -21,10 +21,10 @@ ActiveRecord::Schema.define(version: 20160406141122) do
     t.string   "description"
     t.string   "language"
     t.integer  "user_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "author"
-    t.boolean  "available",   default: false
+    t.boolean  "available",   default: true
   end
 
   add_index "books", ["user_id"], name: "index_books_on_user_id", using: :btree
