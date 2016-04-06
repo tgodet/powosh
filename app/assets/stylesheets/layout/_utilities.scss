@@ -15,6 +15,11 @@
   padding-bottom: 2em;
 }
 
+.padded-top-2em {
+  padding-top: 2em;
+
+}
+
 // Backgrounds
 .bg-black {
   background: #4a4a4a;
@@ -35,4 +40,20 @@
 
 .bg-primary-light {
   background: $primary-light;
+}
+
+.row-bordered-top {
+  border-top: 1px solid $primary;
+  padding: 10px 0;
+}
+
+.flex-container-centered-vh {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-container-centered-v {
+  display: flex;
+  align-items: center;
 }

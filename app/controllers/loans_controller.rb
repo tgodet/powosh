@@ -2,7 +2,8 @@ class LoansController < ApplicationController
   before_action :set_loan, only: [:show, :approve_loan]
   before_action :set_book, only: [:create]
   def index
-    @loans = Loan.all
+    @user = User.find(params[:user_id])
+    @loans = Loan.where(user_id: @user.id, confirmed: true)
   end
 
   def show
@@ -23,16 +24,43 @@ class LoansController < ApplicationController
   end
 
   def approve_loan
-    @user = User.find(1)
+    user_id = @loan.book.user_id
+    @user = User.find(user_id)
     @loan.pending = false
     @loan.confirmed = true
+    @loan.approved_on = Date.new
+    @loan.book.available = false
     # @loan.update
     if @loan.save
-      flash[:notice] = "You agreed to lend this book!"
+      flash[:notice] = "You agreed to lend #{@loan.book.title}!"
     else
       flash[:alert] = "There was a problem. No request sent."
     end
-    redirect_to user_loans_path(@user)
+    redirect_to loan_requests_path(@user)
+  end
+
+  def reject_loan
+    user_id = @loan.book.user_id
+    @user = User.find(user_id)
+    @loan.rejected = true
+    # @loan.update
+    if @loan.save
+      flash[:notice] = "You rejected the loan request!"
+    else
+      flash[:alert] = "There was a problem. No change made."
+    end
+    redirect_to loan_requests_path(@user)
+  end
+
+  def open_requests
+    @user = User.find(params[:user_id])
+    requests = Loan.where(pending: true)
+    @requests_from_friends = requests.select do |request|
+      request.book.user_id == @user.id
+    end
+    @requests_to_friends = requests.select do |request|
+      request.user_id == @user.id
+    end
   end
 
   private
@@ -41,6 +69,6 @@ class LoansController < ApplicationController
   end
 
   def set_book
-    @book = Book.find(params[:id])
+    @book = Book.find(params[:book_id])
   end
 end
