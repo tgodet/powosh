@@ -8,10 +8,10 @@ Rails.application.routes.draw do
     resources :loans, only: :create
   end
 
-  get 'books/:id/request' => 'books#request_book', as: :request_book
-
   get 'users/:user_id/loans' => 'loans#index', as: :user_loans
   patch 'loans/:id/approve' => 'loans#approve_loan', as: :approve_loan
+
+  get 'users/:user_id/loans/requests'  => 'loans#open_requests', as: :loan_requests
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

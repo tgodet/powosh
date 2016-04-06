@@ -35,12 +35,17 @@ class LoansController < ApplicationController
     redirect_to user_loans_path(@user)
   end
 
+  def open_requests
+
+    @requests = Loan.where(pending: true)
+  end
+
   private
   def set_loan
     @loan = Loan.find(params[:id])
   end
 
   def set_book
-    @book = Book.find(params[:id])
+    @book = Book.find(params[:book_id])
   end
 end
