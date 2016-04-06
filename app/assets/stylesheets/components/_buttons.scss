@@ -1,0 +1,20 @@
+.btn-half-width {
+  width: 40%;
+  margin: 10px;
+}
+
+.label {
+  border-radius: 2px;
+  padding: 5px;
+  border: 1px solid $gray;
+  background-color: white;
+
+}
+
+.label-danger {
+  color: $red;
+}
+
+.label-default {
+  color: $gray;
+}
