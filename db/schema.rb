@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405074409) do
+ActiveRecord::Schema.define(version: 20160405171848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,13 +21,25 @@ ActiveRecord::Schema.define(version: 20160405074409) do
     t.string   "description"
     t.string   "language"
     t.integer  "user_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "author"
-    t.boolean  "available",   default: true
+    t.boolean  "available",   default: false
   end
 
   add_index "books", ["user_id"], name: "index_books_on_user_id", using: :btree
+
+  create_table "loans", force: :cascade do |t|
+    t.integer  "book_id"
+    t.integer  "user_id"
+    t.boolean  "confirmed",  default: false
+    t.boolean  "pending",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "loans", ["book_id"], name: "index_loans_on_book_id", using: :btree
+  add_index "loans", ["user_id"], name: "index_loans_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -48,4 +60,6 @@ ActiveRecord::Schema.define(version: 20160405074409) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "books", "users"
+  add_foreign_key "loans", "books"
+  add_foreign_key "loans", "users"
 end

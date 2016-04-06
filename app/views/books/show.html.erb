@@ -22,8 +22,10 @@
     </div>
   </div>
   <div class="text-center">
-    <%= link_to "Request Book!", request_book_path(@book), class: "btn btn-primary" %>
+    <%= link_to "Request Book!", book_loans_path(@book),
+    {class: "btn btn-primary", :method => :post} %>
   </div>
+</div>
 </div>
 
 <div id="show-description", class="show-content padded-2em">
