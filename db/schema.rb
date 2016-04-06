@@ -43,6 +43,20 @@ ActiveRecord::Schema.define(version: 20160406141122) do
   add_index "loans", ["book_id"], name: "index_loans_on_book_id", using: :btree
   add_index "loans", ["user_id"], name: "index_loans_on_user_id", using: :btree
 
+  create_table "profiles", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address"
+    t.string   "profile_picture"
+    t.date     "birth_date"
+    t.boolean  "book_owner"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -64,4 +78,5 @@ ActiveRecord::Schema.define(version: 20160406141122) do
   add_foreign_key "books", "users"
   add_foreign_key "loans", "books"
   add_foreign_key "loans", "users"
+  add_foreign_key "profiles", "users"
 end
