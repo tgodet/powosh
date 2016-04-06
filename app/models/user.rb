@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  has_many :books
+
   PROFILES_PICS = ["profilepic_1.jpg","profilepic_2.jpg","profilepic_3.jpg","profilepic_4.jpg",
     "profilepic_5.jpg","profilepic_6.jpg","profilepic_7.jpg","profilepic_8.jpg",
     "profilepic_9.jpg","profilepic_10.jpg","profilepic_11.jpg","profilepic_12.jpg",
