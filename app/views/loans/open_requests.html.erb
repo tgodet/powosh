@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+
+      <h1>Pending Requests</h1>
+
+      <h3>Requests from your Friends</h3>
+      <% @requests.each do |request| %>
+      <ul class="list-inline">
+        <li><%= request.book.title %></li>
+        <li><%= request.user.email %></li>
+        <% if request.pending %>
+        <li>
+        <%= link_to "Approve", approve_loan_path(request), {class: "btn btn-primary", :method => :patch} %>
+        </li>
+        <% else %>
+        <% end %>
+        <%= request.confirmed %>
+      </ul>
+      <% end %>
+
+    </div>
+  </div>
+</div>
