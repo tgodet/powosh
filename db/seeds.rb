@@ -27,7 +27,7 @@ User.create!(email: "test6@test.com", password: "testtest")
     })
 end
 
-100.times do
+20.times do
   Loan.create({
     user_id: (User.all).sample.id,
     book_id: (Book.all).sample.id,
