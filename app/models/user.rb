@@ -2,7 +2,11 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :loans
+<<<<<<< HEAD
+  has_one :profile
+=======
   has_many :books
+>>>>>>> 4b1f5b6aab3633ba0d5941de6be4a28134c1eaeb
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -15,5 +19,16 @@ class User < ActiveRecord::Base
     "profilepic_13.jpg","profilepic_14.jpg","profilepic_15.jpg","profilepic_16.jpg",
     "profilepic_17.jpg","profilepic_18.jpg","profilepic_19.jpg","profilepic_20.jpg",
     "profilepic_21.jpg","profilepic_22.jpg"]
+
+
+after_create :create_profile
+
+private
+
+  def create_profile
+    self.profile = Profile.new
+  end
+
+
 
 end
