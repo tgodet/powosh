@@ -1,0 +1,29 @@
+.tabs-profile {
+  display: flex;
+  text-align: center;
+  color: white;
+
+}
+
+.tabs-ind {
+  flex: 1 1 0%;
+  padding: 20px 0px 7px 0px;
+  font-size: 10px;
+  background-color: $primary-dark;
+  color: white;
+}
+
+a.tab {
+  color: white;
+}
+
+
+.tabs-ind a:hover{
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.tabs-ind :hover{
+  background-color: $primary-light;
+}
