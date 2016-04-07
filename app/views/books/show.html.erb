@@ -6,17 +6,17 @@
 
 <div id="wrapper">
 
-<!-- BOOK -->
-      <div class="book">
-        <div class="book-cover">
-          <h1 class="title"><%= @book.title %></h1>
+  <!-- BOOK -->
+  <div class="book">
+    <div class="book-cover">
+      <h1 class="title"><%= @book.title %></h1>
       <!--     <h2 class="subtitle">this is the Book Subitle</h2> -->
-          <h5 class="author"><span> écrit par</span> <%= @book.author %> </h5>
-        </div>
-        <div class="book-top"></div>
-        <div class="book-right"></div>
-      </div>
-      <!-- /BOOK -->
+      <h5 class="author"><span> écrit par</span> <%= @book.author %> </h5>
+    </div>
+    <div class="book-top"></div>
+    <div class="book-right"></div>
+  </div>
+  <!-- /BOOK -->
 
 </div>
 
@@ -42,7 +42,7 @@
       </div>
     </div>
   </div>
-  <div class="text-center">
+  <div class="text-center add-margin">
     <%= link_to "Request Book!", book_loans_path(@book),
     {class: "btn btn-primary", :method => :post} %>
   </div>

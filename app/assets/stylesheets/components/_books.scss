@@ -1,5 +1,6 @@
 body {
-   background-color: #333;
+   // background-color: #333;
+   background-color: primary-light;
 }
 
 #wrapper {
@@ -14,7 +15,7 @@ body {
 .book {
   position: relative;
   width: 200px;
-  height: 300px;
+  height: 250px;
 }
 
 .book-cover {
@@ -34,7 +35,7 @@ body {
 .book-cover:before {
   border-left: 10px solid #000000;
   content: "";
-  height: 300px;
+  height: 250px;
   left: 0;
   opacity: 0.2;
   position: absolute;
@@ -102,7 +103,7 @@ body {
   border-bottom: 1px solid #DDDDDD;
   border-right: 2px solid #C4CA2C;
   box-shadow: 1px 0px 1px #999;
-  height: 296px;
+  height: 247px;
   position: absolute;
   right: -10px;
   top: -4px;
