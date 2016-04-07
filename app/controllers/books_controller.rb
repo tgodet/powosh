@@ -15,7 +15,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @Book = Book.new(book_params)
+    @book = Book.new(book_params)
     if @book.save
       flash[:notice] = "#{@book.title.capitalize} has been created"
       redirect_to book_path(@book)
@@ -53,7 +53,14 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:profile).permit(:title, :description, :language)
+    params.require(:book).permit(
+      :title,
+      :author,
+      :description,
+      :language,
+      :my_description,
+      :isbn
+      )
   end
 
   def set_book
