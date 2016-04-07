@@ -3,6 +3,8 @@
   <div class="tabs-ind"><%= link_to "Home", root_path, class: "tab active" %></div>
   <div class="tabs-ind"><%= link_to "Share", new_book_path, class: "tab active" %></div>
   <div class="tabs-ind"><%= link_to "Borrow", new_book_path, class: "tab" %></div>
+  <% if user_signed_in? %>
   <div class="tabs-ind"><%= link_to "Track", loan_requests_path(current_user), class: "tab" %></div>
+  <% end %>
 
 </div>
