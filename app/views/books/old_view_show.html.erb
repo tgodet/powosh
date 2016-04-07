@@ -1,0 +1,42 @@
+
+<div class="wrapper-primary-light">
+  <div class="book-summary-holder">
+
+    <div class="book-summary">
+      <% profile_image_path = @book.user.profile.profile_picture %>
+
+      <div class="book-summary-owner avatar-square-lg", style="background-image: url(<%= image_path profile_image_path %>);">
+        <div class="profile-image-overlay text-center">
+          <%= @book.user.profile.first_name %> has this book!
+        </div>
+      </div>
+
+      <div class="book-summary-book-info">
+        <p><strong><%= @book.title %></strong> (<%= @book.language %>)</p>
+        <p><em><%= @book.author %></em></p>
+      </div>
+    </div>
+  </div>
+  <div class="text-center add-margin">
+    <%= link_to "Request Book!", book_loans_path(@book),
+    {class: "btn btn-primary", :method => :post} %>
+  </div>
+</div>
+</div>
+
+<div id="show-description", class="show-content padded-2em">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <h3><%= @book.user.profile.first_name %> says</h3>
+        <div class="box-white">
+          <%= @book.description %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+

@@ -17,52 +17,51 @@
     <div class="book-right"></div>
   </div>
   <!-- /BOOK -->
-
 </div>
 
-
-
-
-
-<div class="wrapper-primary-light">
-  <div class="book-summary-holder">
-
-    <div class="book-summary">
-      <% profile_image_path = @book.user.profile.profile_picture %>
-
-      <div class="book-summary-owner avatar-square-lg", style="background-image: url(<%= image_path profile_image_path %>);">
-        <div class="profile-image-overlay text-center">
-          <%= @book.user.profile.first_name %> has this book!
-        </div>
-      </div>
-
-      <div class="book-summary-book-info">
-        <p><strong><%= @book.title %></strong> (<%= @book.language %>)</p>
-        <p><em><%= @book.author %></em></p>
-      </div>
-    </div>
-  </div>
-  <div class="text-center add-margin">
-    <%= link_to "Request Book!", book_loans_path(@book),
-    {class: "btn btn-primary", :method => :post} %>
-  </div>
-</div>
-</div>
-
-<div id="show-description", class="show-content padded-2em">
+<!--
+////////////////////////////////////////////////////////////
+Following appears if current user is different from Book owner
+///////////////////////////////////////////////////////////////
+-->
+<% if current_user.id != @user.id %>
   <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-        <h3><%= @book.user.profile.first_name %> says</h3>
-        <div class="box-white">
-          <%= @book.description %>
-        </div>
-
+    <div class="product">
+      <div class='product-upvote'>
+        <div class='product-count'><%= @book.my_rating %></div>
       </div>
+      <% profile_image_path = @user.profile.profile_picture %>
+      <%= image_tag profile_image_path %>
+      <!-- <img =@book.user.profile.profile_picture class="product-image hidden-xs"> -->
+      <div class='product-body'>
+        <h3><%= @user.profile.first_name %> peut vous prêter</h3>
+        <p><%= @book.title %> - <%= @book.language %></p>
+        <p> de <%= @book.author %></p>
+      </div>
+      <div class="text-center add-margin product-controls">
+        <%= link_to "Je le veux!", book_loans_path(@book),
+        {class: "btn btn-primary", :method => :post} %>
+      </div>
+     <!--  <ul class="list-inline product-controls hidden-sm hidden-xs">
+        <li><a href=""><i class="fa fa-heart"></i></a></li>
+        <li><a href=""><i class="fa fa-share"></i></a></li>
+        <li><a href=""><i class="fa fa-star"></i></a></li>
+      </ul> -->
     </div>
   </div>
-</div>
-</div>
+<% elsif  @book.my_description %>
+  <div class="container">
+    <h3>Ce que j'en pense</h3>
+    <p><%= @book.my_description %></p>
+  </div>
+<% else%>
+
+<% end%>
+
+<!--
+////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
+ -->
 
 
 <div id="show-discussion", class="show-content padded-2em">

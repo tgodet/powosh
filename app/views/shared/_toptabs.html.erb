@@ -1,17 +1,17 @@
 <div class="tabs-profile">
 
   <div class="tabs-ind"><i class="fa fa-home my-icon"></i>
-    <p><%= link_to "Home", root_path, class: "tab active" %></p>
+    <p><%= link_to "Accueil", root_path, class: "tab active" %></p>
   </div>
   <div class="tabs-ind"><i class="fa fa-share my-icon"></i>
-    <p><%= link_to "Share", new_book_path, class: "tab active" %></p>
+    <p><%= link_to "Partage", new_book_path, class: "tab active" %></p>
   </div>
   <div class="tabs-ind"><i class="fa fa-book my-icon"></i>
-    <p><%= link_to "Borrow", new_book_path, class: "tab" %></p>
+    <p><%= link_to "Emprunte", new_book_path, class: "tab" %></p>
   </div>
   <% track_path = user_signed_in? ? loan_requests_path(current_user) : ""%>
   <div class="tabs-ind"><i class="fa fa-bar-chart my-icon"></i>
-    <p><%= link_to "Track", track_path, class: "tab" %></p>
+    <p><%= link_to "Ma Bibliothèque", track_path, class: "tab" %></p>
   </div>
 
 </div>
