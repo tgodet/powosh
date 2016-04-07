@@ -9,6 +9,8 @@ class BooksController < ApplicationController
   end
 
   def show
+    set_book
+    @user = User.find(@book.user_id)
   end
 
   # only enabled for logged in user
