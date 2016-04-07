@@ -3,9 +3,6 @@
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2">
 
-        <%= @user.id %>
-        <%= @user.email %>
-
         <h3>Your Loans</h3>
         <% if @loans.count == 0 %>
         <p>You don't have any borrowed books right now!</p>
@@ -19,7 +16,7 @@
               <% profile_image_path = (User::PROFILES_PICS).sample %>
               <div class="loan-requester avatar-square-md", style="background-image: url(<%= image_path profile_image_path %>);">
                 <div class="profile-image-overlay text-center">
-                  <%= loan.book.user.email %>'s book
+                  <%= loan.book.user.id %>'s book
                 </div>
               </div>
 

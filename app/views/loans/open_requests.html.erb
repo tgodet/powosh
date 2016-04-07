@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2">
 
-        <h1>Pending Requests for <%= @user.email %> (id: <%= @user.id %>)</h1>
+        <h1>Pending Requests</h1>
 
         <div>
           <h3>Requests from your Friends</h3>
@@ -20,7 +20,7 @@
                   <% profile_image_path = (User::PROFILES_PICS).sample %>
                   <div class="loan-requester avatar-square-md", style="background-image: url(<%= image_path profile_image_path %>);">
                     <div class="profile-image-overlay text-center">
-                      <%= request.user.email %> wants this!
+                      <%= request.user.id %> wants this!
                     </div>
                   </div>
 
@@ -43,7 +43,7 @@
               <div class="col-xs-12 col-md-4">
                 <div class="flex-container-centered-vh list-row-130">
                   <%= link_to "Approve", approve_loan_path(request), {class: "btn btn-primary btn-half-width", :method => :patch} %>
-                  <%= link_to "Reject", "#", {class: "btn btn-warning btn-half-width", :method => :patch} %>
+                  <%= link_to "Reject", reject_loan_path(request), {class: "btn btn-default btn-half-width", :method => :patch} %>
                 </div>
               </div>
             </div>
@@ -68,7 +68,7 @@
                 <% profile_image_path = (User::PROFILES_PICS).sample %>
                 <div class="loan-requester avatar-square-md", style="background-image: url(<%= image_path profile_image_path %>);">
                   <div class="profile-image-overlay text-center">
-                    <%= request.book.user.email %> has this!
+                    <%= request.book.user.id %> has this!
                   </div>
                 </div>
 
@@ -90,8 +90,10 @@
 
             <div class="col-xs-12 col-md-4">
               <div class="flex-container-centered-vh list-row-130">
-                <% if request.rejected == true %>
+                <% if request.rejected %>
                 <div class="label label-danger" type="submit">Rejected</div>
+                <% elsif request.confirmed %>
+                <div class="label label-success" type="submit">Approved</div>
                 <% else %>
                 <div class="label label-default" type="submit">Open</div>
                 <% end %>
