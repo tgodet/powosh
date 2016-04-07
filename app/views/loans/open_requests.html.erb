@@ -1,7 +1,4 @@
-<div id="open-requests-page">
-
   <div class="wrapper-no-padding-bottom header-wrapper">
-
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2">
@@ -21,13 +18,13 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2">
         <div class="tab-content">
+
 
           <div role="tabpanel" class="tab-pane active" id="friend">
             <h4>Requests from Friends</h4>
@@ -36,138 +33,88 @@
             <p>No requests at the moment!</p>
             <% else %>
 
-            <% @requests_from_friends.each do |request| %>
+            <% @requests_from_friends.each do |loan| %>
             <div class="row-bordered-top list-row-library">
               <div class="row">
-
-                <div class="col-xs-6 col-md-2">
-                  <div class="flex-container-centered-vh list-row-130">
-                    <% profile_image_path = request.user.profile.profile_picture %>
-                    <div class="loan-requester avatar-square-md", style="background-image: url(<%= image_path profile_image_path %>);">
-                      <div class="profile-image-overlay text-center">
-                        <%= request.user.id %> - <%= request.user.profile.profile_picture %> wants this!
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-                <div class="col-xs-6 col-md-6">
-                  <div class="flex-container-centered-v list-row-130">
-                    <div>
-                      <strong><%= request.book.title %></strong> (<%= request.book.language %>)
-                      <em><%= request.book.author %></em>
-
-                      <div class="padded-top-2em">
-                        Requested: <%= request.created_at.strftime('%d/%m/%Y') %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <%= render partial: "shared/loan_card",
+                object: loan, as: :loan,
+                locals: {
+                  owner_pic: false,
+                  overlay: "wants this book",
+                  date_text: "Requested: ",
+                  date_method: "created_at",
+                } %>
 
                 <div class="col-xs-12 col-md-4">
                   <div class="flex-container-centered-vh list-row-130">
-                    <%= link_to "Approve", approve_loan_path(request), {class: "btn btn-primary btn-half-width", :method => :patch} %>
-                    <%= link_to "Reject", reject_loan_path(request), {class: "btn btn-default btn-half-width", :method => :patch} %>
-                  </div>
-                </div>
+                   <%= link_to "Approve", approve_loan_path(loan), {class: "btn btn-primary btn-half-width", :method => :patch} %>
+                   <%= link_to "Reject", reject_loan_path(loan), {class: "btn btn-default btn-half-width", :method => :patch} %>
+                 </div>
+               </div>
 
-              </div>
-            </div>
-            <% end %>
+             </div>
+           </div>
+           <% end %>
 
-            <% end %>
+           <% end %>
 
-          </div>
-
-
+         </div>
 
 
-          <div role="tabpanel" class="tab-pane" id="own">
+         <div role="tabpanel" class="tab-pane" id="own">
 
-            <h4>Own Requests</h4>
-            <% if @requests_to_friends.count == 0 %>
-            <p>No open requests! Why not check out your friends' libraries!</p>
-            <% else %>
+          <h4>Own Requests</h4>
+          <% if @requests_to_friends.count == 0 %>
+          <p>No open requests! Why not check out your friends' libraries!</p>
+          <% else %>
 
-            <% @requests_to_friends.each do |request| %>
-            <div class="row-bordered-top list-row-library">
-              <div class="row">
+          <% @requests_to_friends.each do |loan| %>
+          <div class="row-bordered-top list-row-library">
+            <div class="row">
 
-                <div class="col-xs-6 col-md-2">
-                  <div class="flex-container-centered-vh list-row-130">
+              <%= render partial: "shared/loan_card", object: loan, as: :loan,
+              locals: {
+                owner_pic: true,
+                overlay: "has this",
+                date_text: "Requested: ",
+                date_method: "created_at",
+              } %>
 
-                    <% profile_image_path = request.book.user.profile.profile_picture %>
-                    <div class="loan-requester avatar-square-md", style="background-image: url(<%= image_path profile_image_path %>);">
-                      <div class="profile-image-overlay text-center"><%= request.book.user.id %> - <%= request.book.user.profile.first_name %> has this!</div>
-                    </div>
-
-                  </div>
-                </div>
-
-                <div class="col-xs-6 col-md-6">
-                  <div class="flex-container-centered-v list-row-130">
-                    <div>
-                      <strong><%= request.book.title %></strong> (<%= request.book.language %>)
-                      <em><%= request.book.author %></em>
-
-                      <div class="padded-top-2em">
-                        Requested: <%= request.created_at.strftime('%d/%m/%Y') %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-xs-12 col-md-4">
-                  <div class="flex-container-centered-vh list-row-130">
-                    <% if request.rejected %>
-                    <div class="label label-danger" type="submit">Rejected</div>
-                    <% elsif request.confirmed %>
-                    <div class="label label-success" type="submit">Approved</div>
-                    <% else %>
-                    <div class="label label-default" type="submit">Open</div>
-                    <% end %>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-            <% end %>
-
-            <% end %>
-
-            <h4>Your Loans</h4>
-            <% if @loans.count == 0 %>
-            <p>You don't have any borrowed books right now!</p>
-            <% else %>
-
-            <% @loans.each do |loan| %>
-            <div class="row-bordered-top list-row-library">
-
-              <div class="col-xs-6 col-md-2">
+              <div class="col-xs-12 col-md-4">
                 <div class="flex-container-centered-vh list-row-130">
-                  <% profile_image_path = (User::PROFILES_PICS).sample %>
-                  <div class="loan-requester avatar-square-md", style="background-image: url(<%= image_path profile_image_path %>);">
-                    <div class="profile-image-overlay text-center">
-                      <%= loan.book.user.id %>'s book
-                    </div>
-                  </div>
-
+                  <% if loan.rejected %>
+                  <div class="label label-danger" type="submit">Rejected</div>
+                  <% elsif loan.confirmed %>
+                  <div class="label label-success" type="submit">Approved</div>
+                  <% else %>
+                  <div class="label label-default" type="submit">Open</div>
+                  <% end %>
                 </div>
               </div>
 
-              <div class="col-xs-6 col-md-6">
-                <div class="flex-container-centered-v list-row-130">
-                  <div>
-                    <strong><%= loan.book.title %></strong> (<%= loan.book.language %>)
-                    <em><%= loan.book.author %></em>
+            </div>
+          </div>
+          <% end %>
 
-                    <div class="padded-top-2em">
-                      Requested on <%= loan.approved_on.strftime('%d/%m/%Y') %>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <% end %>
+
+          <h4>Your Loans</h4>
+          <% if @loans.count == 0 %>
+          <p>You don't have any borrowed books right now!</p>
+          <% else %>
+
+          <% @loans.each do |loan| %>
+          <div class="row-bordered-top list-row-library">
+            <div class="row">
+
+              <%= render partial: "shared/loan_card", object: loan, as: :loan,
+              locals: {
+                owner_pic: true,
+                overlay: "'s book'",
+                date_text: "Loan approved: ",
+                date_method: "approved_on",
+              } %>
+
 
               <div class="col-xs-12 col-md-4">
                 <div class="flex-container-centered-vh list-row-130">
@@ -176,14 +123,14 @@
               </div>
 
             </div>
-            <% end %>
-
-            <% end %>
-
-
           </div>
+          <% end %>
+
+          <% end %>
+
 
         </div>
+
 
       </div>
     </div>

@@ -1,1 +1,25 @@
-_loan_card.html.erb
+<% user = owner_pic ? loan.book.user : loan.user %>
+<div class="col-xs-6 col-md-2">
+  <div class="flex-container-centered-vh list-row-130">
+    <% profile_image_path = user.profile.profile_picture %>
+    <div class="loan-requester avatar-square-md", style="background-image: url(<%= image_path profile_image_path %>);">
+      <div class="profile-image-overlay text-center">
+        <%= user.id %> - <%= user.profile.first_name %> <%= overlay %>!
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-xs-6 col-md-6">
+  <div class="flex-container-centered-v list-row-130">
+    <div>
+      <strong><%= loan.book.title %></strong> (<%= loan.book.language %>)
+      <em><%= loan.book.author %></em>
+
+      <div class="padded-top-2em">
+        <%= date_text %> <%= loan.send(date_method.to_sym).strftime('%d/%m/%Y') %>
+      </div>
+
+    </div>
+  </div>
+</div>
