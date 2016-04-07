@@ -45,7 +45,7 @@
                     <% profile_image_path = request.user.profile.profile_picture %>
                     <div class="loan-requester avatar-square-md", style="background-image: url(<%= image_path profile_image_path %>);">
                       <div class="profile-image-overlay text-center">
-                        <%= request.user.id - request.user.profile.profile_picture %> wants this!
+                        <%= request.user.id %> - <%= request.user.profile.profile_picture %> wants this!
                       </div>
                     </div>
 
