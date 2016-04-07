@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
 
 
-  devise_for :users
+
+
+  devise_for :users, :path => 'accounts'
+  resources :users do
+        resources :profiles
+  end
+
+
   root to: 'books#index'
 
   resources :books do
