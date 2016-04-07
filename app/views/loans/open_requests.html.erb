@@ -6,13 +6,14 @@
       <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2">
 
-        <div class="library-header">
+          <div class="library-header">
 
-            <h3>Open Requests</h3>
+            <h3>Library</h3>
 
             <ul class="nav nav-pills text-center" role="tablist">
-              <li role="presentation" class="active tab-xs-half"><a href="#friend" aria-controls="home" role="tab" data-toggle="tab">Friends (<%=@requests_from_friends.count %>)</a></li>
-              <li role="presentation" class="tab-xs-half"><a href="#own" aria-controls="profile" role="tab" data-toggle="tab">Own (<%=@requests_to_friends.count %>)</a></li>
+              <li role="presentation" class="active tab-xs-third"><a href="#friend" aria-controls="home" role="tab" data-toggle="tab">Share (<%=@requests_from_friends.count %>)</a></li>
+              <li role="presentation" class="tab-xs-third"><a href="#own" aria-controls="profile" role="tab" data-toggle="tab">Borrow (<%=@requests_to_friends.count %>)</a></li>
+              <li role="presentation" class="tab-xs-third"><a href="#own" aria-controls="profile" role="tab" data-toggle="tab">Library (<%=@requests_to_friends.count %>)</a></li>
             </ul>
 
           </div>
@@ -41,7 +42,7 @@
 
                 <div class="col-xs-6 col-md-2">
                   <div class="flex-container-centered-vh list-row-130">
-                    <% profile_image_path = (User::PROFILES_PICS).sample %>
+                    <% profile_image_path = request.user.profile.profile_picture %>
                     <div class="loan-requester avatar-square-md", style="background-image: url(<%= image_path profile_image_path %>);">
                       <div class="profile-image-overlay text-center">
                         <%= request.user.id %> wants this!
@@ -78,6 +79,8 @@
             <% end %>
 
           </div>
+
+
 
 
           <div role="tabpanel" class="tab-pane" id="own">
@@ -132,6 +135,51 @@
             <% end %>
 
             <% end %>
+
+            <h4>Your Loans</h4>
+            <% if @loans.count == 0 %>
+            <p>You don't have any borrowed books right now!</p>
+            <% else %>
+
+            <% @loans.each do |loan| %>
+            <div class="row-bordered-top list-row-library">
+
+              <div class="col-xs-6 col-md-2">
+                <div class="flex-container-centered-vh list-row-130">
+                  <% profile_image_path = (User::PROFILES_PICS).sample %>
+                  <div class="loan-requester avatar-square-md", style="background-image: url(<%= image_path profile_image_path %>);">
+                    <div class="profile-image-overlay text-center">
+                      <%= loan.book.user.id %>'s book
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="col-xs-6 col-md-6">
+                <div class="flex-container-centered-v list-row-130">
+                  <div>
+                    <strong><%= loan.book.title %></strong> (<%= loan.book.language %>)
+                    <em><%= loan.book.author %></em>
+
+                    <div class="padded-top-2em">
+                      Requested on <%= loan.approved_on.strftime('%d/%m/%Y') %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-4">
+                <div class="flex-container-centered-vh list-row-130">
+                  <%= link_to "Return", "#", {class: "btn btn-primary btn-half-width", :method => :patch} %>
+                </div>
+              </div>
+
+            </div>
+            <% end %>
+
+            <% end %>
+
 
           </div>
 

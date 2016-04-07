@@ -48,6 +48,7 @@ class LoansController < ApplicationController
   end
 
   def open_requests
+    @loans = Loan.where(user_id: @user.id, confirmed: true)
     requests = Loan.where(pending: true)
     @requests_from_friends = requests.select do |request|
       request.book.user_id == @user.id && !request.confirmed &&!request.rejected
