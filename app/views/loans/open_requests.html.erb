@@ -1,109 +1,142 @@
 <div id="open-requests-page">
+
+  <div class="wrapper-no-padding-bottom header-wrapper">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+
+        <div class="library-header">
+
+            <h3>Open Requests</h3>
+
+            <ul class="nav nav-pills text-center" role="tablist">
+              <li role="presentation" class="active tab-xs-half"><a href="#friend" aria-controls="home" role="tab" data-toggle="tab">Friends (<%=@requests_from_friends.count %>)</a></li>
+              <li role="presentation" class="tab-xs-half"><a href="#own" aria-controls="profile" role="tab" data-toggle="tab">Own (<%=@requests_to_friends.count %>)</a></li>
+            </ul>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <div class="tab-content">
 
-        <h1>Pending Requests for <%= @user.email %> (id: <%= @user.id %>)</h1>
+          <div role="tabpanel" class="tab-pane active" id="friend">
+            <h4>Requests from Friends</h4>
 
-        <div>
-          <h3>Requests from your Friends</h3>
+            <% if @requests_from_friends.count == 0 %>
+            <p>No requests at the moment!</p>
+            <% else %>
 
-          <% if @requests_from_friends.count == 0 %>
-          <p>No requests at the moment!</p>
-          <% else %>
+            <% @requests_from_friends.each do |request| %>
+            <div class="row-bordered-top list-row-library">
+              <div class="row">
 
-          <% @requests_from_friends.each do |request| %>
-          <div class="row-bordered-top list-row-library">
-            <div class="row">
-            <div class="col-xs-6 col-md-2">
-                <div class="flex-container-centered-vh list-row-130">
-                  <% profile_image_path = (User::PROFILES_PICS).sample %>
-                  <div class="loan-requester avatar-square-md", style="background-image: url(<%= image_path profile_image_path %>);">
-                    <div class="profile-image-overlay text-center">
-                      <%= request.user.email %> wants this!
+                <div class="col-xs-6 col-md-2">
+                  <div class="flex-container-centered-vh list-row-130">
+                    <% profile_image_path = (User::PROFILES_PICS).sample %>
+                    <div class="loan-requester avatar-square-md", style="background-image: url(<%= image_path profile_image_path %>);">
+                      <div class="profile-image-overlay text-center">
+                        <%= request.user.id %> wants this!
+                      </div>
                     </div>
-                  </div>
 
-                </div>
-              </div>
-
-              <div class="col-xs-6 col-md-6">
-                <div class="flex-container-centered-v list-row-130">
-                  <div>
-                    <strong><%= request.book.title %></strong>
-                    <em><%= request.book.author %></em>
-
-                    <div class="padded-top-2em">
-                      Requested on <%= request.created_at.strftime('%d/%m/%Y') %>
-                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="col-xs-12 col-md-4">
-                <div class="flex-container-centered-vh list-row-130">
-                  <%= link_to "Approve", approve_loan_path(request), {class: "btn btn-primary btn-half-width", :method => :patch} %>
-                  <%= link_to "Reject", "#", {class: "btn btn-warning btn-half-width", :method => :patch} %>
+                <div class="col-xs-6 col-md-6">
+                  <div class="flex-container-centered-v list-row-130">
+                    <div>
+                      <strong><%= request.book.title %></strong> (<%= request.book.language %>)
+                      <em><%= request.book.author %></em>
+
+                      <div class="padded-top-2em">
+                        Requested: <%= request.created_at.strftime('%d/%m/%Y') %>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+                <div class="col-xs-12 col-md-4">
+                  <div class="flex-container-centered-vh list-row-130">
+                    <%= link_to "Approve", approve_loan_path(request), {class: "btn btn-primary btn-half-width", :method => :patch} %>
+                    <%= link_to "Reject", reject_loan_path(request), {class: "btn btn-default btn-half-width", :method => :patch} %>
+                  </div>
+                </div>
+
               </div>
             </div>
-          </div>
-          <% end %>
+            <% end %>
 
-          <% end %>
+            <% end %>
+
+          </div>
+
+
+          <div role="tabpanel" class="tab-pane" id="own">
+
+            <h4>Own Requests</h4>
+            <% if @requests_to_friends.count == 0 %>
+            <p>No open requests! Why not check out your friends' libraries!</p>
+            <% else %>
+
+            <% @requests_to_friends.each do |request| %>
+            <div class="row-bordered-top list-row-library">
+              <div class="row">
+
+                <div class="col-xs-6 col-md-2">
+                  <div class="flex-container-centered-vh list-row-130">
+
+                    <% profile_image_path = (User::PROFILES_PICS).sample %>
+                    <div class="loan-requester avatar-square-md", style="background-image: url(<%= image_path profile_image_path %>);">
+                      <div class="profile-image-overlay text-center"><%= request.book.user.id %> has this!</div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-xs-6 col-md-6">
+                  <div class="flex-container-centered-v list-row-130">
+                    <div>
+                      <strong><%= request.book.title %></strong> (<%= request.book.language %>)
+                      <em><%= request.book.author %></em>
+
+                      <div class="padded-top-2em">
+                        Requested: <%= request.created_at.strftime('%d/%m/%Y') %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xs-12 col-md-4">
+                  <div class="flex-container-centered-vh list-row-130">
+                    <% if request.rejected %>
+                    <div class="label label-danger" type="submit">Rejected</div>
+                    <% elsif request.confirmed %>
+                    <div class="label label-success" type="submit">Approved</div>
+                    <% else %>
+                    <div class="label label-default" type="submit">Open</div>
+                    <% end %>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <% end %>
+
+            <% end %>
+
+          </div>
 
         </div>
 
-        <div class="padded">
-          <h3>Your Requests</h3>
-          <% if @requests_to_friends.count == 0 %>
-          <p>No open requests! Why not check out your friends' libraries!</p>
-          <% else %>
-
-          <% @requests_to_friends.each do |request| %>
-          <div class="row-bordered-top list-row-library">
-
-            <div class="col-xs-6 col-md-2">
-              <div class="flex-container-centered-vh list-row-130">
-                <% profile_image_path = (User::PROFILES_PICS).sample %>
-                <div class="loan-requester avatar-square-md", style="background-image: url(<%= image_path profile_image_path %>);">
-                  <div class="profile-image-overlay text-center">
-                    <%= request.book.user.email %> has this!
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <div class="col-xs-6 col-md-6">
-              <div class="flex-container-centered-v list-row-130">
-                <div>
-                  <strong><%= request.book.title %></strong>
-                  <em><%= request.book.author %></em>
-
-                  <div class="padded-top-2em">
-                    Requested on <%= request.created_at.strftime('%d/%m/%Y') %>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xs-12 col-md-4">
-              <div class="flex-container-centered-vh list-row-130">
-                <% if request.rejected == true %>
-                <div class="label label-danger" type="submit">Rejected</div>
-                <% else %>
-                <div class="label label-default" type="submit">Open</div>
-                <% end %>
-              </div>
-            </div>
-
-          </div>
-          <% end %>
-
-          <% end %>
-
-        </div>
       </div>
     </div>
   </div>

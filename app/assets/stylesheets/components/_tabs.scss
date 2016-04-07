@@ -1,0 +1,11 @@
+.tab-xs-half {
+  width: 49%;
+}
+
+
+@media (min-width: 768px) {
+  .tab-xs-half {
+    width: auto;
+  }
+
+}
