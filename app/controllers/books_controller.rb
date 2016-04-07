@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+
   before_action :set_book, only: [:show, :edit, :update, :destroy, :request_book]
 
   # need to add authorization for edit/update/destroy
@@ -10,25 +11,32 @@ class BooksController < ApplicationController
   def show
   end
 
+  # only enabled for logged in user
   def new
     @book = Book.new
   end
 
+  # only enabled for logged in user
   def create
-    @book = Book.new(book_params)
+    find_user
+    @book = @user.books.build(book_params)
     if @book.save
-      flash[:notice] = "#{@book.title.capitalize} has been created"
+      flash[:notice] = "#{@book.title.capitalize} a été ajouté à votre bibliothèque"
       redirect_to book_path(@book)
     else
-      flash[:alert] = "Book not created."
+      flash[:alert] = "Ce livre n'a pas pu être ajouté à votre bibliothèque"
       render 'books/new'
     end
   end
 
+  #ONLY POSSIBLE FOR LOGGED IN USER IF CURRENT USER = Book.user
   def edit
+    @find_user
   end
 
+   #ONLY POSSIBLE FOR LOGGED IN USER IF CURRENT USER = Book.user
   def update
+    find_user
     @book.update(book_params)
     if @book.save
       flash[:notice] = "#{@book.title.capitalize} has been updated"
@@ -39,6 +47,7 @@ class BooksController < ApplicationController
     end
   end
 
+   #ONLY POSSIBLE FOR LOGGED IN USER IF CURRENT USER = Book.user
   def destroy
     @book.destroy
     flash[:notice] = "Book deleted"
@@ -59,6 +68,7 @@ class BooksController < ApplicationController
       :description,
       :language,
       :my_description,
+      :my_rating,
       :isbn
       )
   end
@@ -66,4 +76,11 @@ class BooksController < ApplicationController
   def set_book
     @book = Book.find(params[:id])
   end
+
+  def find_user
+   @user = User.find(current_user.id)
+  end
+
+
+
 end

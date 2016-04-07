@@ -7,7 +7,8 @@
 
 .tabs-ind {
   flex: 1 1 0%;
-  padding: 20px 0px 7px 0px;
+  padding-top: 7px;
+  padding-bottom: 0px;
   font-size: 10px;
   background-color: $primary-dark;
   color: white;
@@ -26,4 +27,9 @@ a.tab {
 
 .tabs-ind :hover{
   background-color: $primary-light;
+}
+
+.my-icon {
+  font-size: 25px;
+  color: white
 }
