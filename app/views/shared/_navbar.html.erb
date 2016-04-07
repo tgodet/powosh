@@ -41,6 +41,15 @@
                 <i class="fa fa-home"></i>  <%= t ".profile", default: "Home" %>
               <% end %>
             </li>
+            <!-- Dummy links for use in demos. These should be changed to user
+            current_user once we have login. -->
+            <% user_id = User.first.id %>
+            <li>
+              <%= link_to "My Loans", user_loans_path(current_user.id) %>
+            </li>
+            <li>
+              <%= link_to "My Loan Requests", loan_requests_path(current_user.id) %>
+            </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
                 <i class="fa fa-sign-out"></i>  <%= t ".sign_out", default: "Log out" %>
