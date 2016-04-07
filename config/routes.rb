@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
 
-
-
+  root to: 'books#index'
 
   devise_for :users, :path => 'accounts'
   resources :users do
         resources :profiles
   end
-
-
-  root to: 'books#index'
 
   resources :books do
     resources :loans, only: :create
