@@ -6,11 +6,11 @@
 <%= simple_form_for(@book) do |f| %>
   <%= f.error_notification %>
   <%= f.label :title, 'Titre' %>
-  <%= f.input :title, label: false, placeholder:"Ex: La recherche du temps perdu" %>
+  <%= f.input :title, label: false, placeholder:"Ex: A la recherche du temps perdu" %>
   <%= f.label :author, 'Auteur' %>
   <%= f.input :author, label: false, placeholder:"Marcel Proust" %>
   <%= f.label :language, 'Langue' %>
-  <%= f.input :language, label: false, placeholder:"Fr", collection: Books::LANGUAGES %>
+  <%= f.input :language, label: false, collection: Book::LANGUAGES,  placeholder:"Français" %>
   <%= f.label :my_description, 'Ma description' %>
   <%= f.input :my_description, label: false, placeholder:"J'adore ce livre parce que..." %>
   <%= f.label :isbn, 'Code ISBN' %>
