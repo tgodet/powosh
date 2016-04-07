@@ -1,9 +1,27 @@
 <div id="library-page">
+
+  <div class="wrapper-no-padding-bottom header-wrapper">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+
+        <div class="library-header">
+
+        <h3>Your Loans</h3>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-
-        <h3>Your Loans</h3>
         <% if @loans.count == 0 %>
         <p>You don't have any borrowed books right now!</p>
         <% else %>
@@ -26,7 +44,7 @@
           <div class="col-xs-6 col-md-6">
             <div class="flex-container-centered-v list-row-130">
               <div>
-                <strong><%= loan.book.title %></strong>
+                <strong><%= loan.book.title %></strong> (<%= loan.book.language %>)
                 <em><%= loan.book.author %></em>
 
                 <div class="padded-top-2em">
