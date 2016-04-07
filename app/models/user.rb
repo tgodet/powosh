@@ -22,7 +22,7 @@ after_create :create_profile
 private
 
   def create_profile
-    self.profile = Profile.new
+    self.profile = Profile.create(user: self)
   end
 
 

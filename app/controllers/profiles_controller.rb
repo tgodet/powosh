@@ -1,14 +1,16 @@
-# class ProfilesController < ApplicationController
-#   def edit
-#   end
+class ProfilesController < ApplicationController
+  def edit
 
-#   def update
-#   end
+  end
 
-#   def show
-#     @user =
-#   end
-# end
+  def update
+  end
+
+  def show
+    @user = User.find(params[:user_id])
+    @profile = @user.profile
+  end
+end
 
 
 # class ProfilesController < ApplicationController
@@ -41,17 +43,17 @@
 
 #   private
 
-#   def profile_params
-#     params.require(:profile).permit(
-#       :last_name,
-#       :title,
-#       :net_worth,
-#       :estate,
-#       :town,
-#       :country,
-#       :stallion_owner,
-#       :photo,
-#       :photo_cache)
-
-#   end
-# end
+  def profile_params
+    params.require(:profile).permit(
+      :first_name,
+      :last_name,
+      :address,
+      :profile_picture,
+      :birth_date,
+      :book_owner,
+      :user_id,
+      :created_at,
+      :updated_at
+      )
+  end
+end
