@@ -1,21 +1,26 @@
 <div id="open-requests-page">
 
   <div class="wrapper-no-padding-bottom header-wrapper">
+
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+
         <div class="library-header">
 
-            <h3>Pending Requests</h3>
+            <h3>Open Requests</h3>
 
             <ul class="nav nav-pills text-center" role="tablist">
               <li role="presentation" class="active tab-xs-half"><a href="#friend" aria-controls="home" role="tab" data-toggle="tab">Friends (<%=@requests_from_friends.count %>)</a></li>
               <li role="presentation" class="tab-xs-half"><a href="#own" aria-controls="profile" role="tab" data-toggle="tab">Own (<%=@requests_to_friends.count %>)</a></li>
             </ul>
+
           </div>
+
         </div>
       </div>
     </div>
+
   </div>
 
   <div class="container">

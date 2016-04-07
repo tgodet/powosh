@@ -1,6 +1,7 @@
 .header-wrapper {
   box-shadow: 0 0.5px 1px 0 $primary-light;
   margin-bottom: 20px;
+  min-height: 110px;
 }
 
 .library-header {
@@ -13,6 +14,8 @@
     margin-bottom: 0;
     background-color: white;
     font-size: 12px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
 
