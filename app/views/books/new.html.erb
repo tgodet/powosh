@@ -3,7 +3,7 @@
 </div>
 
 <div class="container">
-<%= simple_form_for(@book) do |f| %>
+<%= simple_form_for [@user, @book] do |f| %>
   <%= f.error_notification %>
   <%= f.label :title, 'Titre' %>
   <%= f.input :title, label: false, placeholder:"Ex: A la recherche du temps perdu" %>
@@ -13,6 +13,8 @@
   <%= f.input :language, label: false, collection: Book::LANGUAGES,  placeholder:"Français" %>
   <%= f.label :my_description, 'Ma description' %>
   <%= f.input :my_description, label: false, placeholder:"J'adore ce livre parce que..." %>
+  <%= f.label :my_rating, 'Mon évaluation' %>
+  <%= f.input :my_description, label: false, collection: 1..10 %>
   <%= f.label :isbn, 'Code ISBN' %>
   <%= f.input :isbn, label: false, placeholder:"978-1-56619-909-4" %>
 
