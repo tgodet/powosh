@@ -14,9 +14,9 @@ PowOSh
       <% @books.all.take(32).each do |book| %>
       <div class="col-xs-6 col-sm-4 col-md-3 add-margin-top">
         <%=  link_to book_path(book.id) do %>
-        <div class="card" style="background-image: linear-gradient(to top,  rgba(81,51,27,0.7) 25%,rgba(255,255,255,0.1) 100%), url('<%= image_url @profile_pics.sample %>');">
+        <div class="card" style="background-image: linear-gradient(to top,  rgba(81,51,27,0.7) 25%,rgba(255,255,255,0.1) 100%), url('<%= image_url book.user.profile.profile_picture %>');">
           <div class="card-description-bis">
-            <p>Get it from <%=book.author%>!</p>
+            <p>Get it from <%=book.user.profile.first_name%>!</p>
           </div>
         </div>
         <% end %>
