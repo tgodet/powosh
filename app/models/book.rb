@@ -1,5 +1,5 @@
 class Book < ActiveRecord::Base
   belongs_to :user
 
-  LANGUAGES = ["English", "French", "Dutch", "Other"]
+  LANGUAGES = ["Englais", "Français", "Néerlandais", "Allemand", "Espagnol", "Portugais", "Other"]
 end
