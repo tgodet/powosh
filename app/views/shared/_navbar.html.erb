@@ -75,9 +75,8 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
+        <li><%= link_to "My Loans", user_loans_path(current_user.id) %></li>
+        <li><%= link_to "My Loan Requests", loan_requests_path(current_user.id) %></li>
       </ul>
     </div>
   </div>
