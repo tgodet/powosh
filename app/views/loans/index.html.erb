@@ -31,10 +31,10 @@
 
           <div class="col-xs-6 col-md-2">
             <div class="flex-container-centered-vh list-row-130">
-              <% profile_image_path = (User::PROFILES_PICS).sample %>
+              <% profile_image_path = loan.book.user.profile.profile_picture %>
               <div class="loan-requester avatar-square-md", style="background-image: url(<%= image_path profile_image_path %>);">
                 <div class="profile-image-overlay text-center">
-                  <%= loan.book.user.id %>'s book
+                  <%= loan.book.user.id %> - <%= loan.book.user.profile.first_name %>'s book
                 </div>
               </div>
 
