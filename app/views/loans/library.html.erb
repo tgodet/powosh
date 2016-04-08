@@ -8,11 +8,11 @@
 
             <h3>Library</h3>
 
-            <ul class="nav nav-pills nav-library text-center" role="tablist">
-              <li role="presentation" class="active tab-xs-quarter"><a href="#todo" aria-controls="home" role="tab" data-toggle="tab">New (<%=@requests_from_friends.count %>)</a></li>
-              <li role="presentation" class="tab-xs-quarter"><a href="#shared" aria-controls="home" role="tab" data-toggle="tab">Shared (<%=@requests_from_friends.count %>)</a></li>
-              <li role="presentation" class="tab-xs-quarter"><a href="#borrowed" aria-controls="profile" role="tab" data-toggle="tab">Borrowed (<%=@requests_to_friends.count %>)</a></li>
-              <li role="presentation" class="tab-xs-quarter"><a href="#library" aria-controls="profile" role="tab" data-toggle="tab">Library (<%=@requests_to_friends.count %>)</a></li>
+            <ul class="nav nav-pills text-center" role="tablist">
+              <li role="presentation" class="active tab-xs-quarter"><a href="#todo" aria-controls="home" role="tab" data-toggle="tab">New<br>(<%=@requests_from_friends.count %>)</a></li>
+              <li role="presentation" class="tab-xs-quarter"><a href="#shared" aria-controls="home" role="tab" data-toggle="tab">Shared<br>(<%=@requests_from_friends.count %>)</a></li>
+              <li role="presentation" class="tab-xs-quarter"><a href="#borrowed" aria-controls="profile" role="tab" data-toggle="tab">Borrowed<br>(<%=@requests_to_friends.count %>)</a></li>
+              <li role="presentation" class="tab-xs-quarter"><a href="#library" aria-controls="profile" role="tab" data-toggle="tab">Library<br>(<%=@requests_to_friends.count %>)</a></li>
             </ul>
 
           </div>

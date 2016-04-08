@@ -1,9 +1,11 @@
 .tab-xs-quarter {
+  font-size: 10px;
   width: 24%;
 }
 
 @media (min-width: 768px) {
   .tab-xs-quarter {
+    font-size: 14px;
     width: auto;
   }
 

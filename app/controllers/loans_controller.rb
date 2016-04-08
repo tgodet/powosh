@@ -13,6 +13,11 @@ class LoansController < ApplicationController
 
   def library
     open_requests
+    @shared = Loan.confirmed.where(user_id: !current_user.id).select do |loan|
+      loan.book.user.id == current_user.id
+    end
+    @borrowed = Loan.confirmed.where(user_id: current_user.id)
+    @books = Book.where(user_id: current_user.id)
   end
 
   def create
