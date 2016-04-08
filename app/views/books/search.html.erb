@@ -1,0 +1,29 @@
+<h3><div class="container"> They can help you </div></h3>
+
+<div class="add-margin-top">
+  <div class="container">
+    <div class="row">
+      <% @books.take(10).each do |book| %>
+
+      <div class="container">
+        <div class="product">
+
+          <div class='product-upvote'>
+            <div class='product-count'><%= book.my_rating %></div>
+          </div>
+          <% profile_image_path = book.user.profile.profile_picture %>
+          <%= image_tag profile_image_path %>
+          <img =@book.user.profile.profile_picture class="product-image">
+          <div class='product-body'>
+            <h3><%= book.user.profile.first_name %> can lend you <%= book.title %> </h3>
+            <p>de <%= book.author %> - <%= book.language %></p>
+          </div>
+        </div>
+      </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
