@@ -1,9 +1,9 @@
-<h4>Books you've borrowed</h4>
-<% if @borrowed.count == 0 %>
-<p>You don't have any borrowed books right now!</p>
+<h4>Shared books</h4>
+<% if @shared.count == 0 %>
+<p>You don't have any shared books right now!</p>
 <% else %>
 
-<% @borrowed.each do |loan| %>
+<% @shared.each do |loan| %>
 <div class="row-bordered-top list-row-library">
   <div class="row">
 
@@ -18,7 +18,7 @@
 
     <div class="col-xs-12 col-md-4">
       <div class="flex-container-centered-vh list-row-130">
-        <%= link_to "Return", "#", {class: "btn btn-primary btn-half-width", :method => :patch} %>
+        <%= link_to "Get Back", "#", {class: "btn btn-primary btn-half-width", :method => :patch} %>
       </div>
     </div>
 

@@ -1,8 +1,8 @@
 class LoansController < ApplicationController
-  before_action :set_loan, only: [:show, :approve_loan, :reject_loan]
+  before_action :set_loan, only: [:show, :approve_loan, :reject_loan, :close_pending]
   before_action :set_book, only: [:create]
   before_action :set_user, only: [:index, :open_requests, :library]
-  before_action :set_book_owner, only: [:approve_loan, :reject_loan]
+  before_action :set_book_owner, only: [:approve_loan, :reject_loan, :close_pending]
 
   def index
     @loans = Loan.where(user_id: @user.id, confirmed: true)
@@ -43,7 +43,7 @@ class LoansController < ApplicationController
     else
       flash[:alert] = "There was a problem. No request sent."
     end
-    redirect_to loan_requests_path(@owner)
+    redirect_to library_path(@owner)
   end
 
   def reject_loan
@@ -55,12 +55,15 @@ class LoansController < ApplicationController
     else
       flash[:alert] = "There was a problem. No change made."
     end
-    redirect_to loan_requests_path(@owner)
+    redirect_to library_path(@owner)
+  end
+
+  def close_pending
+
   end
 
   def open_requests
-    @loans = Loan.where(user_id: @user.id, confirmed: true)
-    requests = Loan.where(pending: true)
+    requests = Loan.where(pending: true).order(:approved_on)
     @requests_from_friends = requests.select do |request|
       request.book.user_id == @user.id && !request.confirmed &&!request.rejected
     end
