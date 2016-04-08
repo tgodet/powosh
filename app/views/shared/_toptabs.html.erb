@@ -1,19 +1,26 @@
 <div class="tabs-profile">
 
-  <a class="tabs-ind" href=<% root_path %>><i class="fa fa-home my-icon"></i>
-    <span>Accueil</span>
-  </a>
 
-  <a class="tabs-ind" href=<% new_book_path %>><i class="fa fa-share my-icon"></i>
-    <span>Partage</span>
-  </a>
+  <%= link_to root_path, class: "tabs-ind" do %>
+    <i class="fa fa-home my-icon"></i>
+    <span>Home</span>
+  <% end %>
 
-    <a class="tabs-ind" href=<% new_book_path %>><i class="fa fa-book my-icon"></i>
-    <span>Emprunte</span>
-  </a>
+   <%= link_to new_book_path, class: "tabs-ind" do %>
+    <i class="fa fa-share my-icon"></i>
+    <span>Share</span>
+  <% end %>
 
-    <a class="tabs-ind" href=<% new_book_path %>><i class="fa fa-bar-chart my-icon"></i>
-    <span>Bibliothèque</span>
-  </a>
+  <%= link_to new_book_path, class: "tabs-ind" do %>
+    <i class="fa fa-book my-icon"></i>
+    <span>Borrow</span>
+  <% end %>
+
+  <%= link_to new_book_path, class: "tabs-ind" do %>
+    <i class="fa fa-bar-chart my-icon"></i>
+    <span>Track</span>
+  <% end %>
+
+
 
 </div>
