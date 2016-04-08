@@ -4,16 +4,17 @@
     <%= image_tag "logo2.png" %>
   <% end %>
 
-  <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
 
     <!-- Search form -->
-    <form action="" class="navbar-wagon-search">
-      <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
+    <form action="books/search" class="navbar-wagon-search">
+      <input type="text" class="navbar-wagon-search-input" placeholder="Search your favorite book">
       <button type="submit" class="navbar-wagon-search-btn">
         <i class="fa fa-search"></i>
       </button>
     </form>
+
+    <!-- Right Navigation -->
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
 
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
@@ -63,8 +64,6 @@
 
     <% end %>
 
-    <!-- Button (call-to-action) -->
-    <%= link_to t(".top_call_to_action", default: "Share a Book"), "#", class: "btn btn-primary btn-lg btn-navbar" %>
   </div>
 
 
