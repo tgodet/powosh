@@ -59,7 +59,12 @@ class LoansController < ApplicationController
   end
 
   def close_pending
-
+    @user = @loan.action_owner
+    @loan.pending = false
+    if !@loan.save
+      flash[:alert] = "There was a problem. No change made."
+    end
+    redirect_to library_path(@user)
   end
 
   def open_requests

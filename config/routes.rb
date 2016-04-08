@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'users/:user_id/loans' => 'loans#index', as: :user_loans
   patch 'loans/:id/approve' => 'loans#approve_loan', as: :approve_loan
   patch 'loans/:id/reject' => 'loans#reject_loan', as: :reject_loan
+  patch 'loans/:id/close_pending' => 'loans#close_pending', as: :close_pending
 
 
   get 'users/:user_id/library'  => 'loans#library', as: :library

@@ -19,8 +19,18 @@
       <div class="flex-container-centered-vh list-row-130">
         <% if loan.rejected %>
         <div class="label label-danger" type="submit">Rejected</div>
+        <div>
+          <%= link_to close_pending_path(loan), {class: "btn-list-close", :method => :patch} do %>
+          <i class="fa fa-times"></i>
+          <% end %>
+        </div>
         <% elsif loan.confirmed %>
         <div class="label label-success" type="submit">Approved</div>
+        <div>
+          <%= link_to close_pending_path(loan), {class: "btn-list-close", :method => :patch} do %>
+          <i class="fa fa-times"></i>
+          <% end %>
+        </div>
         <% else %>
         <div class="label label-default" type="submit">Open</div>
         <% end %>
