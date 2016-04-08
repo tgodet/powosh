@@ -7,9 +7,12 @@ Rails.application.routes.draw do
         resources :profiles
   end
 
+get 'books/search' => 'books#search', as: :books_search
+
   resources :books do
     resources :loans, only: :create
   end
+
 
   get 'users/:user_id/loans' => 'loans#index', as: :user_loans
   patch 'loans/:id/approve' => 'loans#approve_loan', as: :approve_loan

@@ -8,6 +8,11 @@ class BooksController < ApplicationController
     @profile_pics = User::PROFILES_PICS
   end
 
+  def search
+    query = params[:query]
+    @books = Book.all
+  end
+
   def show
     set_book
     @user = User.find(@book.user_id)
