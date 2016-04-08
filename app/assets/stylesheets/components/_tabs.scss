@@ -1,10 +1,14 @@
-.tab-xs-third {
-  width: 32%;
+.tab-xs-quarter {
+  font-size: 10px;
+  width: 24%;
 }
 
 @media (min-width: 768px) {
-  .tab-xs-third {
+  .tab-xs-quarter {
+    font-size: 14px;
+    min-width: 120px;
     width: auto;
+
   }
 
 }

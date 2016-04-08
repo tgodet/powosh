@@ -1,14 +1,22 @@
 .list-row-library {
-  min-height: 130px;
+  // min-height: 130px;
   // height: 50vh;
   padding-top: 10px;
 }
 
 .loan-requester {
-  width: 100px;
-  height: 100px;
+  width: 30px;
+  height: 30px;
   background-size: cover;
   position: relative;
+}
+
+@media (min-width: 768px) {
+  .loan-requester {
+    width: 80px;
+    height: 80px;
+  }
+
 }
 
 // .list-row-130 {
@@ -17,8 +25,15 @@
 //   height: 130px;
 // }
 
-#library-page {
+.library-page {
   h4 {
     color: $primary;
   }
+}
+
+.btn-list-close {
+  color: $primary-dark;
+  background-color: white;
+  // font-size: 10px;
+  margin: 20px;
 }

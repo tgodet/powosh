@@ -1,8 +1,8 @@
 class LoansController < ApplicationController
-  before_action :set_loan, only: [:show, :approve_loan, :reject_loan]
+  before_action :set_loan, only: [:show, :approve_loan, :reject_loan, :close_pending]
   before_action :set_book, only: [:create]
-  before_action :set_user, only: [:index, :open_requests]
-  before_action :set_book_owner, only: [:approve_loan, :reject_loan]
+  before_action :set_user, only: [:index, :open_requests, :library]
+  before_action :set_book_owner, only: [:approve_loan, :reject_loan, :close_pending]
 
   def index
     @loans = Loan.where(user_id: @user.id, confirmed: true)
@@ -11,8 +11,17 @@ class LoansController < ApplicationController
   def show
   end
 
+  def library
+    open_requests
+    @shared = Loan.confirmed.where(user_id: !current_user.id).select do |loan|
+      loan.book.user.id == current_user.id
+    end
+    @borrowed = Loan.confirmed.where(user_id: current_user.id)
+    @books = Book.where(user_id: current_user.id)
+  end
+
   def create
-    @loan = Loan.new(book_id: @book.id, user_id: current_user.id, pending: true)
+    @loan = Loan.new(book_id: @book.id, user_id: current_user.id, pending: true, action_owner: @book.user.id)
 
     if @loan.save
       flash[:notice] = "Request for #{@book.title} sent!"
@@ -24,6 +33,7 @@ class LoansController < ApplicationController
   end
 
   def approve_loan
+    @loan.action_owner = @loan.user.id
     @loan.confirmed = true
     @loan.approved_on = Date.new
     @loan.book.available = false
@@ -33,23 +43,32 @@ class LoansController < ApplicationController
     else
       flash[:alert] = "There was a problem. No request sent."
     end
-    redirect_to loan_requests_path(@owner)
+    redirect_to library_path(@owner)
   end
 
   def reject_loan
     @loan.rejected = true
+    @loan.action_owner = @loan.user.id
 
     if @loan.save
       flash[:notice] = "You rejected the loan request!"
     else
       flash[:alert] = "There was a problem. No change made."
     end
-    redirect_to loan_requests_path(@owner)
+    redirect_to library_path(@owner)
+  end
+
+  def close_pending
+    @user = @loan.action_owner
+    @loan.pending = false
+    if !@loan.save
+      flash[:alert] = "There was a problem. No change made."
+    end
+    redirect_to library_path(@user)
   end
 
   def open_requests
-    @loans = Loan.where(user_id: @user.id, confirmed: true)
-    requests = Loan.where(pending: true)
+    requests = Loan.where(pending: true).order(:approved_on)
     @requests_from_friends = requests.select do |request|
       request.book.user_id == @user.id && !request.confirmed &&!request.rejected
     end

@@ -18,12 +18,13 @@
 
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
-
+      <% notification_count = Loan.user_action_required.where(action_owner: current_user.id).count %>
+      <% notification_link = notification_count > 0 ? library_path(current_user) : "#" %>
       <!-- Notification -->
-      <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
+      <%= link_to notification_link, class: "navbar-wagon-item navbar-wagon-link" do %>
         <div class="badge-container">
           <i class="fa fa-envelope-o"></i>
-          <div class="badge badge-blue">3</div>
+          <div class="badge badge-blue"><%= notification_count %></div>
         </div>
       <% end %>
 
@@ -41,12 +42,6 @@
               <%= link_to "#" do %>
                 <i class="fa fa-home"></i>  <%= t ".profile", default: "Home" %>
               <% end %>
-            </li>
-            <li>
-              <%= link_to "My Loans", user_loans_path(current_user.id) %>
-            </li>
-            <li>
-              <%= link_to "My Loan Requests", loan_requests_path(current_user.id) %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
@@ -72,10 +67,6 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-      <% if user_signed_in? %>
-        <li><%= link_to "My Loans", user_loans_path(current_user.id) %></li>
-        <li><%= link_to "My Loan Requests", loan_requests_path(current_user.id) %></li>
-        <% end %>
       </ul>
     </div>
   </div>
