@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   patch 'loans/:id/reject' => 'loans#reject_loan', as: :reject_loan
 
 
-  get 'users/:user_id/loans/requests'  => 'loans#open_requests', as: :loan_requests
+  get 'users/:user_id/library'  => 'loans#library', as: :library
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

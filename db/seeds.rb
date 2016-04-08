@@ -64,10 +64,12 @@ profile_attributes.each { |params| Profile.create!(params) }
 end
 
 20.times do
+  book = (Book.all).sample
   Loan.create({
     user_id: (User.all).sample.id,
-    book_id: (Book.all).sample.id,
-    pending: true
+    book_id: book.id,
+    pending: true,
+    action_owner: book.user.id
 })
 
 end

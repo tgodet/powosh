@@ -1,7 +1,7 @@
 class LoansController < ApplicationController
   before_action :set_loan, only: [:show, :approve_loan, :reject_loan]
   before_action :set_book, only: [:create]
-  before_action :set_user, only: [:index, :open_requests]
+  before_action :set_user, only: [:index, :open_requests, :library]
   before_action :set_book_owner, only: [:approve_loan, :reject_loan]
 
   def index
@@ -11,8 +11,12 @@ class LoansController < ApplicationController
   def show
   end
 
+  def library
+    open_requests
+  end
+
   def create
-    @loan = Loan.new(book_id: @book.id, user_id: current_user.id, pending: true)
+    @loan = Loan.new(book_id: @book.id, user_id: current_user.id, pending: true, action_owner: @book.user.id)
 
     if @loan.save
       flash[:notice] = "Request for #{@book.title} sent!"
@@ -24,6 +28,7 @@ class LoansController < ApplicationController
   end
 
   def approve_loan
+    @loan.action_owner = @loan.user.id
     @loan.confirmed = true
     @loan.approved_on = Date.new
     @loan.book.available = false
@@ -38,6 +43,7 @@ class LoansController < ApplicationController
 
   def reject_loan
     @loan.rejected = true
+    @loan.action_owner = @loan.user.id
 
     if @loan.save
       flash[:notice] = "You rejected the loan request!"

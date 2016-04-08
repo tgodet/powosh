@@ -1,0 +1,34 @@
+<h4>Own Requests</h4>
+<% if @requests_to_friends.count == 0 %>
+<p>No open requests! Why not check out your friends' libraries!</p>
+<% else %>
+
+<% @requests_to_friends.each do |loan| %>
+<div class="row-bordered-top list-row-library">
+  <div class="row">
+
+    <%= render partial: "shared/loan_card", object: loan, as: :loan,
+    locals: {
+      owner_pic: true,
+      overlay: "has this",
+      date_text: "Requested: ",
+      date_method: "created_at",
+    } %>
+
+    <div class="col-xs-12 col-md-4">
+      <div class="flex-container-centered-vh list-row-130">
+        <% if loan.rejected %>
+        <div class="label label-danger" type="submit">Rejected</div>
+        <% elsif loan.confirmed %>
+        <div class="label label-success" type="submit">Approved</div>
+        <% else %>
+        <div class="label label-default" type="submit">Open</div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>
+<% end %>
+
+<% end %>

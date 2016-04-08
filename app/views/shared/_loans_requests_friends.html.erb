@@ -1,0 +1,30 @@
+<h4>Requests from Friends</h4>
+
+<% if @requests_from_friends.count == 0 %>
+<p>No requests at the moment!</p>
+<% else %>
+
+<% @requests_from_friends.each do |loan| %>
+<div class="row-bordered-top list-row-library">
+  <div class="row">
+    <%= render partial: "shared/loan_card",
+    object: loan, as: :loan,
+    locals: {
+      owner_pic: false,
+      overlay: "wants this book",
+      date_text: "Requested: ",
+      date_method: "created_at",
+    } %>
+
+    <div class="col-xs-12 col-md-4">
+      <div class="flex-container-centered-vh list-row-130">
+       <%= link_to "Approve", approve_loan_path(loan), {class: "btn btn-primary btn-half-width", :method => :patch} %>
+       <%= link_to "Reject", reject_loan_path(loan), {class: "btn btn-default btn-half-width", :method => :patch} %>
+     </div>
+   </div>
+
+ </div>
+</div>
+<% end %>
+
+<% end %>

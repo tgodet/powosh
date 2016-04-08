@@ -1,0 +1,30 @@
+<h4>Your Loans</h4>
+<% if @loans.count == 0 %>
+<p>You don't have any borrowed books right now!</p>
+<% else %>
+
+<% @loans.each do |loan| %>
+<div class="row-bordered-top list-row-library">
+  <div class="row">
+
+    <%= render partial: "shared/loan_card", object: loan, as: :loan,
+    locals: {
+      owner_pic: true,
+      overlay: "'s book'",
+      date_text: "Loan approved: ",
+      date_method: "approved_on",
+    } %>
+
+
+    <div class="col-xs-12 col-md-4">
+      <div class="flex-container-centered-vh list-row-130">
+        <%= link_to "Return", "#", {class: "btn btn-primary btn-half-width", :method => :patch} %>
+      </div>
+    </div>
+
+  </div>
+</div>
+<% end %>
+
+<% end %>
+
