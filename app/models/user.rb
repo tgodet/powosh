@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
     "profilepic_21.jpg","profilepic_22.jpg"]
 
 
-    after_create :create_profile
+  after_create :create_profile
 
   def self.find_for_facebook_oauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -26,9 +26,6 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]  # Fake password for validation
-      user.first_name = auth.info.first_name
-      user.last_name = auth.info.last_name
-      user.picture = auth.info.image
       user.token = auth.credentials.token
       user.token_expiry = Time.at(auth.credentials.expires_at)
     end
@@ -37,7 +34,28 @@ class User < ActiveRecord::Base
   private
 
   def create_profile
-    self.profile = Profile.create(user: self)
+    if self.token.nil?
+      self.profile = Profile.create(user: self)
+    else
+      attributes = build_profile_attributes
+      self.profile = Profile.create(
+        user: self,
+        first_name: attributes[:first_name],
+        last_name: attributes[:last_name],
+        profile_picture: attributes[:profile_picture]
+        )
+    end
+  end
+
+  def build_profile_attributes
+    graph = Koala::Facebook::API.new(self.token)
+    profile = graph.get_object("me?fields=first_name,last_name")
+    # friends = graph.get_connections("me", "friends")
+    attributes = {
+      first_name: profile["first_name"],
+      last_name: profile["last_name"],
+      profile_picture: graph.get_picture("me")
+    }
   end
 
 end
