@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
-  devise_for :users, :path => 'accounts'
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }, :path => 'accounts'
+
+  # need to edit the devise path for facebook.
+  # devise_for :users, :path => 'accounts'
   resources :users do
         resources :profiles
   end
