@@ -6,11 +6,6 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     @profile_pics = User::PROFILES_PICS
-
-    if !current_user.token.nil?
-    graph = Koala::Facebook::API.new(current_user.token)
-    @friends = graph.get_connections("me", "friends")
-  end
   end
 
   def search
