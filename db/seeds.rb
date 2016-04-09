@@ -8,6 +8,7 @@
 Loan.delete_all
 Book.delete_all
 Profile.delete_all
+Friendship.delete_all
 User.delete_all
 
 User.create!(email: "test1@test.com", password: "testtest")
@@ -51,6 +52,23 @@ profile_attributes = [
 ]
 
 profile_attributes.each { |params| Profile.create!(params) }
+
+rand_friend_1 = User.all.sample
+rand_friend_2 = User.all.sample
+rand_friend_3 = User.all.sample
+
+Friendship.create!(user_id: User.first.id, friend_id: User.last.id)
+Friendship.create!(user_id: User.last.id, friend_id: User.first.id)
+
+Friendship.create!(user_id: User.first.id, friend_id: rand_friend_1.id)
+Friendship.create!(user_id: rand_friend_1.id, friend_id: User.first.id)
+
+Friendship.create!(user_id: User.first.id, friend_id: rand_friend_2.id)
+Friendship.create!(user_id: rand_friend_2.id, friend_id: User.first.id)
+
+Friendship.create!(user_id: User.first.id, friend_id: rand_friend_3.id)
+Friendship.create!(user_id: rand_friend_3.id, friend_id: User.first.id)
+
 
 100.times do
   Book.create({

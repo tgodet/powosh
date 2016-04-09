@@ -3,32 +3,32 @@ PowOSh
 <% end %>
 
 <!-- I'm commenting out the home page banner to avoid confusion now that we have
-login -->
+  login -->
 <!--
-<%= render 'shared/banner' %> -->
+  <%= render 'shared/banner' %> -->
 
-<div class="container add-margin-top text-center">
-<h2>Look who can make you happy!</h2>
-</div>
+  <div class="container add-margin-top text-center">
+    <h2>Look who can make you happy!</h2>
+  </div>
 
-<div class="add-margin-top">
-  <div class="container">
-    <div class="row">
-      <% @books.all.take(32).each do |book| %>
-      <div class="col-xs-6 col-sm-4 col-md-3 add-margin-top">
-        <%=  link_to book_path(book.id) do %>
-        <div class="card" style="background-image: linear-gradient(to top,  rgba(81,51,27,0.7) 25%,rgba(255,255,255,0.1) 100%), url('<%= image_url book.user.profile.profile_picture %>');">
-          <div class="card-description-bis">
-            <p><%=book.title%></p>
-            <p>Get it from <%=book.user.profile.first_name%>!</p>
+  <div class="add-margin-top">
+    <div class="container">
+      <div class="row">
+        <% @books.all.take(32).each do |book| %>
+        <div class="col-xs-6 col-sm-4 col-md-3 add-margin-top">
+          <%=  link_to book_path(book.id) do %>
+          <div class="card" style="background-image: linear-gradient(to top,  rgba(81,51,27,0.7) 25%,rgba(255,255,255,0.1) 100%), url('<%= image_url book.user.profile.profile_picture %>');">
+            <div class="card-description-bis">
+              <p><%=book.title%></p>
+              <p>Get it from <%=book.user.profile.first_name%>!</p>
+            </div>
           </div>
+          <% end %>
         </div>
         <% end %>
       </div>
-      <% end %>
     </div>
   </div>
-</div>
 
 
 <!--
@@ -44,4 +44,4 @@ login -->
 
 <!--
 -webkit-linear-gradient(to bottom, #E3CBB8 0%, #FFFFFF 29%)
- -->
+-->

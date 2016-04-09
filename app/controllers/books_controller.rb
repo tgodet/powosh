@@ -42,7 +42,7 @@ class BooksController < ApplicationController
   end
 
    #ONLY POSSIBLE FOR LOGGED IN USER IF CURRENT USER = Book.user
-  def update
+   def update
     find_user
     @book.update(book_params)
     if @book.save
@@ -55,16 +55,11 @@ class BooksController < ApplicationController
   end
 
    #ONLY POSSIBLE FOR LOGGED IN USER IF CURRENT USER = Book.user
-  def destroy
+   def destroy
     @book.destroy
     flash[:notice] = "Book deleted"
     redirect_to books_path
   end
-
-  # def request_book
-  #   flash[:notice] = "Request sent to your friend!"
-  #   redirect_to book_path(@book)
-  # end
 
   private
 
@@ -86,7 +81,7 @@ class BooksController < ApplicationController
 
   def find_user
    @user = User.find(current_user.id)
-  end
+ end
 
 
 
