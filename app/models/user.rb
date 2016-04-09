@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :loans
   has_one :profile
   has_many :books
+  has_many :friendships
 
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable,
@@ -18,13 +19,15 @@ class User < ActiveRecord::Base
     "profilepic_21.jpg","profilepic_22.jpg"]
 
 
-  after_create :create_profile
+    after_create :create_profile
+    after_create :create_friendships
 
-  def self.find_for_facebook_oauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.email = auth.info.email
+
+    def self.find_for_facebook_oauth(auth)
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]  # Fake password for validation
       user.token = auth.credentials.token
       user.token_expiry = Time.at(auth.credentials.expires_at)
@@ -50,7 +53,7 @@ class User < ActiveRecord::Base
   def build_profile_attributes
     graph = Koala::Facebook::API.new(self.token)
     profile = graph.get_object("me?fields=first_name,last_name")
-    # friends = graph.get_connections("me", "friends")
+
     attributes = {
       first_name: profile["first_name"],
       last_name: profile["last_name"],
@@ -58,4 +61,20 @@ class User < ActiveRecord::Base
     }
   end
 
+  def create_friendships
+    unless self.token.nil?
+      graph = Koala::Facebook::API.new(self.token)
+      friends = graph.get_connections("me", "friends")
+
+      unless friends.empty?
+        friends.each do |friend_fb|
+          friend = User.find_by uid: friend_fb["id"]
+          unless friend.nil?
+            Friendship.create(user_id: self.id, friend_id: friend.id)
+            Friendship.create(user_id: friend.id, friend_id: self.id)
+          end
+        end
+      end
+    end
+  end
 end

@@ -31,7 +31,9 @@
     <!-- Profile picture and dropdown -->
     <div class="navbar-wagon-item">
       <div class="dropdown">
+        <% if !current_user.profile.nil? %>
         <%= image_tag current_user.profile.profile_picture, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <% end %>
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
           <li>
             <%= link_to "#" do %>
