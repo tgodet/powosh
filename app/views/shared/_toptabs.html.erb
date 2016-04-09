@@ -16,8 +16,7 @@
     <span>Borrow</span>
   <% end %>
 
-  <% library_path = user_signed_in? ? library_path(current_user) : "#" %>
-  <%= link_to library_path, class: "tabs-ind" do %>
+  <%= link_to library_path(current_user), class: "tabs-ind" do %>
     <i class="fa fa-bar-chart my-icon"></i>
     <span>Track</span>
   <% end %>

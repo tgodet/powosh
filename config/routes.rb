@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: 'books#index'
+  root to: 'pages#home'
 
   devise_for :users, :path => 'accounts'
   resources :users do
