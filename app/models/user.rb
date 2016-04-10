@@ -18,9 +18,12 @@ class User < ActiveRecord::Base
     "profilepic_17.jpg","profilepic_18.jpg","profilepic_19.jpg","profilepic_20.jpg",
     "profilepic_21.jpg","profilepic_22.jpg"]
 
-
+    #only first_time
     after_create :create_profile
-    after_create :create_friendships
+
+    #check for new friends every time user logs in
+    after_save :create_friendships
+
 
 
     def self.find_for_facebook_oauth(auth)
@@ -62,19 +65,29 @@ class User < ActiveRecord::Base
   end
 
   def create_friendships
-    unless self.token.nil?
-      graph = Koala::Facebook::API.new(self.token)
-      friends = graph.get_connections("me", "friends")
+    friends = facebook_friends unless self.token.nil?
 
-      unless friends.empty?
-        friends.each do |friend_fb|
-          friend = User.find_by uid: friend_fb["id"]
-          unless friend.nil?
-            Friendship.create(user_id: self.id, friend_id: friend.id)
-            Friendship.create(user_id: friend.id, friend_id: self.id)
-          end
-        end
+    existing_friends_count = Friendship.where(user_id: self.id).count
+
+    # stop if there are no friends using app or if number of friends
+    # using app matches number of friendships for user.
+    unless friends.empty? || friends.count == existing_friends_count
+      friends.each do |friend_fb|
+        friend = User.find_by uid: friend_fb["id"]
+        check_and_build_friendships(friend)
       end
+    end
+  end
+
+  def facebook_friends
+    graph = Koala::Facebook::API.new(self.token)
+    graph.get_connections("me", "friends")
+  end
+
+  def check_and_build_friendships(friend)
+    if !friend.nil? && (Friendship.find_by user_id: self.id, friend_id: friend.id).nil?
+      Friendship.create(user_id: self.id, friend_id: friend.id)
+      Friendship.create(user_id: friend.id, friend_id: self.id)
     end
   end
 end
