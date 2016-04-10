@@ -43,6 +43,13 @@
           </div>
 
           <div role="tabpanel" class="tab-pane" id="library">
+            <% @books.each do |book| %>
+              <%= book.title %>
+            <% end %>
+
+            <% @friends_books.each do |book| %>
+            <%= book.title %>
+            <% end %>
           </div>
 
 
