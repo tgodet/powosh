@@ -1,0 +1,48 @@
+<div class="row">
+  <% @books.first(20).each do |book| %>
+
+
+  <div class="container">
+    <div class="product">
+
+      <div class='product-upvote'>
+      </div>
+      <div class="google-pic">
+      <% profile_image_path = book.image_link %>
+      <%= image_tag profile_image_path %>
+      <!-- <img =@book.user.profile.profile_picture class="product-image"> -->
+      </div>
+      <div class='product-body'>
+        <h3><%= book.title %> </h3>
+        <p>by <%= book.authors %> - <%= book.language %></p>
+        <p>ISBN : <%= book.isbn %></p>
+      </div>
+      <div class="text-center add-margin product-controls">
+        <%= form_tag(books_creategoogle_path, method: "post") do %>
+        <%= hidden_field_tag(:title, book.title) %>
+        <%= hidden_field_tag(:author, book.authors) %>
+        <%= hidden_field_tag(:isbn, book.isbn) %>
+        <%= hidden_field_tag(:language, book.language) %>
+        <%= button_tag "This is my book" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+  <% end %>
+</div>
+
+
+
+<div class="tabs-profile">
+
+  <%= link_to books_sharebook_path, class: "tabs-ind-2" do %>
+    <span>Search Again</span>
+  <% end %>
+
+   <%= link_to new_book_path, class: "tabs-ind-2" do %>
+    <span>Add Manually</span>
+  <% end %>
+</div>
+
+

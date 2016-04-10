@@ -10,8 +10,12 @@ Rails.application.routes.draw do
         resources :profiles
   end
 
-  get 'books/search' => 'books#search', as: :books_search
   get 'books/borrow' => 'books#borrow', as: :books_borrow
+  get 'books/search' => 'books#search', as: :books_search
+  get 'books/sharebook' => 'books#sharebook', as: :books_sharebook
+  get 'books/googleresults' => 'books#googleresults', as: :books_googleresults
+  post 'books/' => 'books#creategoogle', as: :books_creategoogle
+
 
   resources :books do
     resources :loans, only: :create

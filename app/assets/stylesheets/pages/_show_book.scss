@@ -1,3 +1,15 @@
+.comments1 p {
+  font-size: 10px;
+}
+
+.comments1 h3 {
+  font-size: 16px;
+}
+
+.comments1 h4 {
+  font-size: 12px;
+}
+
 .book-summary-holder {
   display: flex;
   justify-content: center;
@@ -41,7 +53,7 @@
   // background-color: #81BED5;
 
   p {
-    font-size: 14px;
+    font-size: 9px;
     color: $gray-lighter;
   }
 }

@@ -83,7 +83,12 @@ GEM
       sass (>= 3.2)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    googlebooks (0.0.9)
+      httparty
     hashie (3.4.3)
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
@@ -222,6 +227,7 @@ DEPENDENCIES
   faker (~> 1.6, >= 1.6.3)
   figaro
   font-awesome-sass
+  googlebooks (~> 0.0.9)
   jbuilder (~> 2.0)
   jquery-rails
   koala (~> 2.2)

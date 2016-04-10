@@ -23,30 +23,24 @@ Following appears if current user is different from Book owner
 ///////////////////////////////////////////////////////////////
 -->
 <% if current_user.id != @user.id %>
+
   <div class="container">
     <div class="product">
-      <div class='product-upvote'>
-        <div class='product-count'><%= @book.my_rating %></div>
-      </div>
-      <% profile_image_path = @user.profile.profile_picture %>
+
+      <% profile_image_path = @book.user.profile.profile_picture %>
       <%= image_tag profile_image_path %>
-      <!-- <img =@book.user.profile.profile_picture class="product-image hidden-xs"> -->
+      <img =@book.user.profile.profile_picture class="product-image">
       <div class='product-body'>
-        <h3><%= @user.profile.first_name %> peut vous prêter</h3>
-        <p><%= @book.title %> - <%= @book.language %></p>
-        <p> de <%= @book.author %></p>
+        <h3><%= @book.user.profile.first_name %> can lend it to you!</h3>
       </div>
-      <div class="text-center add-margin product-controls">
-        <%= link_to "Je le veux!", book_loans_path(@book),
+        <div class="text-center add-margin product-controls">
+        <%= link_to "I want it!", book_loans_path(@book),
         {class: "btn btn-primary", :method => :post} %>
-      </div>
-     <!--  <ul class="list-inline product-controls hidden-sm hidden-xs">
-        <li><a href=""><i class="fa fa-heart"></i></a></li>
-        <li><a href=""><i class="fa fa-share"></i></a></li>
-        <li><a href=""><i class="fa fa-star"></i></a></li>
-      </ul> -->
+        </div>
     </div>
   </div>
+
+
 <% elsif  @book.my_description %>
   <div class="container">
     <h3>Ce que j'en pense</h3>
@@ -62,51 +56,36 @@ Following appears if current user is different from Book owner
  -->
 
 
-<div id="show-discussion", class="show-content padded-2em">
+<div id="show-discussion", class="comments1 show-content padded-2em">
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2">
 
         <h3>Discussion</h3>
 
-        <% User.all.each do |user| %>
+        <% User.take(2).each do |user| %>
         <div class="row-bordered-top">
           <div class="row">
 
             <div class="col-xs-4 text-center">
               <%= image_tag user.profile.profile_picture, class: "avatar-large" %>
-              <div><%= user.profile.first_name %></div>
+              <h4><div><%= user.profile.first_name %></div></h4>
             </div>
 
             <div class="col-xs-8">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae cum cumque commodi minima numquam quis consequatur mollitia aliquam fuga vel amet soluta placeat, deserunt qui laboriosam, nostrum sint sunt debitis.
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae cum cumque commodi minima numquam quis consequatur mollitia aliquam fuga vel amet soluta placeat, deserunt qui laboriosam, nostrum sint sunt debitis.</p>
             </div>
 
           </div>
         </div>
         <% end %>
 
-        <% @user = User.all.sample %>
-
-        <div class="row-bordered-top">
-          <div class="row">
-
-            <div class="col-xs-4 text-center">
-              <%= image_tag @user.profile.profile_picture, class: "avatar-large" %>
-              <div><%= @user.profile.first_name %></div>
-            </div>
-
-            <div class="col-xs-8">
-              WTF! SPOILERS!
-            </div>
-
-          </div>
-        </div>
-
 
       </div>
     </div>
   </div>
 </div>
+
+
 
 
