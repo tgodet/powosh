@@ -7,7 +7,7 @@ class BooksController < ApplicationController
     # can only see friends books. the method ("of_friends") is in book modal
     # and requires the current_user id as a parameter
     # @books = Book.of_friends(current_user.id)
-
+    # @books = policy_scope(Book)
     @books = Book.all
     # @profile_pics = User::PROFILES_PICS
   end
@@ -18,6 +18,7 @@ class BooksController < ApplicationController
   def search
     query = "%#{params[:query]}%"
     @books = Book.where("lower(title) LIKE ? or author LIKE ?", query.downcase, query.downcase)
+    # @books = policy_scope(Book.where("lower(title) LIKE ? or author LIKE ?", query.downcase, query.downcase))
   end
 
   def sharebook
@@ -30,13 +31,16 @@ class BooksController < ApplicationController
   end
 
   def show
-    set_book
+    authorize @book
     @user = User.find(@book.user_id)
   end
 
   # only enabled for logged in user
   def new
+
     @book = Book.new
+    # authorize @book
+
   end
 
   # only enabled for logged in user

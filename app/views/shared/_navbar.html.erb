@@ -18,7 +18,7 @@
 
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
-    <% notification_count = Loan.user_action_required.where(action_owner: current_user.id).count %>
+    <% notification_count = Loan.user_action(current_user.id).count %>
     <% notification_link = notification_count > 0 ? library_path(current_user) : "#" %>
     <!-- Notification -->
     <%= link_to notification_link, class: "navbar-wagon-item navbar-wagon-link" do %>
