@@ -10,6 +10,7 @@ gem 'devise'
 gem 'redis'
 gem 'cloudinary'
 gem 'carrierwave'
+gem 'googlebooks', '~> 0.0.9'
 
 gem 'sass-rails'
 gem 'jquery-rails'

@@ -12,12 +12,21 @@ class BooksController < ApplicationController
     # @profile_pics = User::PROFILES_PICS
   end
 
+  def borrow
+  end
+
   def search
     query = "%#{params[:query]}%"
     @books = Book.where("lower(title) LIKE ? or author LIKE ?", query.downcase, query.downcase)
   end
 
-  def borrow
+  def sharebook
+
+  end
+
+  def googleresults
+    google_query = params[:query]
+    @books = GoogleBooks.search(google_query,{:count => 20})
   end
 
   def show
@@ -28,6 +37,24 @@ class BooksController < ApplicationController
   # only enabled for logged in user
   def new
     @book = Book.new
+  end
+
+  # only enabled for logged in user
+  def creategoogle
+    find_user
+    @book = @user.books.build(
+      author: params[:author],
+      title: params[:title],
+      language: params[:language],
+      isbn: params[:isbn]
+      )
+    if @book.save
+      flash[:notice] = "#{@book.title.capitalize} has been added to your library"
+      redirect_to book_path(@book)
+    else
+      flash[:alert] = "This book has not been added to your library"
+      render 'books/new'
+    end
   end
 
   # only enabled for logged in user
@@ -42,6 +69,9 @@ class BooksController < ApplicationController
       render 'books/new'
     end
   end
+
+
+
 
   #ONLY POSSIBLE FOR LOGGED IN USER IF CURRENT USER = Book.user
   def edit

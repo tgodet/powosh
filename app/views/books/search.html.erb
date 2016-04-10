@@ -5,12 +5,10 @@
     <div class="row">
       <% @books.each do |book| %>
 
+      <%= link_to book_path(book.id) do %>
       <div class="container">
         <div class="product">
 
-          <div class='product-upvote'>
-            <div class='product-count'><%= book.my_rating %></div>
-          </div>
           <% profile_image_path = book.user.profile.profile_picture %>
           <%= image_tag profile_image_path %>
           <img =@book.user.profile.profile_picture class="product-image">
@@ -20,6 +18,7 @@
           </div>
         </div>
       </div>
+      <% end %>
 
       <% end %>
     </div>

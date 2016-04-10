@@ -10,8 +10,9 @@ PowOSh
   <div class="add-margin-top">
     <div class="container">
       <div class="row">
-        <% @books.last(10).each do |book| %>
+        <% @books.last(10).reverse.each do |book| %>
 
+        <%= link_to book_path(book.id) do %>
         <div class="container">
           <div class="product">
 
@@ -26,7 +27,7 @@ PowOSh
             </div>
           </div>
         </div>
-
+        <% end %>
         <% end %>
       </div>
     </div>
@@ -47,3 +48,5 @@ PowOSh
 <!--
 -webkit-linear-gradient(to bottom, #E3CBB8 0%, #FFFFFF 29%)
 -->
+
+<
