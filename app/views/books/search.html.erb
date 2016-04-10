@@ -15,7 +15,7 @@
           <%= image_tag profile_image_path %>
           <img =@book.user.profile.profile_picture class="product-image">
           <div class='product-body'>
-            <h3><%= book.user.profile.first_name %> can lend you <%= book.title %> </h3>
+            <h3><%= book.user.profile.first_name %> can lend you <em><%= book.title %></em> </h3>
             <p>de <%= book.author %> - <%= book.language %></p>
           </div>
         </div>
