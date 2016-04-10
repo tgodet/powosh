@@ -3,7 +3,6 @@
   <div class="flex-container-centered-vh list-row-130">
     <% profile_image_path = user.profile.profile_picture %>
     <div class="loan-requester avatar-square", style="background-image: url(<%= image_path profile_image_path %>);">
-
     </div>
   </div>
 </div>
@@ -15,7 +14,7 @@
       <em><%= loan.book.author %></em>
 
       <div class="padded-top-2em">
-        <%= date_text %> <%= loan.send(date_method.to_sym).strftime('%d/%m/%Y') %>
+        <%= loan.status.capitalize %>: <%= loan.last_action.strftime('%d/%m/%Y') %>
       </div>
 
     </div>

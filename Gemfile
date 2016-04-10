@@ -21,6 +21,7 @@ gem 'autoprefixer-rails'
 gem 'faker', '~> 1.6', '>= 1.6.3'
 gem 'omniauth-facebook'
 gem "koala", "~> 2.2"
+gem "pundit"
 
 group :development, :test do
   gem 'binding_of_caller'

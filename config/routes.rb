@@ -4,21 +4,21 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }, :path => 'accounts'
 
-  # need to edit the devise path for facebook.
+  # GG: I had to edit the devise path for facebook.
+  # Old path is below
   # devise_for :users, :path => 'accounts'
   resources :users do
-        resources :profiles
+    resources :profiles, only: [:index, :edit, :update, :destroy]
+    resources :loans, only: :index
   end
 
   get 'books/search' => 'books#search', as: :books_search
   get 'books/borrow' => 'books#borrow', as: :books_borrow
 
   resources :books do
-    resources :loans, only: :create
+    resources :loans, only: [:create], shallow: true
   end
 
-
-  get 'users/:user_id/loans' => 'loans#index', as: :user_loans
   patch 'loans/:id/approve' => 'loans#approve_loan', as: :approve_loan
   patch 'loans/:id/reject' => 'loans#reject_loan', as: :reject_loan
   patch 'loans/:id/close_pending' => 'loans#close_pending', as: :close_pending
