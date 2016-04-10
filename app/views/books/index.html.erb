@@ -2,10 +2,6 @@
 PowOSh
 <% end %>
 
-<!-- I'm commenting out the home page banner to avoid confusion now that we have
-  login -->
-<!--
-  <%= render 'shared/banner' %> -->
 
   <div class="container add-margin-top text-center">
     <h2>Look who can make you happy!</h2>
@@ -14,17 +10,23 @@ PowOSh
   <div class="add-margin-top">
     <div class="container">
       <div class="row">
-        <% @books.all.take(32).each do |book| %>
-        <div class="col-xs-6 col-sm-4 col-md-3 add-margin-top">
-          <%=  link_to book_path(book.id) do %>
-          <div class="card" style="background-image: linear-gradient(to top,  rgba(81,51,27,0.7) 25%,rgba(255,255,255,0.1) 100%), url('<%= image_url book.user.profile.profile_picture %>');">
-            <div class="card-description-bis">
-              <p><%=book.title%></p>
-              <p>Get it from <%=book.user.profile.first_name%>!</p>
+        <% @books.last(10).each do |book| %>
+
+        <div class="container">
+          <div class="product">
+
+            <div class='product-upvote'>
+            </div>
+            <% profile_image_path = book.user.profile.profile_picture %>
+            <%= image_tag profile_image_path %>
+            <img =@book.user.profile.profile_picture class="product-image">
+            <div class='product-body'>
+              <h3><%= book.user.profile.first_name %> made <em><%= book.title %></em> available!</h3>
+              <p>by <%= book.author %> - <%= book.language %></p>
             </div>
           </div>
-          <% end %>
         </div>
+
         <% end %>
       </div>
     </div>

@@ -17,6 +17,9 @@ class BooksController < ApplicationController
     @books = Book.where("lower(title) LIKE ? or author LIKE ?", query.downcase, query.downcase)
   end
 
+  def borrow
+  end
+
   def show
     set_book
     @user = User.find(@book.user_id)
