@@ -67,16 +67,18 @@ class User < ActiveRecord::Base
   end
 
   def create_friendships
-    friends = facebook_friends unless self.token.nil?
+    unless self.token.nil?
+      friends = facebook_friends
 
-    existing_friends_count = Friendship.where(user_id: self.id).count
+      existing_friends_count = Friendship.where(user_id: self.id).count
 
-    # stop if there are no friends using app or if number of friends
-    # using app matches number of friendships for user.
-    unless friends.empty? || friends.count == existing_friends_count
-      friends.each do |friend_fb|
-        friend = User.find_by uid: friend_fb["id"]
-        check_and_build_friendships(friend)
+      # stop if there are no friends using app or if number of friends
+      # using app matches number of friendships for user.
+      unless friends.empty? || friends.count == existing_friends_count
+        friends.each do |friend_fb|
+          friend = User.find_by uid: friend_fb["id"]
+          check_and_build_friendships(friend)
+        end
       end
     end
   end
