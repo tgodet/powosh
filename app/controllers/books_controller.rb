@@ -4,8 +4,12 @@ class BooksController < ApplicationController
 
   # need to add authorization for edit/update/destroy
   def index
-    @books = Book.all
-    @profile_pics = User::PROFILES_PICS
+    # can only see friends books. the method ("of_friends") is in book modal
+    # and requires the current_user id as a parameter
+    @books = Book.of_friends(current_user.id)
+
+    # @books = Book.all
+    # @profile_pics = User::PROFILES_PICS
   end
 
   def search

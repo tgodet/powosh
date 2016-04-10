@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_one :profile
   has_many :books
   has_many :friendships
+  # :friends is defined as being :users in the friendship model
+  has_many :friends, through: :friendships
 
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable,

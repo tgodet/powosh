@@ -17,7 +17,8 @@ class LoansController < ApplicationController
       loan.book.user.id == current_user.id
     end
     @borrowed = Loan.confirmed.where(user_id: current_user.id)
-    @books = Book.where(user_id: current_user.id)
+    @books = Book.of_user(current_user.id)
+    @friends_books = Book.of_friends(current_user.id)
   end
 
   def create
