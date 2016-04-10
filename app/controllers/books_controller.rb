@@ -9,8 +9,8 @@ class BooksController < ApplicationController
   end
 
   def search
-    query = params[:query]
-    @books = Book.all
+    query = "%#{params[:query]}%"
+    @books = Book.where("title LIKE ? or author LIKE ?", query, query)
   end
 
   def show
@@ -28,10 +28,10 @@ class BooksController < ApplicationController
     find_user
     @book = @user.books.build(book_params)
     if @book.save
-      flash[:notice] = "#{@book.title.capitalize} a été ajouté à votre bibliothèque"
+      flash[:notice] = "#{@book.title.capitalize} has been added to your library"
       redirect_to book_path(@book)
     else
-      flash[:alert] = "Ce livre n'a pas pu être ajouté à votre bibliothèque"
+      flash[:alert] = "This book has not been added to your library"
       render 'books/new'
     end
   end
