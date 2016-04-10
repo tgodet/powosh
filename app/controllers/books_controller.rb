@@ -6,15 +6,15 @@ class BooksController < ApplicationController
   def index
     # can only see friends books. the method ("of_friends") is in book modal
     # and requires the current_user id as a parameter
-    @books = Book.of_friends(current_user.id)
+    # @books = Book.of_friends(current_user.id)
 
-    # @books = Book.all
+    @books = Book.all
     # @profile_pics = User::PROFILES_PICS
   end
 
   def search
     query = "%#{params[:query]}%"
-    @books = Book.where("title LIKE ? or author LIKE ?", query, query)
+    @books = Book.where("lower(title) LIKE ? or author LIKE ?", query.downcase, query.downcase)
   end
 
   def show
