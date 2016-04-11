@@ -3,6 +3,14 @@ class Book < ActiveRecord::Base
   validates :title, presence: true
   validates :author, presence:true
 
+  include PgSearch
+  pg_search_scope :search_by_title_and_author, against: [ :title, :author ],
+  using: { tsearch: { prefix: true } }
+
+  mount_uploader :photo, PhotoUploader
+
+
+
   LANGUAGES = ["Englais", "Français", "Néerlandais", "Allemand", "Espagnol", "Portugais", "Other"]
 
   def self.of_user(user_id)
@@ -13,3 +21,6 @@ class Book < ActiveRecord::Base
     Book.joins(user: :friendships).where("friendships.friend_id = '#{user_id}'")
   end
 end
+
+
+# ignoring: :accents

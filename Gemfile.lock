@@ -71,6 +71,8 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    emoji (1.0.5)
+      json
     erubis (2.7.0)
     execjs (2.6.0)
     faker (1.6.3)
@@ -134,6 +136,10 @@ GEM
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
     pg (0.18.4)
+    pg_search (1.0.5)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -226,6 +232,7 @@ DEPENDENCIES
   carrierwave
   cloudinary
   devise
+  emoji
   faker (~> 1.6, >= 1.6.3)
   figaro
   font-awesome-sass
@@ -235,6 +242,7 @@ DEPENDENCIES
   koala (~> 2.2)
   omniauth-facebook
   pg
+  pg_search
   pry-byebug
   pry-rails
   puma

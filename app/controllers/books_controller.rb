@@ -17,7 +17,8 @@ class BooksController < ApplicationController
 
   def search
     query = "%#{params[:query]}%"
-    @books = Book.where("lower(title) LIKE ? or author LIKE ?", query.downcase, query.downcase)
+    @books = Book.search_by_title_and_author(query.downcase)
+    # @books = Book.where("lower(title) LIKE ? or author LIKE ?", query.downcase, query.downcase)
     # @books = policy_scope(Book.where("lower(title) LIKE ? or author LIKE ?", query.downcase, query.downcase))
   end
 
@@ -44,14 +45,22 @@ class BooksController < ApplicationController
   end
 
   # only enabled for logged in user
-  def creategoogle
+  def create
     find_user
-    @book = @user.books.build(
+
+    if params[:title]
+
+      @book = @user.books.build(
       author: params[:author],
       title: params[:title],
       language: params[:language],
       isbn: params[:isbn]
       )
+    else
+
+      @book = @user.books.build(book_params)
+    end
+
     if @book.save
       flash[:notice] = "#{@book.title.capitalize} has been added to your library"
       redirect_to book_path(@book)
@@ -62,17 +71,17 @@ class BooksController < ApplicationController
   end
 
   # only enabled for logged in user
-  def create
-    find_user
-    @book = @user.books.build(book_params)
-    if @book.save
-      flash[:notice] = "#{@book.title.capitalize} has been added to your library"
-      redirect_to book_path(@book)
-    else
-      flash[:alert] = "This book has not been added to your library"
-      render 'books/new'
-    end
-  end
+  # def create
+  #   find_user
+  #   @book = @user.books.build(book_params)
+  #   if @book.save
+  #     flash[:notice] = "#{@book.title.capitalize} has been added to your library"
+  #     redirect_to book_path(@book)
+  #   else
+  #     flash[:alert] = "This book has not been added to your library"
+  #     render 'books/new'
+  #   end
+  # end
 
 
 
@@ -112,7 +121,9 @@ class BooksController < ApplicationController
       :language,
       :my_description,
       :my_rating,
-      :isbn
+      :isbn,
+      :photo,
+      :photo_cache
       )
   end
 
