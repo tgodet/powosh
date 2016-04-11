@@ -4,7 +4,8 @@ class Loan < ActiveRecord::Base
 
   scope :requested, -> { where(status: 'requested')}
   scope :confirmed, -> { where(status: 'approved')}
-  scope :pending, -> { where(pending: 'true')}
+  scope :pending, -> { where(pending: 'true') }
+  scope :closed, -> { where(status: 'closed') }
 
   def self.user_action(user_id)
     Loan.pending.where(action_owner: user_id)
@@ -24,5 +25,9 @@ class Loan < ActiveRecord::Base
 
   def self.borrowed(user_id)
     Loan.confirmed.where(user_id: user_id)
+  end
+
+  def self.returns(user_id)
+    Loan.user_action(user_id).pending.closed
   end
 end
