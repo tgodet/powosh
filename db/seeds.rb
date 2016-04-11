@@ -51,7 +51,10 @@ profile_attributes = [
   }
 ]
 
-profile_attributes.each { |params| Profile.create!(params) }
+profile_attributes.each do |params|
+  profile = Profile.find_by user_id: params[:user_id]
+  profile.update(params)
+end
 
 rand_friend_1 = User.all.sample
 rand_friend_2 = User.all.sample
