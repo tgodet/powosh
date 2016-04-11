@@ -1,14 +1,20 @@
 
-<div class="image-solo-share">
-  <%= image_tag("book3.png", :alt => "Share a book") %>
-</div>
-
 <div class='sharebook-item'>
 
-  <form action="<%= books_googleresults_url %>" class="navbar-wagon-search">
-    <input type="text" class="navbar-wagon-search-input" name="query" placeholder="Look for your book">
-    <button type="submit" class="navbar-wagon-search-btn">
-      <i class="fa fa-search"></i>
-    </button>
-  </form>
+  <div class='sharebook-item-content'>
+
+    <div class="image-solo-share">
+      <%= image_tag("book3.png", :alt => "Share a book") %>
+    </div>
+
+
+    <form action="<%= books_googleresults_url %>" class="navbar-wagon-search">
+      <input type="text" class="navbar-wagon-search-input" name="query" placeholder="Look for your book">
+      <button type="submit" class="navbar-wagon-search-btn">
+        <i class="fa fa-search"></i>
+      </button>
+    </form>
+
+  </div>
+
 </div>
