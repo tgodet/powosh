@@ -22,8 +22,8 @@
           <i class="fa fa-times"></i>
           <% end %>
         </div>
-        <% elsif loan.status == "approved" %>
-        <div class="label label-success" type="submit">Approved</div>
+        <% elsif loan.status == "given" %>
+        <div class="label label-success" type="submit">Given</div>
         <div>
           <%= link_to close_pending_path(loan), {class: "btn-list-close", :method => :patch} do %>
           <i class="fa fa-times"></i>

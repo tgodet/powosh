@@ -4,10 +4,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
 
-  # include Pundit
+  include Pundit
 
-  # after_action :verify_authorized, except: [:home, :index, :search], unless: :devise_controller?
-  # after_action :verify_policy_scoped, only: [:index, :search], unless: :devise_controller?
+  # can add specific methods below if they require no
+  # authorization or if they only need to be scoped.
+  after_action :verify_authorized, except:[
+    :home, :index, :library,
+    :sharebook, :googleresults,
+    :borrow, :search
+    ], unless: :devise_controller?
+  after_action :verify_policy_scoped, only:[
+    :index, :search, :library
+    ], unless: :devise_controller?
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 

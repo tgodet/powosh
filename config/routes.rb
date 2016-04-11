@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   # devise_for :users, :path => 'accounts'
   resources :users do
     resources :profiles, only: [:index, :edit, :update, :destroy]
-    resources :loans, only: :index
   end
 
   get 'books/borrow' => 'books#borrow', as: :books_borrow
@@ -30,8 +29,8 @@ Rails.application.routes.draw do
   patch 'loans/:id/close_pending' => 'loans#close_pending', as: :close_pending
   patch 'loans/:id/return' => 'loans#return_book', as: :return_book
 
-
-  get 'users/:user_id/library'  => 'loans#library', as: :library
+  #this uses current_user so we don't even need to have the user id included
+  get 'library'  => 'loans#library', as: :library
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

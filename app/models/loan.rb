@@ -3,9 +3,9 @@ class Loan < ActiveRecord::Base
   belongs_to :user
 
   scope :requested, -> { where(status: 'requested')}
-  scope :confirmed, -> { where(status: 'approved')}
+  scope :given, -> { where(status: 'given')}
   scope :pending, -> { where(pending: 'true') }
-  scope :closed, -> { where(status: 'closed') }
+  scope :returned, -> { where(status: 'returned') }
 
   def self.user_action(user_id)
     Loan.pending.where(action_owner: user_id)
@@ -16,7 +16,7 @@ class Loan < ActiveRecord::Base
   end
 
   def self.shared(user_id)
-    Loan.joins("JOIN books ON books.id = loans.book_id").where("books.user_id = '#{user_id}'").confirmed
+    Loan.joins("JOIN books ON books.id = loans.book_id").where("books.user_id = '#{user_id}'").given
   end
 
     def self.of_friends(user_id)
@@ -24,10 +24,16 @@ class Loan < ActiveRecord::Base
   end
 
   def self.borrowed(user_id)
-    Loan.confirmed.where(user_id: user_id)
+    Loan.given.where(user_id: user_id)
   end
 
   def self.returns(user_id)
-    Loan.user_action(user_id).pending.closed
+    Loan.user_action(user_id).pending.returned
+  end
+
+  def self.involving_user(user_id)
+    Loan.joins(
+      "JOIN books ON books.id = loans.book_id").where(
+      "books.user_id = '#{user_id}' OR loans.user_id = '#{user_id}' ")
   end
 end

@@ -17,6 +17,11 @@
     <!-- /BOOK -->
   </div>
 </div>
+
+<!-- TEST OF LINK TO EDIT. REPLACE!-->
+<% if policy(@book).update? %>
+  <%= link_to "Edit Book", edit_book_path(@book) %>
+<% end %>
 <!--
 ////////////////////////////////////////////////////////////
 Following appears if current user is different from Book owner
@@ -39,7 +44,6 @@ Following appears if current user is different from Book owner
         </div>
     </div>
   </div>
-
 
 <% elsif  @book.my_description %>
   <div class="container">

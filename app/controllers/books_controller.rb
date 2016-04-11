@@ -7,52 +7,51 @@ class BooksController < ApplicationController
     # can only see friends books. the method ("of_friends") is in book modal
     # and requires the current_user id as a parameter
     # @books = Book.of_friends(current_user.id)
-    # @books = policy_scope(Book)
-    @books = Book.all
+    @books = policy_scope(Book)
+    # @books = Book.all
     # @profile_pics = User::PROFILES_PICS
   end
 
   def borrow
+    #no authorizaton
   end
 
   def search
+    #no authorization
     query = "%#{params[:query]}%"
-    @books = Book.search_by_title_and_author(query.downcase)
-    # @books = Book.where("lower(title) LIKE ? or author LIKE ?", query.downcase, query.downcase)
-    # @books = policy_scope(Book.where("lower(title) LIKE ? or author LIKE ?", query.downcase, query.downcase))
+    @books = policy_scope(Book.search_by_title_and_author(query.downcase))
   end
 
   def sharebook
-
+    # no authorization
   end
 
   def googleresults
+    # no authorization
     google_query = params[:query]
     user_ip = request.remote_ip
     @books = GoogleBooks.search(google_query,{:count => 20}, user_ip)
   end
 
   def show
-    # authorize @book
+    # authorization done
+    authorize @book
     @user = User.find(@book.user_id)
   end
 
-  # only enabled for logged in user
+
   def new
-
+    # authorization done
     @book = Book.new
-    # authorize @book
-
+    authorize @book
   end
 
-  # only enabled for logged in user
-  def create
-    find_user
 
+  def create
+    # authorization done
 
     if params[:title]
-
-      @book = @user.books.build(
+      @book = current_user.books.build(
       author: params[:author],
       title: params[:title],
       language: params[:language],
@@ -61,11 +60,12 @@ class BooksController < ApplicationController
       )
     else
 
-      @book = @user.books.build(book_params)
-    end
+    @book = current_user.books.build(book_params)
 
+    end
+    authorize @book
     if @book.save
-      flash[:notice] = "#{@book.title.capitalize} has been added to your library"
+      flash[:notice] = "#{@book.title} has been added to your library"
       redirect_to book_path(@book)
     else
       flash[:alert] = "This book has not been added to your library"
@@ -79,12 +79,18 @@ class BooksController < ApplicationController
 
   #ONLY POSSIBLE FOR LOGGED IN USER IF CURRENT USER = Book.user
   def edit
-    @find_user
+    # authorization done
+    #
+    # can use policy(@book).update? in the show view to determine
+    # whether or not to display update button.
+    authorize @book
+    # we don't need @user because scope calls current user.
   end
 
    #ONLY POSSIBLE FOR LOGGED IN USER IF CURRENT USER = Book.user
    def update
-    find_user
+    # authorization done
+    authorize @book
     @book.update(book_params)
     if @book.save
       flash[:notice] = "#{@book.title.capitalize} has been updated"
@@ -97,6 +103,8 @@ class BooksController < ApplicationController
 
    #ONLY POSSIBLE FOR LOGGED IN USER IF CURRENT USER = Book.user
    def destroy
+    # authorization done
+    authorize @book
     @book.destroy
     flash[:notice] = "Book deleted"
     redirect_to books_path
@@ -121,11 +129,5 @@ class BooksController < ApplicationController
   def set_book
     @book = Book.find(params[:id])
   end
-
-  def find_user
-   @user = User.find(current_user.id)
- end
-
-
 
 end
