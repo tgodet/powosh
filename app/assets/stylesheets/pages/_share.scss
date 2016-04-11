@@ -1,0 +1,17 @@
+.sharebook-item {
+  background: $primary-lighter;
+  min-height: calc(100vh - 50px - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.image-solo-share {
+  background: $primary-lighter;
+  // min-height: calc(100vh - 50px - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+}

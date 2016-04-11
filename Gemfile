@@ -11,6 +11,8 @@ gem 'redis'
 gem 'cloudinary'
 gem 'carrierwave'
 gem 'googlebooks', '~> 0.0.9'
+gem 'emoji'
+gem 'pg_search'
 
 gem 'sass-rails'
 gem 'jquery-rails'
