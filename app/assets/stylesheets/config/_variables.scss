@@ -4,8 +4,10 @@
 // Google fonts
 @import url("http://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700,300);
-$base-font: "Open Sans", "Helvetica", "sans-serif";
-$header-font: "Raleway", "Helvetica", "sans-serif";
+$base-font: "Lato", "Helvetica", "sans-serif";
+$header-font: "Lato", "Helvetica", "sans-serif";
+
+@import url("https://cdn.materialdesignicons.com/1.5.54/css/materialdesignicons.min.css");
 
 // Local fonts (uncomment following lines)
 // @font-face {
