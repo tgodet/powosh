@@ -6,8 +6,10 @@ class ApplicationController < ActionController::Base
 
   include Pundit
 
+  # can add specific methods below if they require no
+  # authorization or if they only need to be scoped.
   after_action :verify_authorized, except:[
-    :home, :index,
+    :home, :index, :library,
     :sharebook, :googleresults,
     :borrow, :search
     ], unless: :devise_controller?

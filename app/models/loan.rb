@@ -30,4 +30,10 @@ class Loan < ActiveRecord::Base
   def self.returns(user_id)
     Loan.user_action(user_id).pending.closed
   end
+
+  def self.involving_user(user_id)
+    Loan.joins(
+      "JOIN books ON books.id = loans.book_id").where(
+      "books.user_id = '#{user_id}' OR loans.user_id = '#{user_id}' ")
+  end
 end

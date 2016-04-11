@@ -11,6 +11,7 @@ class LoansController < ApplicationController
   end
 
   def library
+    # @loans = policy_scope(Loan)
     # these are using scope methods from loan and book modal files.
     @requests_from_friends = Loan.user_action(current_user.id).requested
     @requests_to_friends = Loan.friend_action(current_user.id)

@@ -17,6 +17,7 @@ class BooksController < ApplicationController
   end
 
   def search
+    #no authorization
     query = "%#{params[:query]}%"
     @books = policy_scope(Book.search_by_title_and_author(query.downcase))
   end
@@ -48,12 +49,9 @@ class BooksController < ApplicationController
 
   def create
     # authorization done
-    find_user
-
 
     if params[:title]
-
-      @book = @user.books.build(
+      @book = current_user.books.build(
       author: params[:author],
       title: params[:title],
       language: params[:language],
@@ -62,12 +60,12 @@ class BooksController < ApplicationController
       )
     else
 
-      @book = @user.books.build(book_params)
-      authorize @book
-    end
+    @book = current_user.books.build(book_params)
 
+    end
+    authorize @book
     if @book.save
-      flash[:notice] = "#{@book.title.capitalize} has been added to your library"
+      flash[:notice] = "#{@book.title} has been added to your library"
       redirect_to book_path(@book)
     else
       flash[:alert] = "This book has not been added to your library"
@@ -131,4 +129,5 @@ class BooksController < ApplicationController
   def set_book
     @book = Book.find(params[:id])
   end
+
 end
