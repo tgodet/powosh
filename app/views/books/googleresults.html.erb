@@ -18,7 +18,7 @@
         <p>ISBN : <%= book.isbn %></p>
       </div>
       <div class="text-center add-margin product-controls">
-        <%= form_tag(books_creategoogle_path, method: "post") do %>
+        <%= form_tag(books_path, method: "post") do %>
         <%= hidden_field_tag(:title, book.title) %>
         <%= hidden_field_tag(:author, book.authors) %>
         <%= hidden_field_tag(:isbn, book.isbn) %>

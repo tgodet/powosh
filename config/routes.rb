@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'books/search' => 'books#search', as: :books_search
   get 'books/sharebook' => 'books#sharebook', as: :books_sharebook
   get 'books/googleresults' => 'books#googleresults', as: :books_googleresults
-  post 'books/' => 'books#creategoogle', as: :books_creategoogle
+
 
 
   resources :books do
