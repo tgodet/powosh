@@ -2,8 +2,21 @@
   display: flex;
   text-align: center;
   color: white;
+  &.is-sticky {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 
 }
+
+.books-borrow {
+  #borrow {
+    background: linear-gradient(to top, #5E5E5E, #272626);
+  }
+}
+
 
 .tabs-ind {
   flex: 1 1 0%;
