@@ -28,7 +28,8 @@ class BooksController < ApplicationController
 
   def googleresults
     google_query = params[:query]
-    @books = GoogleBooks.search(google_query,{:count => 20})
+    user_ip = request.remote_ip
+    @books = GoogleBooks.search(google_query,{:count => 20}, user_ip)
   end
 
   def show
