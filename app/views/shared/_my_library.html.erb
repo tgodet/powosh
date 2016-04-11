@@ -1,15 +1,19 @@
 <div class="add-margin-top">
-    <div class="container">
+    <div class="container is-small">
       <div class="row">
         <% @books.each do |book| %>
 
         <%= link_to book_path(book.id) do %>
-        <div class="container">
+
           <div class="product">
 
             <div class='product-upvote'>
             </div>
-            <% profile_image_path = book.photo %>
+            <% if book.photo %>
+            <% profile_image_path = book.google_cover %>
+            <% else %>
+            <% profile_image_path = book.google_cover %>
+            <% end %>
             <%= image_tag profile_image_path %>
             <img =@book.user.profile.profile_picture class="product-image">
             <div class='product-body'>
@@ -17,7 +21,7 @@
               <p>by <%= book.author %> - <%= book.language %></p>
             </div>
           </div>
-        </div>
+
         <% end %>
         <% end %>
       </div>

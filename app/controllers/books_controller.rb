@@ -57,7 +57,7 @@ class BooksController < ApplicationController
       title: params[:title],
       language: params[:language],
       isbn: params[:isbn],
-      photo: params[:photo]
+      google_cover: params[:google_cover]
       )
     else
 
