@@ -32,20 +32,21 @@ class BooksController < ApplicationController
   end
 
   def show
+    # authorization done
     authorize @book
     @user = User.find(@book.user_id)
   end
 
-  # only enabled for logged in user
+
   def new
-
+    # authorization done
     @book = Book.new
-    # authorize @book
-
+    authorize @book
   end
 
-  # only enabled for logged in user
+
   def create
+    # authorization done
     find_user
 
     if params[:title]
@@ -59,6 +60,7 @@ class BooksController < ApplicationController
     else
 
       @book = @user.books.build(book_params)
+      authorize @book
     end
 
     if @book.save
@@ -88,12 +90,18 @@ class BooksController < ApplicationController
 
   #ONLY POSSIBLE FOR LOGGED IN USER IF CURRENT USER = Book.user
   def edit
-    @find_user
+    # authorization done
+    #
+    # can use policy(@book).update? in the show view to determine
+    # whether or not to display update button.
+    authorize @book
+    # we don't need @user because scope calls current user.
   end
 
    #ONLY POSSIBLE FOR LOGGED IN USER IF CURRENT USER = Book.user
    def update
-    find_user
+    # authorization done
+    authorize @book
     @book.update(book_params)
     if @book.save
       flash[:notice] = "#{@book.title.capitalize} has been updated"
@@ -106,6 +114,8 @@ class BooksController < ApplicationController
 
    #ONLY POSSIBLE FOR LOGGED IN USER IF CURRENT USER = Book.user
    def destroy
+    # authorization done
+    authorize @book
     @book.destroy
     flash[:notice] = "Book deleted"
     redirect_to books_path
@@ -130,11 +140,4 @@ class BooksController < ApplicationController
   def set_book
     @book = Book.find(params[:id])
   end
-
-  def find_user
-   @user = User.find(current_user.id)
- end
-
-
-
 end
