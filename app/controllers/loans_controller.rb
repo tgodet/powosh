@@ -3,15 +3,8 @@ class LoansController < ApplicationController
   before_action :set_book, only: [:create]
   before_action :update_date, only: [:lend_book, :reject_loan, :close_pending, :return_book]
 
-  def index
-    @loans = Loan.where(user_id: current.id, confirmed: true)
-  end
-
-  def show
-  end
-
   def library
-    # @loans = policy_scope(Loan)
+    @loans = policy_scope(Loan)
     # these are using scope methods from loan and book modal files.
     @requests_from_friends = Loan.user_action(current_user.id).requested
     @requests_to_friends = Loan.friend_action(current_user.id)
@@ -30,6 +23,8 @@ class LoansController < ApplicationController
       pending: true,
       last_action: Date.today)
 
+    authorize @loan
+
     if @loan.save
       flash[:notice] = "Request for #{@book.title} sent!"
     else
@@ -39,12 +34,13 @@ class LoansController < ApplicationController
   end
 
   def lend_book
+    authorize @loan
     @loan.action_owner = @loan.user.id
-    @loan.status = "approved"
+    @loan.status = "given"
     @loan.book.available = false
 
     if @loan.save
-      flash[:notice] = "You gave #{@loan.book.title} to #{@loan.user_id}!"
+      flash[:notice] = "You gave #{@loan.book.title} to #{@loan.user.profile.first_name}!"
     else
       flash[:alert] = "There was a problem. No request sent."
     end
@@ -52,6 +48,7 @@ class LoansController < ApplicationController
   end
 
   def reject_loan
+    authorize @loan
     @loan.action_owner = @loan.user.id
     @loan.status = "rejected"
 
@@ -64,8 +61,9 @@ class LoansController < ApplicationController
   end
 
   def return_book
+    authorize @loan
     @loan.action_owner = @loan.book.user.id
-    @loan.status = "closed"
+    @loan.status = "returned"
     # owner doesn't need a notification if they returned the book
     # to themselves.
     @loan.pending = current_user.id == @loan.user.id
@@ -79,6 +77,7 @@ class LoansController < ApplicationController
   end
 
   def close_pending
+    authorize @loan
     @user = @loan.action_owner
     @loan.pending = false
     if !@loan.save
@@ -89,9 +88,9 @@ class LoansController < ApplicationController
 
   private
 
-  def loan_params
-    params.require(:loan).permit(:status, :action_owner, :pending)
-  end
+  # def loan_params
+  #   params.require(:loan).permit(:status, :action_owner, :pending)
+  # end
 
   def set_loan
     @loan = Loan.find(params[:id])

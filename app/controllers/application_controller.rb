@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     :borrow, :search
     ], unless: :devise_controller?
   after_action :verify_policy_scoped, only:[
-    :index, :search
+    :index, :search, :library
     ], unless: :devise_controller?
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
