@@ -31,7 +31,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    authorize @book
+    # authorize @book
     @user = User.find(@book.user_id)
   end
 
