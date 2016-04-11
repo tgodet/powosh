@@ -1,12 +1,12 @@
 <div class="tabs-profile">
 
 
-  <%= link_to root_path, class: "tabs-ind" do %>
+  <%= link_to root_path, class: "tabs-ind", id: 'home' do %>
     <i class="mdi mdi-home-variant my-icon"></i>
     <span>Home</span>
   <% end %>
 
-   <%= link_to books_sharebook_path, class: "tabs-ind" do %>
+   <%= link_to books_sharebook_path, class: "tabs-ind", id: 'share' do %>
     <i class="mdi mdi-upload my-icon"></i>
     <span>Share</span>
   <% end %>
@@ -16,7 +16,7 @@
     <span>Borrow</span>
   <% end %>
 
-  <%= link_to library_path(current_user), class: "tabs-ind" do %>
+  <%= link_to library_path(current_user), class: "tabs-ind", id: 'track' do %>
     <i class="mdi mdi-chart-bar my-icon"></i>
     <span>Track</span>
   <% end %>
