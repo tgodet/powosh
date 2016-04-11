@@ -46,12 +46,9 @@ ActiveRecord::Schema.define(version: 20160411120149) do
   create_table "loans", force: :cascade do |t|
     t.integer  "book_id"
     t.integer  "user_id"
-    t.boolean  "confirmed",    default: false
     t.boolean  "pending",      default: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
-    t.boolean  "rejected",     default: false
-    t.date     "approved_on"
     t.integer  "action_owner"
     t.string   "status",       default: "requested"
     t.datetime "last_action"

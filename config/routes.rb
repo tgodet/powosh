@@ -23,9 +23,12 @@ Rails.application.routes.draw do
     resources :loans, only: [:create], shallow: true
   end
 
-  patch 'loans/:id/approve' => 'loans#approve_loan', as: :approve_loan
+  # resources :loans, only: [:approve_loan, :reject_loan, :close_pending], via: :patch
+
+  patch 'loans/:id/lend' => 'loans#lend_book', as: :lend_book
   patch 'loans/:id/reject' => 'loans#reject_loan', as: :reject_loan
   patch 'loans/:id/close_pending' => 'loans#close_pending', as: :close_pending
+  patch 'loans/:id/return' => 'loans#return_book', as: :return_book
 
 
   get 'users/:user_id/library'  => 'loans#library', as: :library

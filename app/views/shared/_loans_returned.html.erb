@@ -1,0 +1,32 @@
+<% if @returns.count > 0 %>
+<h4>Marked returned by friends</h4>
+
+<% @returns.each do |loan| %>
+<div class="row-bordered-top list-row-library">
+  <div class="row">
+
+    <%= render partial: "shared/loan_card", object: loan, as: :loan,
+    locals: {
+      owner_pic: false,
+      overlay: "returned this"
+    } %>
+
+    <div class="col-xs-12 col-md-4">
+      <div class="flex-container-centered-vh list-row-130">
+
+        <div class="label label-success">Returned</div>
+        <div>
+          <%= link_to close_pending_path(loan), {class: "btn-list-close", :method => :patch} do %>
+          <i class="fa fa-times"></i>
+          <% end %>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<% end %>
+
+<% end %>
