@@ -48,13 +48,15 @@ class BooksController < ApplicationController
   def create
     find_user
 
+
     if params[:title]
 
       @book = @user.books.build(
       author: params[:author],
       title: params[:title],
       language: params[:language],
-      isbn: params[:isbn]
+      isbn: params[:isbn],
+      photo: params[:photo]
       )
     else
 
@@ -70,18 +72,6 @@ class BooksController < ApplicationController
     end
   end
 
-  # only enabled for logged in user
-  # def create
-  #   find_user
-  #   @book = @user.books.build(book_params)
-  #   if @book.save
-  #     flash[:notice] = "#{@book.title.capitalize} has been added to your library"
-  #     redirect_to book_path(@book)
-  #   else
-  #     flash[:alert] = "This book has not been added to your library"
-  #     render 'books/new'
-  #   end
-  # end
 
 
 

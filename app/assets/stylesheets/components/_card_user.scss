@@ -27,9 +27,10 @@
   font-weight: bold;
   font-size: 14px;
   margin-top: 0;
+  color: $primary-dark;
 }
 .product-body p {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: lighter;
   color: $primary-dark;
   margin-bottom: 0;
@@ -85,7 +86,9 @@
   color: #E6E6E6;
 }
 .product-controls a:hover {
-  color: #D3473C !important
+  font-weight: bold !important;
+  text-decoration: none;
+
 }
 .product-controls-hidden a {
   color: transparent;
