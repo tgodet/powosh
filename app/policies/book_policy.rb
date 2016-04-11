@@ -5,6 +5,10 @@ class BookPolicy < ApplicationPolicy
     end
   end
 
+  def show?
+    scope.where(:id => record.id).exists?
+  end
+
   def update?
     record.user == user
   end

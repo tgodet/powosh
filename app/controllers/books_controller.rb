@@ -7,31 +7,33 @@ class BooksController < ApplicationController
     # can only see friends books. the method ("of_friends") is in book modal
     # and requires the current_user id as a parameter
     # @books = Book.of_friends(current_user.id)
-    # @books = policy_scope(Book)
-    @books = Book.all
+    @books = policy_scope(Book)
+    # @books = Book.all
     # @profile_pics = User::PROFILES_PICS
   end
 
   def borrow
+    #no authorizaton
   end
 
   def search
     query = "%#{params[:query]}%"
-    @books = Book.where("lower(title) LIKE ? or author LIKE ?", query.downcase, query.downcase)
-    # @books = policy_scope(Book.where("lower(title) LIKE ? or author LIKE ?", query.downcase, query.downcase))
+    # @books = Book.where("lower(title) LIKE ? or author LIKE ?", query.downcase, query.downcase)
+    @books = policy_scope(Book.where("lower(title) LIKE ? or author LIKE ?", query.downcase, query.downcase))
   end
 
   def sharebook
-
+    # no authorization
   end
 
   def googleresults
+    # no authorization
     google_query = params[:query]
     @books = GoogleBooks.search(google_query,{:count => 20})
   end
 
   def show
-    # authorize @book
+    authorize @book
     @user = User.find(@book.user_id)
   end
 
