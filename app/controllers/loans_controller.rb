@@ -1,7 +1,7 @@
 class LoansController < ApplicationController
   before_action :set_loan, only: [:show, :lend_book, :reject_loan, :close_pending, :return_book]
   before_action :set_book, only: [:create]
-  before_action :update_date, only: [:create, :lend_book, :reject_loan, :close_pending, :return_book]
+  before_action :update_date, only: [:lend_book, :reject_loan, :close_pending, :return_book]
 
   def index
     @loans = Loan.where(user_id: current.id, confirmed: true)

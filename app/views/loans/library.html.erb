@@ -48,9 +48,7 @@
           </div>
 
           <div role="tabpanel" class="tab-pane" id="library">
-            <% @books.each do |book| %>
-              <%= book.title %>
-            <% end %>
+            <%= render 'shared/my_library' %>
           </div>
 
 

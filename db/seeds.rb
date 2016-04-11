@@ -8,7 +8,7 @@
 Loan.delete_all
 Book.delete_all
 # Profile.delete_all
-Friendship.delete_all
+# Friendship.delete_all
 # User.delete_all
 
 # User.create!(email: "test1@test.com", password: "testtest")
@@ -51,23 +51,26 @@ Friendship.delete_all
 #   }
 # ]
 
-# profile_attributes.each { |params| Profile.create!(params) }
+# profile_attributes.each do |params|
+#   profile = Profile.find_by user_id: params[:user_id]
+#   profile.update(params)
+# end
 
-rand_friend_1 = User.all.sample
-rand_friend_2 = User.all.sample
-rand_friend_3 = User.all.sample
+# rand_friend_1 = User.all.sample
+# rand_friend_2 = User.all.sample
+# rand_friend_3 = User.all.sample
 
-Friendship.create!(user_id: User.first.id, friend_id: User.last.id)
-Friendship.create!(user_id: User.last.id, friend_id: User.first.id)
+# Friendship.create!(user_id: User.first.id, friend_id: User.last.id)
+# Friendship.create!(user_id: User.last.id, friend_id: User.first.id)
 
-Friendship.create!(user_id: User.first.id, friend_id: rand_friend_1.id)
-Friendship.create!(user_id: rand_friend_1.id, friend_id: User.first.id)
+# Friendship.create!(user_id: User.first.id, friend_id: rand_friend_1.id)
+# Friendship.create!(user_id: rand_friend_1.id, friend_id: User.first.id)
 
-Friendship.create!(user_id: User.first.id, friend_id: rand_friend_2.id)
-Friendship.create!(user_id: rand_friend_2.id, friend_id: User.first.id)
+# Friendship.create!(user_id: User.first.id, friend_id: rand_friend_2.id)
+# Friendship.create!(user_id: rand_friend_2.id, friend_id: User.first.id)
 
-Friendship.create!(user_id: User.first.id, friend_id: rand_friend_3.id)
-Friendship.create!(user_id: rand_friend_3.id, friend_id: User.first.id)
+# Friendship.create!(user_id: User.first.id, friend_id: rand_friend_3.id)
+# Friendship.create!(user_id: rand_friend_3.id, friend_id: User.first.id)
 
 
 300.times do
@@ -81,15 +84,15 @@ Friendship.create!(user_id: rand_friend_3.id, friend_id: User.first.id)
     })
 end
 
-20.times do
-  book = (Book.all).sample
-  Loan.create({
-    user_id: (User.all).sample.id,
-    book_id: book.id,
-    status: "requested",
-    pending: true,
-    action_owner: book.user.id,
-    last_action: Date.today
-})
+# 20.times do
+#   book = (Book.all).sample
+#   Loan.create({
+#     user_id: (User.all).sample.id,
+#     book_id: book.id,
+#     status: "requested",
+#     pending: true,
+#     action_owner: book.user.id,
+#     last_action: Date.today
+# })
 
-end
+# end
