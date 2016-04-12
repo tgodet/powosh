@@ -9,8 +9,8 @@
 
             <div class='product-upvote'>
             </div>
-            <% if book.photo %>
-            <% profile_image_path = book.google_cover %>
+            <% if book.photo.url %>
+            <% profile_image_path = book.photo %>
             <% else %>
             <% profile_image_path = book.google_cover %>
             <% end %>
