@@ -1,8 +1,11 @@
 <% user = owner_pic ? loan.book.user : loan.user %>
 <div class="col-xs-3 col-md-2">
   <div class="flex-container-centered-vh list-row-130">
-    <% profile_image_path = user.profile.profile_picture %>
-    <div class="loan-requester avatar-square", style="background-image: url(<%= image_path profile_image_path %>);">
+    <% profile_pic = loan.user_id == current_user.id ? "image_tag 'profilepic_4'" : user.profile.profile_picture %>
+    <div class="loan-requester avatar-square", style="background-image: url(<%= image_path profile_pic %>);">
+    </div>
+    <div>
+      <% name = loan.user_id == current_user.id ? loan.borrower_name_manual : user.profile.first_name%>
     </div>
   </div>
 </div>

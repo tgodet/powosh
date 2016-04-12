@@ -1,0 +1,21 @@
+<div class="padded bg-primary-lighter">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+
+        <h3>Add Loan</h3>
+         <%= simple_form_for(@loan, { url: book_loans_path(@book) } ) do |f| %>
+          <p>Choose a friend using the app.</p>
+          <!-- The label method used below is in the user model -->
+          <%= f.input :user_id, label: "Lend to:", collection: current_user.friends, label_method: :profile_first_name, prompt: "Select friend"%>
+          <p>OR</p>
+          <p>Lend to a friend not using the app.</p>
+          <%= f.input :borrower_name_manual, label: "Friend's name:" %>
+          <%= f.button :submit, label: "Add Loan", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>

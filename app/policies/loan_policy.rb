@@ -5,7 +5,15 @@ class LoanPolicy < ApplicationPolicy
     end
   end
 
+  def new?
+    owner?
+  end
+
   def create?
+    owner?
+  end
+
+  def request_book?
     !Book.of_friends(user.id).find(record.book_id).nil?
   end
 

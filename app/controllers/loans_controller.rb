@@ -1,6 +1,6 @@
 class LoansController < ApplicationController
   before_action :set_loan, only: [:show, :lend_book, :reject_loan, :close_pending, :return_book]
-  before_action :set_book, only: [:create]
+  before_action :set_book, only: [:new, :create, :request_book]
   before_action :update_date, only: [:lend_book, :reject_loan, :close_pending, :return_book]
 
   def library
@@ -14,7 +14,38 @@ class LoansController < ApplicationController
     @books = Book.of_user(current_user.id)
   end
 
+  def new
+    @loan = Loan.new(book_id: @book.id)
+    authorize @loan
+  end
+
   def create
+    @loan = Loan.new(loan_params)
+    @loan.status = "given"
+    @loan.manual = true
+    @loan.book_id = @book.id
+    @loan.last_action = Date.today
+
+    if @loan.user_id.nil?
+      @loan.user_id = current_user.id
+      @loan.pending = false
+      @loan.action_owner = current_user.id
+    else
+      @loan.pending = true
+      @loan.action_owner = @loan.user_id
+    end
+
+    authorize @loan
+
+    if @loan.save
+      flash[:notice] = "You loaned #{@book.title}!"
+    else
+      flash[:alert] = "There was a problem. No loan created."
+    end
+    redirect_to library_path
+  end
+
+  def request_book
     @loan = Loan.new(
       book_id: @book.id,
       user_id: current_user.id,
@@ -30,7 +61,7 @@ class LoansController < ApplicationController
     else
       flash[:alert] = "There was a problem. No request sent."
     end
-    redirect_to book_path(@book)
+    redirect_to books_path
   end
 
   def lend_book
@@ -88,9 +119,9 @@ class LoansController < ApplicationController
 
   private
 
-  # def loan_params
-  #   params.require(:loan).permit(:status, :action_owner, :pending)
-  # end
+  def loan_params
+    params.require(:loan).permit(:user_id, :borrower_name_manual)
+  end
 
   def set_loan
     @loan = Loan.find(params[:id])

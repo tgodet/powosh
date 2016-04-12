@@ -7,6 +7,9 @@ class Loan < ActiveRecord::Base
   scope :pending, -> { where(pending: 'true') }
   scope :returned, -> { where(status: 'returned') }
 
+  validates :user_id, presence: true if :borrower.nil?
+  validates :borrower_name_manual, presence: true if :user_id.empty?
+
   def self.user_action(user_id)
     Loan.pending.where(action_owner: user_id)
   end
