@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
 
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :request_book]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :quickedit, :request_book]
 
   # need to add authorization for edit/update/destroy
   def index
@@ -58,20 +58,29 @@ class BooksController < ApplicationController
       isbn: params[:isbn],
       google_cover: params[:google_cover]
       )
+      @book.created_with_google = true
+      authorize @book
+      if @book.save
+        redirect_to quickedit_book_path(@book)
+      else
+        flash[:alert] = "This book has not been added to your library"
+        render 'books/new'
+      end
     else
 
-    @book = current_user.books.build(book_params)
+      @book = current_user.books.build(book_params)
+      authorize @book
+      if @book.save
+        flash[:notice] = "#{@book.title} has been added to your library"
+        redirect_to book_path(@book)
+      else
+        flash[:alert] = "This book has not been added to your library"
+        render 'books/new'
+      end
+    end
 
-    end
-    authorize @book
-    if @book.save
-      flash[:notice] = "#{@book.title} has been added to your library"
-      redirect_to book_path(@book)
-    else
-      flash[:alert] = "This book has not been added to your library"
-      render 'books/new'
-    end
   end
+
 
 
 
@@ -87,12 +96,20 @@ class BooksController < ApplicationController
     # we don't need @user because scope calls current user.
   end
 
-   #ONLY POSSIBLE FOR LOGGED IN USER IF CURRENT USER = Book.user
+
+  def quickedit
+    authorize @book
+  end
+
+     #ONLY POSSIBLE FOR LOGGED IN USER IF CURRENT USER = Book.user
    def update
     # authorization done
     authorize @book
     @book.update(book_params)
-    if @book.save
+    if @book.save && @book.created_with_google
+      flash[:notice] = "#{@book.title.capitalize} has been created"
+      redirect_to book_path(@book)
+    elsif @book.save
       flash[:notice] = "#{@book.title.capitalize} has been updated"
       redirect_to book_path(@book)
     else

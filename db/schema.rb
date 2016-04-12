@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411202742) do
+ActiveRecord::Schema.define(version: 20160412215816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,15 +21,16 @@ ActiveRecord::Schema.define(version: 20160411202742) do
     t.string   "description"
     t.string   "language"
     t.integer  "user_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "author"
-    t.boolean  "available",      default: true
+    t.boolean  "available",           default: true
     t.string   "isbn"
     t.string   "my_description"
     t.integer  "my_rating"
     t.string   "photo"
     t.string   "google_cover"
+    t.boolean  "created_with_google"  default: false
   end
 
   add_index "books", ["user_id"], name: "index_books_on_user_id", using: :btree
@@ -89,6 +90,7 @@ ActiveRecord::Schema.define(version: 20160411202742) do
     t.string   "uid"
     t.string   "token"
     t.datetime "token_expiry"
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

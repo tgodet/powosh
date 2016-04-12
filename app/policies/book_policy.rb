@@ -14,6 +14,10 @@ class BookPolicy < ApplicationPolicy
     true
   end
 
+  def quickedit?
+    update?
+  end
+
   def destroy?
     update?
 
