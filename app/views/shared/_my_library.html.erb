@@ -1,25 +1,29 @@
 <div class="add-margin-top">
-    <div class="container">
-      <div class="row">
-        <% @books.each do |book| %>
+  <div class="container">
+    <div class="row">
+      <% @books.each do |book| %>
 
-        <%= link_to book_path(book.id) do %>
-        <div class="container">
-          <div class="product">
+      <%= link_to book_path(book.id) do %>
+      <div class="container">
+        <div class="product">
 
-            <div class='product-upvote'>
-            </div>
-            <% profile_image_path = book.photo %>
-            <%= image_tag profile_image_path %>
-            <img =@book.user.profile.profile_picture class="product-image">
-            <div class='product-body'>
-              <h3><em><%= book.title %></em> is available</h3>
-              <p>by <%= book.author %> - <%= book.language %></p>
+          <div class='product-upvote'>
+          </div>
+          <% profile_image_path = book.photo %>
+          <%= image_tag profile_image_path %>
+          <img =@book.user.profile.profile_picture class="product-image">
+          <div class='product-body'>
+            <h3><em><%= book.title %></em> is available</h3>
+            <p>by <%= book.author %> - <%= book.language %></p>
+            <div>
+            <%= link_to "Lend", new_book_loan_path(book), { class: "btn btn-primary" } %>
             </div>
           </div>
         </div>
-        <% end %>
-        <% end %>
+
       </div>
+      <% end %>
+      <% end %>
     </div>
   </div>
+</div>

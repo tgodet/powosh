@@ -39,7 +39,7 @@ Following appears if current user is different from Book owner
         <h3><%= @book.user.profile.first_name %> can lend it to you!</h3>
       </div>
         <div class="text-center add-margin product-controls">
-        <%= link_to "I want it!", book_loans_path(@book),
+        <%= link_to "I want it!", request_book_path(@book),
         {class: "btn btn-primary", :method => :post} %>
         </div>
     </div>

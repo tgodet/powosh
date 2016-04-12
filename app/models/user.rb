@@ -26,6 +26,19 @@ class User < ActiveRecord::Base
     #check for new friends every time user logs in
     after_save :create_friendships
 
+    def self.friend_profiles(user_id)
+      user = User.find(user_id)
+      friend_profiles = []
+      user.friends.each do |friend|
+        attributes = {
+          id: friend.profile[:id],
+          first_name: friend.profile[:first_name],
+          last_name: friend.profile[:last_name]
+        }
+        friend_profiles << attributes
+      end
+      friend_profiles
+    end
 
 
     def self.find_for_facebook_oauth(auth)
