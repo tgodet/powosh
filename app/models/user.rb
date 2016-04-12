@@ -26,18 +26,9 @@ class User < ActiveRecord::Base
     #check for new friends every time user logs in
     after_save :create_friendships
 
-    def self.friend_profiles(user_id)
-      user = User.find(user_id)
-      friend_profiles = []
-      user.friends.each do |friend|
-        attributes = {
-          id: friend.profile[:id],
-          first_name: friend.profile[:first_name],
-          last_name: friend.profile[:last_name]
-        }
-        friend_profiles << attributes
-      end
-      friend_profiles
+    # this is for the label in the manual new loan form
+    def profile_first_name
+      "#{self.profile.first_name} #{self.profile.last_name}"
     end
 
 

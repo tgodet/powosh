@@ -12,7 +12,6 @@ class LoansController < ApplicationController
     @shared = Loan.shared(current_user.id)
     @borrowed = Loan.borrowed(current_user.id)
     @books = Book.of_user(current_user.id)
-    @profiles = User.friend_profiles(current_user.id)
   end
 
   def new
