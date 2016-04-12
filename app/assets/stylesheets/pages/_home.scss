@@ -2,3 +2,53 @@
  * CSS code specific to home page
  * (margin/padding adjustments)
  * ------------------------------------- */
+.card-box{
+  background-color: $primary-even-lighter;
+  padding-bottom: 30px;
+  padding-top: 30px;
+
+
+  text-align: center;
+  h1 {
+   font-family: 'Bad Script', cursive;
+  }
+  // p {
+  //   font-family: 'Bad Script', cursive;
+  // }
+}
+
+.card-home{
+  padding : 20px 0px;
+  img {
+    max-width: 100px;
+    opacity: 70%;
+  }
+}
+
+
+
+.text-frame{
+padding: 0px 50px;
+}
+
+.sign-in-expl{
+  padding-top: 70px;
+  padding-bottom: 55px;
+  background-color: $primary;
+
+  h1{
+    font-family: 'Bad Script', cursive;
+    color: white;
+    text-align: center
+  }
+}
+
+.home-button{
+padding-top: 70px;
+padding-bottom: 30px;
+font-family: lato;
+  .btn {
+    background-color: #3B5998;
+    border: none
+  }
+}
