@@ -1,0 +1,19 @@
+<div class="container">
+<%= simple_form_for @book, :url => {:controller => 'books', :action => 'update'}, :method => :put do |f| %>
+  <%= f.error_notification %>
+  <%= f.label :my_description, 'Why do you want to share this book?' %>
+  <%= f.input :my_description, label: false, placeholder:"I love that book because..." %>
+  <%= f.label :my_rating, 'My rating' %>
+  <%= f.input :my_rating, label: false, collection: 1..10 %>
+  <%= f.label :language, 'Confirm Language' %>
+  <%= f.input :language, label: false, collection: Book::LANGUAGES,  placeholder:"Français" %>
+  <%= f.label :isbn, 'Confirm ISBN code' %>
+  <%= f.input :isbn, label: false, placeholder:"978-1-56619-909-4" %>
+  <%= f.label :photo, 'Upload your own picture' %>
+  <%= f.input :photo %>
+  <%= f.input :photo_cache, as: :hidden %>
+
+  <%= f.button :submit %>
+<% end %>
+
+</div>

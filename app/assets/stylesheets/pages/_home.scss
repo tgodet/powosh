@@ -49,6 +49,16 @@ padding-bottom: 30px;
 font-family: lato;
   .btn {
     background-color: #3B5998;
-    border: none
+    border-width: 0px;
+    border-color: transparent;
+    border-radius: 5px;
+  }
+    .btn:hover {
+      color: $primary-lighter;
+      background-color: #37538d;
+      border-width: 1px;
+      border-color: #37538d;
   }
 }
+
+

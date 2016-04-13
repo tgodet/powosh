@@ -13,6 +13,7 @@ gem 'carrierwave'
 gem 'googlebooks', '~> 0.0.9'
 gem 'emoji'
 gem 'pg_search'
+gem "rails_admin"
 
 gem 'sass-rails'
 gem 'jquery-rails'

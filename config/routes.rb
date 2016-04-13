@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root to: 'pages#home'
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }, :path => 'accounts'
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
   get 'books/search' => 'books#search', as: :books_search
   get 'books/sharebook' => 'books#sharebook', as: :books_sharebook
   get 'books/googleresults' => 'books#googleresults', as: :books_googleresults
-
+  get 'books/:id/quickedit' => 'books#quickedit', as: :quickedit_book
 
 
   resources :books do
