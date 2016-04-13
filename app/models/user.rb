@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  has_many :loans
-  has_one :profile
-  has_many :books
-  has_many :friendships
+  has_many :loans, dependent: :destroy
+  has_one :profile, dependent: :destroy
+  has_many :books, dependent: :destroy
+  has_many :friendships, dependent: :destroy
   # :friends is defined as being :users in the friendship model
-  has_many :friends, through: :friendships
+  has_many :friends, through: :friendships, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable,
@@ -66,8 +66,9 @@ class User < ActiveRecord::Base
     attributes = {
       first_name: profile["first_name"],
       last_name: profile["last_name"],
-      profile_picture: graph.get_picture("me")
+      profile_picture: graph.get_picture("me", {type: 'large'})
     }
+
   end
 
   def create_friendships

@@ -9,11 +9,11 @@ PowOSh
 
   <div class="add-margin-top">
     <div class="container is-small">
-      <div class="row col-xs-12 col-sm-8 col-sm-offset-2">
+      <div class="row">
         <% @books.last(10).reverse.each do |book| %>
 
         <%= link_to book_path(book.id) do %>
-
+          <div class="col-xs-12 col-sm-8 col-sm-offset-2">
           <div class="product">
 
             <div class='product-upvote'>
@@ -25,6 +25,7 @@ PowOSh
               <h3><%= book.user.profile.first_name %> made <em><%= book.title %></em> available!</h3>
               <p>by <%= book.author %> - <%= book.language %></p>
             </div>
+          </div>
           </div>
 
         <% end %>

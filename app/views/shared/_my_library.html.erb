@@ -12,8 +12,10 @@
 
             <% if book.photo.url %>
               <% profile_image_path = book.photo %>
-            <% else %>
+            <% elsif book.google_cover %>
               <% profile_image_path = book.google_cover %>
+            <% else %>
+              <% profile_image_path = "book5.png" %>
             <% end %>
 
             <%= image_tag profile_image_path %>
