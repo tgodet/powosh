@@ -6,8 +6,10 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700,300);
 @import url(https://fonts.googleapis.com/css?family=Dancing+Script:400,700);
 @import url(https://fonts.googleapis.com/css?family=Bad+Script);
+@import url(https://fonts.googleapis.com/css?family=Bitter:400,700);
+@import url(https://fonts.googleapis.com/css?family=Convergence);
 $base-font: "Lato", "Helvetica", "sans-serif";
-$header-font: "Lato", "Helvetica", "sans-serif";
+$header-font: "Convergence","Lato", "Helvetica", "sans-serif";
 $nice-font: "dancing-script";
 
 
@@ -32,7 +34,12 @@ $base-height: 1.4;
  * ------------------------------------- */
 // Scheme
 $brand-color: #BD451F;
-$primary:#BD451F;
+$primary:#E64A19;
+$primary-white: #FBFEF9;
+$primary-black: #1F1300;
+$primary-beige: #FFC15E;
+
+
 // $primary-dark:#635A43;
 // $primary-light:#9C8D68;
 $primary-dark:#5E5E5E;

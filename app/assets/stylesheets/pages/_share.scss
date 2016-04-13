@@ -12,6 +12,7 @@
   input{
     width: 100%;
     margin: auto;
+    box-shadow: 0px 4px 4px rgba(0,0,0,0.2)
   }
 
 }
@@ -20,7 +21,7 @@
 .image-solo-share {
   // min-height: calc(100vh - 50px - 60px);
   img {
-    max-width: 110px;
+    height: 100px;
     display: block;
     margin: 30px auto;
   }
