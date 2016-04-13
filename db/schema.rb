@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20160412215816) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,12 +49,15 @@ ActiveRecord::Schema.define(version: 20160412215816) do
   create_table "loans", force: :cascade do |t|
     t.integer  "book_id"
     t.integer  "user_id"
-    t.boolean  "pending",      default: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.boolean  "pending",              default: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.integer  "action_owner"
-    t.string   "status",       default: "requested"
+    t.string   "status",               default: "requested"
     t.datetime "last_action"
+    t.string   "borrower_name_manual"
+    t.boolean  "manual",               default: false
+    t.string   "manual_string"
   end
 
   add_index "loans", ["book_id"], name: "index_loans_on_book_id", using: :btree

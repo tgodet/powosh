@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
     #check for new friends every time user logs in
     after_save :create_friendships
 
+    # this is for the label in the manual new loan form
+    def profile_first_name
+      "#{self.profile.first_name} #{self.profile.last_name}"
+    end
 
 
     def self.find_for_facebook_oauth(auth)
