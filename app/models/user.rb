@@ -20,27 +20,31 @@ class User < ActiveRecord::Base
     "profilepic_17.jpg","profilepic_18.jpg","profilepic_19.jpg","profilepic_20.jpg",
     "profilepic_21.jpg","profilepic_22.jpg"]
 
-    #only first_time
-    after_create :create_profile
+  #only first_time
+  after_create :create_profile
 
-    #check for new friends every time user logs in
-    after_save :create_friendships
+  #check for new friends every time user logs in
+  after_save :create_friendships
 
-    # this is for the label in the manual new loan form
-    def profile_first_name
-      "#{self.profile.first_name} #{self.profile.last_name}"
-    end
+  # this is for the label in the manual new loan form
+  def profile_first_name
+    "#{self.profile.first_name} #{self.profile.last_name}"
+  end
 
 
-    def self.find_for_facebook_oauth(auth)
-      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-        user.provider = auth.provider
-        user.uid = auth.uid
-        user.email = auth.info.email
+  def self.find_for_facebook_oauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]  # Fake password for validation
       user.token = auth.credentials.token
       user.token_expiry = Time.at(auth.credentials.expires_at)
     end
+  end
+
+  def all_friends
+    User.joins("INNER JOIN friendships on friendships.user_id = users.id OR friendships.friend_id = users.id").distinct
   end
 
   private

@@ -14,7 +14,7 @@ class LoanPolicy < ApplicationPolicy
   end
 
   def request_book?
-    !Book.of_friends(user.id).find(record.book_id).nil?
+    !Book.of_friends(user).find(record.book_id).nil?
   end
 
   def lend_book?
