@@ -17,10 +17,9 @@ class Book < ActiveRecord::Base
     Book.where(user_id: user_id)
   end
 
-  def self.of_friends(user_id)
-    Book.joins(user: :friendships).where("friendships.friend_id = '#{user_id}'")
+  def self.of_friends(user)
+    Book.where(user_id: user.all_friends.pluck(:id))
   end
 end
-
 
 # ignoring: :accents

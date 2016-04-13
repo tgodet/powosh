@@ -1,7 +1,7 @@
 class BookPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.of_friends(user.id)
+      scope.of_friends(user)
     end
   end
 
