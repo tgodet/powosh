@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
   end
 
   def all_friends
-    User.joins("INNER JOIN friendships on friendships.user_id = users.id OR friendships.friend_id = users.id").distinct
+    User.joins("INNER JOIN friendships on friendships.user_id = users.id OR friendships.friend_id = users.id").where.not(id: id).distinct
   end
 
   private
