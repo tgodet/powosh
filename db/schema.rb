@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160412215816) do
 
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,7 +30,7 @@ ActiveRecord::Schema.define(version: 20160412215816) do
     t.integer  "my_rating"
     t.string   "photo"
     t.string   "google_cover"
-    t.boolean  "created_with_google"  default: false
+    t.boolean  "created_with_google"
   end
 
   add_index "books", ["user_id"], name: "index_books_on_user_id", using: :btree
