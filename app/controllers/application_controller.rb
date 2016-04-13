@@ -11,11 +11,9 @@ class ApplicationController < ActionController::Base
   after_action :verify_authorized, except:[
     :home, :index, :library,
     :sharebook, :googleresults,
-    :borrow, :search
-    ], unless: :devise_controller?
+    :borrow, :search], unless: :devise_controller?
   after_action :verify_policy_scoped, only:[
-    :index, :search, :library
-    ], unless: :devise_controller?
+    :index, :search, :library], unless: :devise_controller?
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
