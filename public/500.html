@@ -4,63 +4,80 @@
   <title>We're sorry, but something went wrong (500)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-  body {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
+    body {
+      background-color: #EFEFEF;
+      color: #2E2F30;
+      text-align: center;
+      font-family: arial, sans-serif;
+      margin: 0;
+    }
 
-  div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+    .dialog {
+      color: white;
+      height: calc(90vh - 60px);
+      /* if you have a 70px navbar => height: calc(100vh - 70px); */
+      background-size: cover !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
 
-  div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+      background-image: url('library1.jpg'), linear-gradient(135deg, rgba(230,74,25,0.4) 1%,rgba(230,74,25,0.64) 35%,rgba(68,29,5,1) 87%,rgba(31,19,0,1) 99%);
 
-  h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
 
-  div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    }
+
+    .dialog div {
+      max-width: 500px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #FFC15E;
+      text-shadow: 4px 4px 5px rgba(50, 50, 50, 1);
+    }
+
+    a:hover {
+      font-weight: bold;
+    }
+
+    .header {
+      width: 100%;
+      background-color: #ffffff;
+      height: 60px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0 15px;
+    }
+
+    .header-logo {
+      width: 40px;
+      height: 40px;
+    }
+
+
   </style>
 </head>
 
 <body>
-  <!-- This file lives in public/500.html -->
+
+  <!-- This file lives in public/404.html -->
+  <div class="header">
+    <div>
+      <a href="http://powosh.herokuapp.com">
+        <img src="logo2.png", class="header-logo">
+      </a>
+    </div>
+  </div>
   <div class="dialog">
     <div>
-      <h1>We're sorry, but something went wrong.</h1>
+      <h1>We're sorry! Something went wrong.</h1>
+      <p>Please go back to the <a href="http://powosh.herokuapp.com">home page</a>
+      or try again later.</p>
+      </div>
+      <p>.</p>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
-  </div>
-</body>
-</html>
+  </body>
+  </html>
