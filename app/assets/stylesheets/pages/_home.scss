@@ -3,14 +3,17 @@
  * (margin/padding adjustments)
  * ------------------------------------- */
 .card-box{
-  background-color: $primary-even-lighter;
+  background-color: $primary-white;
   padding-bottom: 30px;
   padding-top: 30px;
 
 
   text-align: center;
   h1 {
-   font-family: 'Bad Script', cursive;
+   font-family: 'Convergence', sans-serif;
+   // font-family: 'Bitter', serif;
+   text-transform: transform;
+   color: $primary-black;
   }
   // p {
   //   font-family: 'Bad Script', cursive;
@@ -38,7 +41,7 @@ padding: 0px 50px;
 
   h1{
     font-family: 'Bad Script', cursive;
-    color: white;
+    color: $primary-white;
     text-align: center
   }
 }
