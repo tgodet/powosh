@@ -54,41 +54,6 @@ Following appears if current user is different from Book owner
 
 <% end%>
 
-<!--
-////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
- -->
-
-
-<div id="show-discussion", class="comments1 show-content padded-2em">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-
-        <h3>Discussion</h3>
-
-        <% User.take(2).each do |user| %>
-        <div class="row-bordered-top">
-          <div class="row">
-
-            <div class="col-xs-4 text-center">
-              <%= image_tag user.profile.profile_picture, class: "avatar-large" %>
-              <h4><div><%= user.profile.first_name %></div></h4>
-            </div>
-
-            <div class="col-xs-8">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae cum cumque commodi minima numquam quis consequatur mollitia aliquam fuga vel amet soluta placeat, deserunt qui laboriosam, nostrum sint sunt debitis.</p>
-            </div>
-
-          </div>
-        </div>
-        <% end %>
-
-
-      </div>
-    </div>
-  </div>
-</div>
 </div>
 
 

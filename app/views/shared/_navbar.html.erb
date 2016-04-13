@@ -7,7 +7,7 @@
 
   <!-- Search form -->
   <% if user_signed_in? %>
-  <form action="<%= books_search_url %>" class="navbar-wagon-search">
+  <form action="<%= books_search_path %>" class="navbar-wagon-search">
     <input type="text" class="navbar-wagon-search-input" name="query" placeholder="Search for your favorite book">
     <button type="submit" class="navbar-wagon-search-btn">
       <i class="fa fa-search"></i>

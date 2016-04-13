@@ -49,7 +49,6 @@ class BooksController < ApplicationController
 
   def create
     # authorization done
-
     if params[:title]
       @book = current_user.books.build(
       author: params[:author],
