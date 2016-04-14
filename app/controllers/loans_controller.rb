@@ -97,7 +97,7 @@ class LoansController < ApplicationController
     @loan.status = "returned"
     # owner doesn't need a notification if they returned the book
     # to themselves.
-    @loan.pending = current_user.id == @loan.user.id
+    @loan.pending = current_user.id == !@loan.book.user_id
 
     if @loan.save
       flash[:notice] = "Book returned!"
