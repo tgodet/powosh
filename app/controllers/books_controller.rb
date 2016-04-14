@@ -70,7 +70,7 @@ class BooksController < ApplicationController
       @book = current_user.books.build(book_params)
       authorize @book
       if @book.save
-        flash[:notice] = "#{@book.title} has been added to your library"
+        flash[:notice] = "#{@book.title[0..60]} has been added to your library"
         redirect_to book_path(@book)
       else
         flash[:alert] = "This book has not been added to your library"
