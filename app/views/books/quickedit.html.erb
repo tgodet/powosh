@@ -8,10 +8,11 @@
       <%= f.label :language, 'Confirm Language' %>
       <%= f.input :language, label: false, collection: Book::LANGUAGES,  placeholder:"Français" %>
       <%= f.label :photo, 'Upload your own picture' %>
-      <%= f.input :photo %>
+      <%= f.input :photo, label: false %>
       <%= f.input :photo_cache, as: :hidden %>
-
-      <%= f.submit 'Add your book' %>
+      <div class='form-edit-container text-center'>
+        <%= f.submit 'Add your book' %>
+      </div>
       <% end %>
 
     </div>

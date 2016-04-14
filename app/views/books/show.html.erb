@@ -7,7 +7,7 @@
     <!-- BOOK -->
     <div class="book">
       <div class="book-cover">
-      <% title = @book.title.length > 100 ? "#{@book.title[0..100]}..." : @book.title %>
+      <% title = @book.title.length > 70 ? "#{@book.title[0..70]}..." : @book.title %>
         <h1 class="title"><%= title %></h1>
         <!--     <h2 class="subtitle">this is the Book Subitle</h2> -->
         <h5 class="author"><span> written by </span> <%= @book.author %> </h5>
@@ -19,10 +19,6 @@
   </div>
 </div>
 
-<!-- TEST OF LINK TO EDIT. REPLACE!-->
-<% if policy(@book).update? %>
-  <%= link_to "Edit Book", edit_book_path(@book) %>
-<% end %>
 <!--
 ////////////////////////////////////////////////////////////
 Following appears if current user is different from Book owner
@@ -38,21 +34,33 @@ Following appears if current user is different from Book owner
       <div class='product-body'>
         <h3><%= @book.user.profile.first_name %> can lend it to you!</h3>
       </div>
-        <div class="text-center add-margin product-controls">
+      <div class="text-center add-margin product-controls">
         <%= link_to "I want it!", request_book_path(@book),
         {class: "btn btn-primary", :method => :post} %>
-        </div>
+      </div>
     </div>
   </div>
 
-<% elsif  @book.my_description %>
-  <div class="container">
-    <h3>Ce que j'en pense</h3>
-    <p><%= @book.my_description %></p>
-  </div>
-<% else%>
 
-<% end%>
+  <% if @book.my_description %>
+    <div class="container">
+    <p> <% @book.user.profile.first_name %> loves this book because </p>
+    <p> "<%= @book.my_description %>"</p>
+    </div>
+  <% else %>
+
+  <% end %>
+
+
+
+<% elsif !@book.my_description.blank? %>
+  <div class="container">
+    <p> I love this book because </p>
+    <p>"<%= @book.my_description %>"</p>
+  </div>
+<% else %>
+
+<% end %>
 
 </div>
 
