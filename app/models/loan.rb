@@ -19,7 +19,9 @@ class Loan < ActiveRecord::Base
   end
 
   def self.shared(user_id)
-    Loan.joins("JOIN books ON books.id = loans.book_id").where("books.user_id = '#{user_id}'").given
+    Loan.joins(
+      "JOIN books ON books.id = loans.book_id").where(
+      "books.user_id = '#{user_id}'").given
   end
 
   # def self.of_friends(user)
@@ -27,7 +29,7 @@ class Loan < ActiveRecord::Base
   # end
 
   def self.borrowed(user_id)
-    Loan.given.where(user_id: user_id)
+    Loan.given.where(user_id: user_id, borrower_name_manual: nil)
   end
 
   def self.returns(user_id)
