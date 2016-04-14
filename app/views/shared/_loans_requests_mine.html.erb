@@ -1,54 +1,61 @@
 <div class="padded-top-2em">
-<h4>Own Requests</h4>
-<% if @requests_to_friends.count == 0 %>
-<p>No open requests! Why not check out your friends' libraries!</p>
-<% else %>
+  <h4>Own Requests</h4>
+  <% if @requests_to_friends.count == 0 %>
+  <p>No open requests! Why not check out your friends' libraries!</p>
+  <% else %>
 
 
-<div class="add-margin-top">
-  <div class="container is-small">
+  <div class="add-margin-top">
+    <div class="container is-small">
 
-    <div class="row">
-      <% @requests_to_friends.each do |loan| %>
+      <div class="row">
+        <% @requests_to_friends.each do |loan| %>
 
 
-      <div class="col-xs-12">
+        <div class="col-xs-12">
 
-        <div class="product-with-buttons-box">
-          <div class="product no-border-bottom">
-            <%= image_tag loan.book.user.profile.profile_picture, class: "product-image" %>
-            <div class='product-body '>
-              <% language = " - #{loan.book.language}" unless loan.book.language.empty? %>
-              <h3>You requested <em><%= loan.book.title %></em> from <%= loan.book.user.profile.first_name %>!</h3>
-              <p>by <%= loan.book.author %> <%= language %></p>
-              <p><%= loan.status.capitalize %>: <%= loan.last_action.strftime('%d/%m/%Y') %></p>
-            </div>
-          </div>
-
-          <div class="product-button-holder">
-            <% if loan.status == "rejected" %>
-            <div class="label label-danger btn-half-width" type="submit">Rejected</div>
-            <div>
-              <%= link_to close_pending_path(loan), {class: "btn-list-close", :method => :patch} do %>
-              <i class="fa fa-times"></i>
-              <% end %>
-            </div>
-            <% elsif loan.status == "given" %>
-            <div class="label label-success btn-half-width" type="submit">Given</div>
-            <div>
-              <%= link_to close_pending_path(loan), {class: "btn-list-close", :method => :patch} do %>
-              <i class="fa fa-times"></i>
-              <% end %>
-            </div>
+          <div class="product-with-buttons-box">
+            <% if loan.status == "given" || loan.status == "rejected" %>
+              <div>
+                <%= link_to close_pending_path(loan), {class: "btn-list-close text-right", :method => :patch} do %>
+                  <i class="fa fa-times"></i>
+                <% end %>
+              </div>
             <% end %>
+
+            <div class="product no-border-bottom">
+              <%= image_tag loan.book.user.profile.profile_picture, class: "product-image" %>
+              <div class='product-body '>
+                <% language = " - #{loan.book.language}" unless loan.book.language.empty? %>
+
+                <% if loan.status == "given" %>
+                  <h3><%= loan.book.user.profile.first_name %> gave you <em><%= loan.book.title %></em>!</h3>
+                <% elsif loan.status == "rejected" %>
+                  <h3><%= loan.book.user.profile.first_name %> rejected your request for <em><%= loan.book.title %></em>!</h3>
+                <% else %>
+                  <h3>You requested <em><%= loan.book.title %></em> from <%= loan.book.user.profile.first_name %>!</h3>
+                <% end %>
+
+                <p>by <%= loan.book.author %> <%= language %></p>
+                <p><%= loan.status.capitalize %>: <%= loan.last_action.strftime('%d/%m/%Y') %></p>
+              </div>
+            </div>
+
+            <div class="product-button-holder">
+              <% if loan.status == "rejected" %>
+                <div class="label label-danger btn-half-width" type="submit">Rejected</div>
+              <% elsif loan.status == "given" %>
+                <div class="label label-success btn-half-width" type="submit">Given</div>
+              <% end %>
+            </div>
+
           </div>
         </div>
+        <% end %>
       </div>
-      <% end %>
+
     </div>
-
   </div>
-</div>
 
-<% end %>
+  <% end %>
 </div>
