@@ -106,7 +106,7 @@ class BooksController < ApplicationController
     authorize @book
     @book.update(book_params)
     if @book.save && @book.created_with_google
-      flash[:notice] = "#{@book.title.capitalize} has been created"
+      flash[:notice] = "#{@book.title.capitalize} has been added to your library"
       redirect_to book_path(@book)
     elsif @book.save
       flash[:notice] = "#{@book.title.capitalize} has been updated"
