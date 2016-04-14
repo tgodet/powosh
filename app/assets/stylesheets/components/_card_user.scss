@@ -138,3 +138,12 @@
   justify-content: center;
 
 }
+
+@media (min-width: 768px) {
+  .product-button-holder {
+
+  justify-content: flex-start;
+
+  }
+
+}
