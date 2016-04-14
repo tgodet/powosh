@@ -25,9 +25,8 @@ located in the bar at the top of the screen.</p>
             <%= image_tag book_image_path, class: "product-image" %>
             <div class='product-body '>
               <% language = " - #{book.language}" unless book.language.empty? %>
-              <h3><em><%= book.title %></em></h3>
+              <h3><em><%= book.title[0..60] %></em></h3>
               <p>by <%= book.author %> <%= language %></p>
-
             </div>
           </div>
 
