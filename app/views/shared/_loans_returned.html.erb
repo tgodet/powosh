@@ -1,32 +1,47 @@
-<% if @returns.count > 0 %>
-<h4>Marked returned by friends</h4>
+<div class="padded-top-2em">
+  <% if @returns.count > 0 %>
+    <h4>Marked returned by friends</h4>
 
-<% @returns.each do |loan| %>
-<div class="row-bordered-top list-row-library">
-  <div class="row">
+    <div class="add-margin-top">
+    <div class="container is-small">
 
-    <%= render partial: "shared/loan_card", object: loan, as: :loan,
-    locals: {
-      owner_pic: false,
-      overlay: "returned this"
-    } %>
+      <div class="row">
+        <% @returns.each do |loan| %>
 
-    <div class="col-xs-12 col-md-4">
-      <div class="flex-container-centered-vh list-row-130">
 
-        <div class="label label-success">Returned</div>
-        <div>
-          <%= link_to close_pending_path(loan), {class: "btn-list-close", :method => :patch} do %>
-          <i class="fa fa-times"></i>
-          <% end %>
+        <div class="col-xs-12">
+
+          <div class="product-with-buttons-box">
+            <div>
+              <%= link_to close_pending_path(loan), {class: "btn-list-close text-right", :method => :patch} do %>
+                <i class="fa fa-times"></i>
+              <% end %>
+            </div>
+
+            <div class="product no-border-bottom">
+              <%= image_tag loan.user.profile.profile_picture, class: "product-image" %>
+              <div class='product-body '>
+                <% language = " - #{loan.book.language}" unless loan.book.language.empty? %>
+
+                <h3><%= loan.user.profile.first_name %> returned <em><%= loan.book.title %></em>!</h3>
+                <p>by <%= loan.book.author %> <%= language %></p>
+                <p><%= loan.status.capitalize %>: <%= loan.last_action.strftime('%d/%m/%Y') %></p>
+              </div>
+            </div>
+
+            <div class="product-button-holder">
+              <div class="label label-success btn-half-width" type="submit">Returned</div>
+            </div>
+
+          </div>
         </div>
-
-
+        <% end %>
       </div>
+
     </div>
-
   </div>
-</div>
-<% end %>
 
-<% end %>
+
+
+  <% end %>
+</div>

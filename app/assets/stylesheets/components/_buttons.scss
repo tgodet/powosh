@@ -60,7 +60,16 @@
   margin: 0;
   padding: 0;
   padding-top: 10px;
-  padding-right: 20px;
+
   // font-size: 10px;
   // margin: 20px;
+}
+
+@media (min-width: 768px) {
+  .btn-list-close {
+
+    padding-right: 20px;
+
+  }
+
 }
