@@ -44,3 +44,23 @@
 .btn-facebook {
   width: 100%;
 }
+
+.btn-list-close-holder {
+  margin-left: 0;
+  padding: 0;
+  align: left;
+  text-align: left;
+}
+
+.btn-list-close {
+  color: $primary-dark;
+  background-color: white;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+  padding-top: 10px;
+  padding-right: 20px;
+  // font-size: 10px;
+  // margin: 20px;
+}
