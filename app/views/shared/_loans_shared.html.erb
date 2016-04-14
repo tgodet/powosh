@@ -14,7 +14,7 @@
 
         <div class="product-with-buttons-box">
           <div class="product no-border-bottom">
-            <% image = loan.borrower_name_manual.nil? ? loan.user.profile.profile_picture : "profilepic_4.jpg" %>
+            <% image = loan.borrower_name_manual.empty? ? loan.user.profile.profile_picture : "profilepic_4.jpg" %>
             <%= image_tag image, class: "product-image" %>
             <div class='product-body '>
               <% language = " - #{loan.book.language}" unless loan.book.language.empty? %>
