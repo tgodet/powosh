@@ -17,7 +17,8 @@
             <%= image_tag profile_image_path %>
           </div>
           <div class='product-body'>
-          <h3><%= book.title[0..60] %> </h3>
+          <% title = book.title.length > 60 ? "#{book.title[0..60]}..." : book.title %>
+          <h3><%= title %> </h3>
             <p>by <%= book.authors %> - <%= book.language %></p>
             <p>ISBN : <%= book.isbn %></p>
           </div>

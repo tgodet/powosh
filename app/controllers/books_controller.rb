@@ -69,8 +69,9 @@ class BooksController < ApplicationController
 
       @book = current_user.books.build(book_params)
       authorize @book
+      title = @book.title.length > 30 ? "#{@book.title[0..30]}..." : @book.title
       if @book.save
-        flash[:notice] = "#{@book.title[0..60]} has been added to your library"
+        flash[:notice] = "#{title} has been added to your library"
         redirect_to book_path(@book)
       else
         flash[:alert] = "This book has not been added to your library"
@@ -105,11 +106,12 @@ class BooksController < ApplicationController
     # authorization done
     authorize @book
     @book.update(book_params)
+    title = @book.title.length > 30 ? "#{@book.title[0..30]}..." : @book.title
     if @book.save && @book.created_with_google
-      flash[:notice] = "#{@book.title.capitalize} has been added to your library"
+      flash[:notice] = "#{title} has been added to your library"
       redirect_to book_path(@book)
     elsif @book.save
-      flash[:notice] = "#{@book.title.capitalize} has been updated"
+      flash[:notice] = "#{title} has been updated"
       redirect_to book_path(@book)
     else
       flash[:alert] = "Book not updated."

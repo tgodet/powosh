@@ -27,13 +27,14 @@
               <%= image_tag loan.book.user.profile.profile_picture, class: "product-image" %>
               <div class='product-body '>
                 <% language = " - #{loan.book.language}" unless loan.book.language.empty? %>
+                <% title = loan.book.title.length > 60 ? "#{loan.book.title[0..60]}..." : loan.book.title %>
 
                 <% if loan.status == "given" %>
-                  <h3><%= loan.book.user.profile.first_name %> gave you <em><%= loan.book.title[0..60] %></em>!</h3>
+                  <h3><%= loan.book.user.profile.first_name %> gave you <em><%= title %></em>!</h3>
                 <% elsif loan.status == "rejected" %>
-                  <h3><%= loan.book.user.profile.first_name %> rejected your request for <em><%= loan.book.title %></em>!</h3>
+                  <h3><%= loan.book.user.profile.first_name %> rejected your request for <em><%= title %></em>!</h3>
                 <% else %>
-                  <h3>You requested <em><%= loan.book.title[0..60] %></em> from <%= loan.book.user.profile.first_name %>!</h3>
+                  <h3>You requested <em><%= title %></em> from <%= loan.book.user.profile.first_name %>!</h3>
                 <% end %>
 
                 <p>by <%= loan.book.author %> <%= language %></p>

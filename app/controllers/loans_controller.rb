@@ -36,9 +36,9 @@ class LoansController < ApplicationController
     end
 
     authorize @loan
-
+    title = @book.title.length > 30 ? "#{@book.title[0..30]}..." : @book.title
     if @loan.save
-      flash[:notice] = "You loaned #{@book.title}!"
+      flash[:notice] = "You loaned #{title}!"
     else
       flash[:alert] = "There was a problem. No loan created."
     end
@@ -55,9 +55,9 @@ class LoansController < ApplicationController
       last_action: Date.today)
 
     authorize @loan
-
+    title = @book.title.length > 30 ? "#{@book.title[0..30]}..." : @book.title
     if @loan.save
-      flash[:notice] = "Request for #{@book.title} sent!"
+      flash[:notice] = "Request for #{title} sent!"
     else
       flash[:alert] = "There was a problem. No request sent."
     end
@@ -69,9 +69,9 @@ class LoansController < ApplicationController
     @loan.action_owner = @loan.user.id
     @loan.status = "given"
     @loan.book.available = false
-
+    title = @loan.book.title.length > 30 ? "#{@book.title[0..30]}..." : @loan.book.title
     if @loan.save
-      flash[:notice] = "You gave #{@loan.book.title} to #{@loan.user.profile.first_name}!"
+      flash[:notice] = "You gave #{title} to #{@loan.user.profile.first_name}!"
     else
       flash[:alert] = "There was a problem. No request sent."
     end

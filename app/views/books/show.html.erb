@@ -7,7 +7,8 @@
     <!-- BOOK -->
     <div class="book">
       <div class="book-cover">
-        <h1 class="title"><%= @book.title[0..70] %></h1>
+      <% title = @book.title.length > 70 ? "#{@book.title[0..70]}..." : @book.title %>
+        <h1 class="title"><%= title %></h1>
         <!--     <h2 class="subtitle">this is the Book Subitle</h2> -->
         <h5 class="author"><span> written by </span> <%= @book.author %> </h5>
       </div>
