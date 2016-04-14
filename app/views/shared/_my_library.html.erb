@@ -1,8 +1,9 @@
-<h4>Books you've borrowed</h4>
+
   <% if @current_user.books.count == 0 %>
 <p>You don't have any books in your library! You can add books from the Share option
 located in the bar at the top of the screen.</p>
 <% else %>
+<h4>Your Library</h4>
 
   <div class="add-margin-top">
     <div class="container is-small">
@@ -18,6 +19,7 @@ located in the bar at the top of the screen.</p>
         <% book_image_path = "book5.png" %>
       <% end %>
 
+      <%= link_to book_path(book.id) do %>
       <div class="col-xs-12">
 
         <div class="product-with-buttons-box">
@@ -36,6 +38,7 @@ located in the bar at the top of the screen.</p>
         </div>
 
       </div>
+      <% end%>
 
       <% end %>
     </div>
