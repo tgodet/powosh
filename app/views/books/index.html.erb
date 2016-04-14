@@ -20,7 +20,6 @@ PowOSh
             </div>
             <% profile_image_path = book.user.profile.profile_picture %>
             <%= image_tag profile_image_path %>
-            <img =@book.user.profile.profile_picture class="product-image">
             <div class='product-body'>
               <h3><%= book.user.profile.first_name %> made <em><%= book.title %></em> available!</h3>
               <p>by <%= book.author %> - <%= book.language %></p>
