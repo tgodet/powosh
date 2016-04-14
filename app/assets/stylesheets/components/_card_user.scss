@@ -40,6 +40,7 @@
   // font-weight: lighter;
   color: $primary-dark;
   margin-bottom: 0;
+  opacity: .7;
 }
 
 /* Product image */
@@ -60,7 +61,10 @@
 }
 
 .product img {
-  max-width: 65px;
+  width: 65px;
+  height: 65px;
+  margin-right: 20px;
+  border-radius: 2px;
 
 }
 
