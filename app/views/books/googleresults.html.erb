@@ -15,10 +15,9 @@
               <% profile_image_path = "book5.png" %>
             <% end %>
             <%= image_tag profile_image_path %>
-            <!-- <img =@book.user.profile.profile_picture class="product-image"> -->
           </div>
           <div class='product-body'>
-          <h3><%= book.title[0,150] %> </h3>
+          <h3><%= book.title[0..60] %> </h3>
             <p>by <%= book.authors %> - <%= book.language %></p>
             <p>ISBN : <%= book.isbn %></p>
           </div>

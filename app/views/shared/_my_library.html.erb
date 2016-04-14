@@ -20,7 +20,7 @@
 
             <%= image_tag profile_image_path %>
             <div class='product-body'>
-              <h3><em><%= book.title %></em> is available</h3>
+              <h3><em><%= book.title[0..60] %></em> is available</h3>
               <p>by <%= book.author %> - <%= book.language %></p>
               <div>
                 <%= link_to "Lend", new_book_loan_path(book), { class: "btn btn-primary" } %>
