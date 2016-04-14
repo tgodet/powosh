@@ -6,12 +6,12 @@ class LoansController < ApplicationController
   def library
     @loans = policy_scope(Loan)
     # these are using scope methods from loan and book modal files.
-    @requests_from_friends = Loan.user_action(current_user.id).requested
-    @requests_to_friends = Loan.friend_action(current_user.id)
-    @returns = Loan.returns(current_user.id)
+    @requests_from_friends = Loan.user_action(current_user.id).requested.order(last_action: :asc)
+    @requests_to_friends = Loan.friend_action(current_user.id).order(last_action: :asc)
+    @returns = Loan.returns(current_user.id).order(last_action: :asc)
     @shared = Loan.shared(current_user.id)
     @borrowed = Loan.borrowed(current_user.id)
-    @books = Book.of_user(current_user.id)
+    @books = Book.of_user(current_user.id).order(:title)
   end
 
   def new
