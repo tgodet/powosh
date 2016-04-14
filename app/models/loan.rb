@@ -31,7 +31,7 @@ class Loan < ActiveRecord::Base
   end
 
   def self.returns(user_id)
-    Loan.user_action(user_id).pending.returned
+    Loan.user_action(user_id).returned.pending
   end
 
   def self.involving_user(user_id)
