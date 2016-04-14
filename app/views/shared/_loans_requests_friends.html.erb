@@ -10,7 +10,6 @@
     <div class="row">
       <% @requests_from_friends.each do |loan| %>
 
-
       <div class="col-xs-12">
 
         <div class="product-with-buttons-box">
@@ -29,7 +28,9 @@
             <%= link_to "Reject Loan", reject_loan_path(loan), {class: "btn btn-default btn-half-width", :method => :patch} %>
           </div>
         </div>
+
       </div>
+
       <% end %>
     </div>
 
