@@ -56,13 +56,13 @@ body {
 }
 
 .book-cover h1.title {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   color: white;
   // text-shadow: 2px 1px 1px #EEEEEE;
   position: absolute;
-  top: 25px;
-  left: 25px;
+  top: 15px;
+  left: 15px;
   // color: #666666;
 }
 
@@ -75,13 +75,14 @@ body {
 }
 
 .book-cover h5.author {
-  bottom: 5px;
-  font-size: 15px;
+  bottom: 10px;
+  font-size: 13px;
   font-weight: normal;
   margin: 0;
   padding: 0;
   position: absolute;
   right: 12px;
+  padding-left: 12px;
 }
 
 .book-cover h5.author span {

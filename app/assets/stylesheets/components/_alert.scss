@@ -7,10 +7,14 @@
   text-align: center;
   color: white;
   display: block;
-  z-index: 2;
-  position: fixed;
+  // position: fixed;
   width: 100%;
-  top: 110px;
+  // top: 110px;
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+  height: 60px;
+  font-size: 12px;
 }
 .alert-info {
   background: $green;

@@ -11,7 +11,7 @@ class Book < ActiveRecord::Base
 
 
 
-  LANGUAGES = ["Englais", "Français", "Néerlandais", "Allemand", "Espagnol", "Portugais", "Other"]
+  LANGUAGES = ["en", "fr", "nl", "de", "es", "pt", "Other"]
 
   def self.of_user(user_id)
     Book.where(user_id: user_id)
