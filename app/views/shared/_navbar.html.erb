@@ -5,54 +5,44 @@
   <% end %>
 
 
-  <!-- Search form -->
-  <% if user_signed_in? %>
-  <form action="<%= books_search_path %>" class="navbar-wagon-search">
-    <input type="text" class="navbar-wagon-search-input" name="query" placeholder="Search for your favorite book">
-    <button type="submit" class="navbar-wagon-search-btn">
-      <i class="fa fa-search"></i>
-    </button>
-  </form>
-  <% end %>
-
   <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
+
 
     <!-- Different navigation if login or not -->
-    <% if user_signed_in? %>
-    <% notification_count = Loan.user_action(current_user.id).count %>
-    <% notification_link = notification_count > 0 ? library_path(current_user) : "#" %>
-    <!-- Notification -->
-    <%= link_to notification_link, class: "navbar-wagon-item navbar-wagon-link" do %>
-    <div class="badge-container">
-      <i class="fa fa-envelope-o"></i>
-      <div class="badge badge-blue"><%= notification_count %></div>
-    </div>
-    <% end %>
 
-    <!-- Profile picture and dropdown -->
-    <div class="navbar-wagon-item">
-      <div class="dropdown">
-        <%= image_tag current_user.profile.profile_picture, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-          <li>
-            <%= link_to "#" do %>
-            <i class="fa fa-user"></i> <%= t ".profile", default: "Profile" %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to "#" do %>
-            <i class="fa fa-home"></i>  <%= t ".profile", default: "Home" %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to destroy_user_session_path, method: :delete do %>
-            <i class="fa fa-sign-out"></i>  <%= t ".sign_out", default: "Log out" %>
-            <% end %>
-          </li>
-        </ul>
+    <% if user_signed_in? %>
+    <div class="navbar-wagon-right">
+      <% notification_count = Loan.user_action(current_user.id).count %>
+      <% notification_link = notification_count > 0 ? library_path(current_user) : "#" %>
+
+      <!-- Notification -->
+
+
+      <!-- Profile picture and dropdown -->
+      <div class="navbar-wagon-item">
+
+          <div class="badge-container">
+          <%= link_to library_path do %>
+            <%= image_tag current_user.profile.profile_picture, class: "avatar" %>
+          <% end %>
+            <div class="badge badge-blue"><%= notification_count %></div>
+          </div>
+
       </div>
+
+      <div class="navbar-wagon-item">
+        <div class="dropdown">
+          <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+            </li>
+          </ul>
+        </div>
+      </div>
+
     </div>
+
 
     <% else %>
 
@@ -61,11 +51,11 @@
 
     <% end %>
 
-  </div>
+
 
 
   <!-- Dropdown list appearing on mobile only -->
-  <div class="navbar-wagon-item hidden-md hidden-lg">
+<!-- <div class="navbar-wagon-item hidden-md hidden-lg">
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
@@ -74,7 +64,8 @@
         </li>
       </ul>
     </div>
-  </div>
+  </div> -->
+
 </div>
 
 
