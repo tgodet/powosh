@@ -1,38 +1,47 @@
-<div class="add-margin-top">
+<h4>Books you've borrowed</h4>
+  <% if @current_user.books.count == 0 %>
+<p>You don't have any books in your library! You can add books from the Share option
+located in the bar at the top of the screen.</p>
+<% else %>
+
+  <div class="add-margin-top">
     <div class="container is-small">
-      <div class="row">
-        <% @books.each do |book| %>
 
-        <%= link_to book_path(book.id) do %>
+    <div class="row">
+      <% @books.each do |book| %>
 
-          <div class="product">
+      <% if book.photo.url %>
+        <% book_image_path = book.photo %>
+      <% elsif book.google_cover %>
+        <% book_image_path = book.google_cover %>
+      <% else %>
+        <% book_image_path = "book5.png" %>
+      <% end %>
 
-            <div class='product-upvote'>
+      <div class="col-xs-12">
+
+        <div class="product-with-buttons-box">
+          <div class="product no-border-bottom">
+            <%= image_tag book_image_path, class: "product-image" %>
+            <div class='product-body '>
+              <% language = " - #{book.language}" unless book.language.empty? %>
+              <h3><em><%= book.title %></em></h3>
+              <p>by <%= book.author %> <%= language %></p>
+
             </div>
-
-            <% if book.photo.url %>
-              <% profile_image_path = book.photo %>
-            <% elsif book.google_cover %>
-              <% profile_image_path = book.google_cover %>
-            <% else %>
-              <% profile_image_path = "book5.png" %>
-            <% end %>
-
-            <%= image_tag profile_image_path %>
-            <div class='product-body'>
-              <h3><em><%= book.title %></em> is available</h3>
-              <p>by <%= book.author %> - <%= book.language %></p>
-              <div>
-                <%= link_to "Lend", new_book_loan_path(book), { class: "btn btn-primary" } %>
-              </div>
-            </div>
-
           </div>
 
-      <% end %>
+          <div class="product-button-holder">
+            <%= link_to "Lend", new_book_loan_path(book), {class: "btn btn-primary btn-half-width"} %>
+          </div>
+        </div>
+
+      </div>
 
       <% end %>
+    </div>
 
     </div>
   </div>
-</div>
+
+<% end %>
