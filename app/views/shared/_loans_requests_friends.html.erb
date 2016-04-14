@@ -4,24 +4,42 @@
 <p>No requests at the moment!</p>
 <% else %>
 
-<% @requests_from_friends.each do |loan| %>
-<div class="row-bordered-top list-row-library">
-  <div class="row">
-    <%= render partial: "shared/loan_card",
-    object: loan, as: :loan,
-    locals: {
-      owner_pic: false,
-      overlay: "wants this book"
-    } %>
-    <div class="col-xs-12 col-md-4">
-      <div class="flex-container-centered-vh list-row-130">
-      <%= link_to "Mark as Given", lend_book_path(loan), {class: "btn btn-primary btn-half-width", :method => :patch} %>
-      <%= link_to "Reject Loan", reject_loan_path(loan), {class: "btn btn-default btn-half-width", :method => :patch} %>
-     </div>
-   </div>
+<div class="add-margin-top">
+  <div class="container is-small">
 
- </div>
+    <div class="row">
+      <% @requests_from_friends.each do |loan| %>
+
+
+      <div class="col-xs-12">
+
+        <div class="product-with-buttons-box">
+          <div class="product no-border-bottom">
+            <%= image_tag loan.user.profile.profile_picture, class: "product-image" %>
+            <div class='product-body '>
+              <% language = " - #{loan.book.language}" unless loan.book.language.empty? %>
+              <h3><%= loan.user.profile.first_name %> wants to borrow <em><%= loan.book.title %></em>!</h3>
+              <p>by <%= loan.book.author %> <%= language %></p>
+              <p><%= loan.status.capitalize %>: <%= loan.last_action.strftime('%d/%m/%Y') %></p>
+            </div>
+          </div>
+
+          <div class="product-button-holder">
+            <%= link_to "Mark as Given", lend_book_path(loan), {class: "btn btn-primary btn-half-width", :method => :patch} %>
+            <%= link_to "Reject Loan", reject_loan_path(loan), {class: "btn btn-default btn-half-width", :method => :patch} %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+  </div>
 </div>
-<% end %>
+
+
 
 <% end %>
+
+
+
+

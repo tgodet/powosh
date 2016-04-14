@@ -2,6 +2,14 @@
   width: 40%;
   margin: 10px;
   font-size: 9px;
+  // max-width: 220px
+}
+
+@media (min-width: 768px) {
+  .btn-half-width {
+    font-size: 11px;
+  }
+
 }
 
 .label {

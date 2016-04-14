@@ -22,9 +22,9 @@ class Loan < ActiveRecord::Base
     Loan.joins("JOIN books ON books.id = loans.book_id").where("books.user_id = '#{user_id}'").given
   end
 
-    def self.of_friends(user)
-    Book.joins(user: :friendships).where("friendships.friend_id = '#{user.id}'")
-  end
+  # def self.of_friends(user)
+  #   Book.joins(user: :friendships).where("friendships.friend_id = '#{user.id}'")
+  # end
 
   def self.borrowed(user_id)
     Loan.given.where(user_id: user_id)
