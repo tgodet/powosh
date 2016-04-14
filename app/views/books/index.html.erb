@@ -16,9 +16,10 @@ PowOSh
         <%= link_to book_path(book.id) do %>
           <div class="col-xs-12 col-sm-8 col-sm-offset-2">
           <div class="product">
-
+            <div class="card-image-edit">
             <% profile_image_path = book.user.profile.profile_picture %>
             <%= image_tag profile_image_path %>
+            </div>
             <div class='product-body'>
               <% title = book.title.length > 50 ? "#{book.title[0..50]}..." : book.title %>
               <h3><%= book.user.profile.first_name %> made <em><%= title %></em> available!</h3>
