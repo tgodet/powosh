@@ -31,7 +31,9 @@
 
 /* Body design */
 .product-body {
-  flex: 1 1 auto;
+  flex: 1;
+  // flex: 1 1 auto;
+
 }
 .product-body h3 {
   font-weight: bold;
