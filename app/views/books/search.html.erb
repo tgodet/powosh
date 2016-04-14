@@ -13,7 +13,8 @@
           <% profile_image_path = book.user.profile.profile_picture %>
           <%= image_tag profile_image_path %>
           <div class='product-body'>
-            <h3><%= book.user.profile.first_name %> can lend you <em><%= book.title[0..60] %></em> </h3>
+          <% title = book.title.length > 60 ? "#{book.title[0..60]}..." : book.title %>
+            <h3><%= book.user.profile.first_name %> can lend you <em><%= title %></em> </h3>
             <p>de <%= book.author %> - <%= book.language %></p>
           </div>
         </div>

@@ -17,7 +17,8 @@
             <%= image_tag loan.user.profile.profile_picture, class: "product-image" %>
             <div class='product-body '>
               <% language = " - #{loan.book.language}" unless loan.book.language.empty? %>
-              <h3><%= loan.user.profile.first_name %> has <em><%= loan.book.title %></em>!</h3>
+              <% title = loan.book.title.length > 60 ? "#{loan.book.title[0..60]}..." : loan.book.title %>
+              <h3><%= loan.user.profile.first_name %> has <em><%= title %></em>!</h3>
               <p>by <%= loan.book.author %> <%= language %></p>
               <p><%= loan.status.capitalize %>: <%= loan.last_action.strftime('%d/%m/%Y') %></p>
             </div>
