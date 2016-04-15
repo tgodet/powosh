@@ -68,6 +68,19 @@
   border-right:solid 1px $primary-light;
 }
 
+.tabs-ind-3 {
+  flex: 1 1 0%;
+  font-size: 16px;
+  height: 50px;
+  background-color: $primary-dark;
+  color: white;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  border-right:solid 1px $primary-light;
+}
+
+
 
 .tabs-ind span {
   color: white;

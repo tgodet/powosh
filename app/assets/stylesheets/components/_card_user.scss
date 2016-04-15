@@ -10,6 +10,12 @@
 
 }
 
+.little-margin{
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .product {
   display: flex;
   align-items: center;
@@ -69,7 +75,7 @@
 .product img {
   width: 65px;
   height: 65px;
-  margin-right: 20px;
+  margin-right: 5px;
   border-radius: 2px;
   flex: 0 0 65px;
 
@@ -90,17 +96,47 @@
   margin: auto;
 }
 
+.to-left{
+  text-align: left;
+  max-width: 140px;
+}
+
+.text-modif{
+  text-align: end;
+}
+
 /* Controls design */
 .product-controls {
   display: flex;
   align-items: center;
   text-align: center;
   margin: 0px;
+
+  .btn {
+    background-color: $primary;
+    border-width: 0px;
+    border-color: transparent;
+    border-radius: 4px;
+    width: 50px;
+    height: 45px;
+  }
+    .btn:hover {
+      color: $primary-lighter;
+      background-color: #ca4216;
+      border-width: 1px;
+      border-color: #ca4216;
+  }
 }
+
+
 .product-controls a {
-  padding: 0 20px;
-  font-size: 17px;
-  color: #E6E6E6;
+  padding: 0px 0px;
+  font-size: 20px;
+  font-weight: lighter;
+  word-wrap: break-word;
+  color: $primary-white;
+  text-align: center;
+  padding-top: 6px;
 }
 .product-controls a:hover {
   font-weight: bold !important;

@@ -9,8 +9,9 @@ body {
 }
 
 .book-container {
-  background-color: #FAFAFA;
-  padding: 30px 0px;
+  background-color: $primary-white;
+  height: calc(100vh - 110px);
+  padding: 40px 0px;
   text-align: center;
 }
 

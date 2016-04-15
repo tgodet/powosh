@@ -2,67 +2,79 @@
 <%= @book.title %> on PowOSh
 <% end %>
 <div class="wrapper-content">
-<div class='book-container'>
-  <div id="wrapper">
-    <!-- BOOK -->
-    <div class="book">
-      <div class="book-cover">
-      <% title = @book.title.length > 70 ? "#{@book.title[0..70]}..." : @book.title %>
-        <h1 class="title"><%= title %></h1>
-        <!--     <h2 class="subtitle">this is the Book Subitle</h2> -->
-        <h5 class="author"><span> written by </span> <%= @book.author %> </h5>
+  <div class="show-background">
+    <div class='book-container'>
+      <div id="wrapper">
+        <!-- BOOK -->
+        <div class="book">
+          <div class="book-cover">
+            <% title = @book.title.length > 70 ? "#{@book.title[0..70]}..." : @book.title %>
+            <h1 class="title"><%= title %></h1>
+            <!--     <h2 class="subtitle">this is the Book Subitle</h2> -->
+            <h5 class="author"><span> written by </span> <%= @book.author %> </h5>
+          </div>
+          <div class="book-top"></div>
+          <div class="book-right"></div>
+        </div>
+        <!-- /BOOK -->
       </div>
-      <div class="book-top"></div>
-      <div class="book-right"></div>
+
+
+      <% if current_user.id != @user.id %>
+
+      <div class="container">
+        <div class="product little-margin">
+
+          <% profile_image_path = @book.user.profile.profile_picture %>
+          <%= image_tag profile_image_path %>
+          <div class='product-body to-left'>
+            <h3><%= @book.user.profile.first_name %> can lend it to you!</h3>
+          </div>
+
+          <div class="text-center add-margin product-controls text-modif">
+            <%= link_to "Go!", request_book_path(@book),
+            {class: "btn btn-primary", :method => :post} %>
+          </div>
+
+        </div>
+      </div>
+
+      <% else %>
+
+      <% end %>
+
+
+
+
+
+      <% if !@book.my_description.blank? %>
+      <div class="container book-description">
+        <p><em>"<%= @book.my_description %>"</em></p>
+        <p class="firstname"><%= @book.user.profile.first_name %> </p>
+      </div>
+      <% else %>
+
+      <% end %>
+
+
     </div>
-    <!-- /BOOK -->
-  </div>
-</div>
 
 <!--
 ////////////////////////////////////////////////////////////
 Following appears if current user is different from Book owner
 ///////////////////////////////////////////////////////////////
 -->
-<% if current_user.id != @user.id %>
-
-  <div class="container">
-    <div class="product">
-
-      <% profile_image_path = @book.user.profile.profile_picture %>
-      <%= image_tag profile_image_path %>
-      <div class='product-body'>
-        <h3><%= @book.user.profile.first_name %> can lend it to you!</h3>
-      </div>
-      <div class="text-center add-margin product-controls">
-        <%= link_to "I want it!", request_book_path(@book),
-        {class: "btn btn-primary", :method => :post} %>
-      </div>
-    </div>
-  </div>
 
 
-  <% if @book.my_description %>
-    <div class="container">
-    <p> <% @book.user.profile.first_name %> loves this book because </p>
-    <p> "<%= @book.my_description %>"</p>
-    </div>
-  <% else %>
+<div class="tabs-profile is-sticky">
 
+
+   <%= link_to root_path, class: "tabs-ind-3" do %>
+    <span>Home</span>
   <% end %>
-
-
-
-<% elsif !@book.my_description.blank? %>
-  <div class="container">
-    <p> I love this book because </p>
-    <p>"<%= @book.my_description %>"</p>
-  </div>
-<% else %>
-
-<% end %>
-
 </div>
 
+</div>
+</div>
 
 
