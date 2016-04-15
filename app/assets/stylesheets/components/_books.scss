@@ -10,7 +10,7 @@ body {
 
 .book-container {
   background-color: $primary-white;
-  height: calc(100vh - 110px);
+  height: calc(100vh - 110px - 50px);
   padding: 40px 0px;
   text-align: center;
 }
@@ -20,8 +20,8 @@ body {
 **********************/
 .book {
   position: relative;
-  width: 200px;
-  height: 250px;
+  width: 180px;
+  height: 230px;
 }
 
 .book-cover {
@@ -41,7 +41,7 @@ body {
 .book-cover:before {
   border-left: 10px solid #000000;
   content: "";
-  height: 250px;
+  height: 230px;
   left: 0;
   opacity: 0.2;
   position: absolute;
@@ -99,7 +99,7 @@ body {
   left: 5px;
   position: absolute;
   top: -10px;
-  width: 195px;
+  width: 175px;
   transform: skew(-45deg, 0deg);
   -ms-transform: skew(-45deg, 0deg);
   -webkit-transform: skew(-45deg, 0deg);
@@ -110,7 +110,7 @@ body {
   border-bottom: 1px solid #DDDDDD;
   border-right: 2px solid #C4CA2C;
   box-shadow: 1px 0px 1px #999;
-  height: 247px;
+  height: 227px;
   position: absolute;
   right: -10px;
   top: -4px;

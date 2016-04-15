@@ -6,6 +6,21 @@
   // max-width: 220px
 }
 
+.product-button-holder{
+    .btn-default {
+    background-color: $primary-white;
+    border-color: $primary-dark;
+    border-radius: 4px;
+  }
+    .btn-default:hover {
+      color: $primary-lighter;
+      background-color: $primary-dark;
+      border-width: 1px;
+      border-color: $primary-dark;
+  }
+}
+
+
 @media (min-width: 768px) {
   .btn-half-width {
     font-size: 11px;
