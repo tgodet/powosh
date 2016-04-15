@@ -14,12 +14,12 @@
 
         <div class="product-with-buttons-box">
           <div class="product no-border-bottom">
-            <% image = (loan.borrower_name_manual.empty? || loan.borrower_name_manual.nil?) ? loan.user.profile.profile_picture : "profilepic_4.jpg" %>
+            <% image = (loan.borrower_name_manual.blank?) ? loan.user.profile.profile_picture : "profilepic_4.jpg" %>
             <%= image_tag image, class: "product-image" %>
             <div class='product-body '>
               <% language = " - #{loan.book.language}" unless loan.book.language.empty? %>
               <% title = loan.book.title.length > 60 ? "#{loan.book.title[0..60]}..." : loan.book.title %>
-              <% name = (loan.borrower_name_manual.empty? || loan.borrower_name_manual.nil?) ? loan.user.profile.first_name : loan.borrower_name_manual %>
+              <% name = (loan.borrower_name_manual.blank?) ? loan.user.profile.first_name : loan.borrower_name_manual %>
               <h3><%= name %> has <em><%= title %></em>!</h3>
               <p>by <%= loan.book.author %> <%= language %></p>
               <p><%= loan.status.capitalize %>: <%= loan.last_action.strftime('%d/%m/%Y') %></p>
