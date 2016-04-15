@@ -32,12 +32,8 @@
 
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <li>
-              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-            </li>
-          </ul>
+
+          <%= link_to "Logout", destroy_user_session_path, { method: :delete , class: "navbar-wagon-item navbar-wagon-link" } %>
         </div>
       </div>
 
