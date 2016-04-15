@@ -10,9 +10,12 @@
       <%= f.label :photo, 'Upload your own picture' %>
       <%= f.input :photo, label: false %>
       <%= f.input :photo_cache, as: :hidden %>
-      <div class='form-edit-container text-center'>
-        <%= f.submit 'Add your book' %>
+      <div class="form-edit-container text-center">
+      <%= button_tag(type: 'submit', class: "btn btn-primary size-edit") do %>
+         Add your book
+      <% end %>
       </div>
+
       <% end %>
 
     </div>

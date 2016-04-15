@@ -1,6 +1,35 @@
 .form-edit{
     margin-top: 30px;
+    #book_photo{
+      max-width: 240px;
+      font-size: 13px
+    }
+    .btn {
+    background-color: $primary;
+    border-width: 0px;
+    border-color: transparent;
+    border-radius: 4px;
+  }
+    .btn:hover {
+      color: $primary-lighter;
+      background-color: #ca4216;
+      border-width: 1px;
+      border-color: #ca4216;
+  }
 }
+
+.form-edit-container{
+  font-family: lato;
+  padding-top: 60px;
+
+}
+
+.size-edit{
+  font-size: 18px;
+  height: 45px;
+}
+
+
 
 .simple_form {
   div.input {
@@ -8,23 +37,14 @@
     clear: both;
     /* Required for Webkit, but not for Gecko */
   }
-  div.submit {
 
-
-
-  }
   label {
     // float: left;
-    width: 270px;
+    width: 260px;
     text-align: left;
-    margin: 2px 5px;
+    // padding: 2px 5px;
     font-weight: lighter;
   }
 }
 
-div.boolean, .simple_form input[type='submit'] {
-  margin-top: 50px;
-  text-align: center;
-
-}
 
