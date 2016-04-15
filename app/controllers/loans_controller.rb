@@ -69,7 +69,7 @@ class LoansController < ApplicationController
     @loan.action_owner = @loan.user.id
     @loan.status = "given"
     @loan.book.available = false
-    title = @loan.book.title.length > 30 ? "#{@book.title[0..30]}..." : @loan.book.title
+    title = @loan.book.title.length > 30 ? "#{@loan.book.title[0..30]}..." : @loan.book.title
     if @loan.save
       flash[:notice] = "You gave #{title} to #{@loan.user.profile.first_name}!"
     else
