@@ -126,9 +126,10 @@ class BooksController < ApplicationController
    def destroy
     # authorization done
     authorize @book
-    if Loan.where(book_id: @book.id).exists?
+    if Loan.where(book_id: @book.id).where.not(status: "returned").exists?
       flash[:alert] = "Book can't be deleted while a loan exists"
     else
+      Loan.where(book_id: @book.id).destroy_all
       @book.destroy
       flash[:notice] = "Book deleted"
     end
