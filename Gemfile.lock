@@ -256,6 +256,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     warden (1.2.6)
       rack (>= 1.0)
+    will_paginate (3.0.7)
 
 PLATFORMS
   ruby
@@ -292,6 +293,7 @@ DEPENDENCIES
   simple_form
   spring
   uglifier
+  will_paginate (~> 3.0.5)
 
 BUNDLED WITH
    1.11.2

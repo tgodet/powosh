@@ -9,9 +9,12 @@ class Book < ActiveRecord::Base
 
   mount_uploader :photo, PhotoUploader
 
-
+  # number of books to display per page
+  self.per_page = 10
 
   LANGUAGES = ["en", "fr", "nl", "de", "es", "pt", "Other"]
+
+
 
   def self.of_user(user_id)
     Book.where(user_id: user_id)
