@@ -126,8 +126,12 @@ class BooksController < ApplicationController
    def destroy
     # authorization done
     authorize @book
-    @book.destroy
-    flash[:notice] = "Book deleted"
+    if Loan.where(book_id: @book.id).exists?
+      flash[:alert] = "Book can't be deleted while a loan exists"
+    else
+      @book.destroy
+      flash[:notice] = "Book deleted"
+    end
     redirect_to library_path
   end
 
