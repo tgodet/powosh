@@ -2,22 +2,24 @@
   width: 40%;
   margin: 10px;
   font-size: 9px;
-   background-color: $primary;
+   // background-color: $primary;
   // max-width: 220px
 }
 
 .product-button-holder{
-    .btn-default {
-    background-color: $primary-white;
-    border-color: $primary-dark;
-    border-radius: 4px;
-  }
-    .btn-default:hover {
-      color: $primary-lighter;
-      background-color: $primary-dark;
-      border-width: 1px;
-      border-color: $primary-dark;
-  }
+
+  // should not be necessary to reset the default button to actually be default.
+  //   .btn-default {
+  //   background-color: $primary-white;
+  //   border-color: $primary-dark;
+  //   border-radius: 4px;
+  // }
+  //   .btn-default:hover {
+  //     color: $primary-lighter;
+  //     background-color: $primary-dark;
+  //     border-width: 1px;
+  //     border-color: $primary-dark;
+  // }
 }
 
 
