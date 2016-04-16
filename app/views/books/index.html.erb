@@ -11,10 +11,13 @@ PowOSh
   <div class="add-margin-top">
     <div class="container is-small">
       <div class="row">
-        <% @books.last(10).reverse.each do |book| %>
+
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+       <%= will_paginate @books %>
+        <% @books.each do |book| %>
 
         <%= link_to book_path(book.id) do %>
-          <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+
           <div class="product">
             <div class="card-image-edit">
             <% profile_image_path = book.user.profile.profile_picture %>
@@ -26,10 +29,11 @@ PowOSh
               <p>by <%= book.author %> - <%= book.language %></p>
             </div>
           </div>
-          </div>
+
 
         <% end %>
         <% end %>
+         </div>
       </div>
     </div>
   </div>

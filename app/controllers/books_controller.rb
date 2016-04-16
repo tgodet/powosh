@@ -7,7 +7,10 @@ class BooksController < ApplicationController
     # can only see friends books. the method ("of_friends") is in book modal
     # and requires the current_user id as a parameter
     # @books = Book.of_friends(current_user)
-    @books = policy_scope(Book)
+
+    # number of books per page defined in model
+    @books = policy_scope(Book).paginate(:page => params[:page]).order(created_at: :desc)
+
     # @books = Book.all
     # @profile_pics = User::PROFILES_PICS
   end
