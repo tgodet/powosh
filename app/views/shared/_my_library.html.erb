@@ -35,6 +35,7 @@ located in the bar at the top of the screen.</p>
 
           <div class="product-button-holder">
             <%= link_to "Lend", new_book_loan_path(book), {class: "btn btn-primary btn-half-width"} %>
+            <%= link_to "Delete Book", book_path(book), {class: "btn btn-default btn-half-width", method: :delete, data: {confirm: "Are you sure you want to delete this book and remove it from your library?"}} %>
           </div>
         </div>
 
