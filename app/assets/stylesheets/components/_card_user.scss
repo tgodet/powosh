@@ -112,21 +112,35 @@
   text-align: center;
   margin: 0px;
 
-  .btn {
-    background-color: $primary;
-    border-width: 0px;
-    border-color: transparent;
-    border-radius: 4px;
-    width: 50px;
-    height: 45px;
-  }
-    .btn:hover {
-      color: $primary-lighter;
-      background-color: #ca4216;
-      border-width: 1px;
-      border-color: #ca4216;
-  }
+//btn is the bootstrap type for ALL buttons. Bad idea to make general changes
+//to it for a single component, particular concerning width (overflows) or color. Global changes can be set in variables and bootstrap_variables
+//files
+// to make changes to specifiic buttons, create a class for those buttons.
+// i'm getting rid of this because the buttons in lend have different border radiuses
+  // .btn {
+  //   background-color: $primary;
+  //   border-width: 0px;
+  //   border-color: transparent;
+  //   border-radius: 4px;
+  //   width: 50px;
+  //   height: 45px;
+  // }
+  //   .btn:hover {
+  //     color: $primary-lighter;
+  //     background-color: #ca4216;
+  //     border-width: 1px;
+  //     border-color: #ca4216;
+  // }
 }
+
+.btn-small {
+  width: 50px;
+  height: 45px;
+  border-width: 0px;
+  border-color: transparent;
+  border-radius: 4px;
+}
+
 
 
 .product-controls a {
