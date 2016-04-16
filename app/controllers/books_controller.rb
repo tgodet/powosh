@@ -128,7 +128,7 @@ class BooksController < ApplicationController
     authorize @book
     @book.destroy
     flash[:notice] = "Book deleted"
-    redirect_to books_path
+    redirect_to library_path
   end
 
   private
