@@ -43,9 +43,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  def all_friends
-    User.joins("INNER JOIN friendships on friendships.user_id = users.id OR friendships.friend_id = users.id").where.not(id: id).distinct
-  end
+  # def all_friends
+  #   User.joins("INNER JOIN friendships on friendships.user_id = users.id OR friendships.friend_id = users.id").where.not(id: id).distinct
+  # end
 
   private
 
@@ -79,13 +79,14 @@ class User < ActiveRecord::Base
     unless self.token.nil?
       friends = facebook_friends
 
-      existing_friends_count = Friendship.where(user_id: self.id).count
+      # existing_friends_count = Friendship.where(user_id: self.id).count
 
       # stop if there are no friends using app or if number of friends
       # using app matches number of friendships for user.
       # this blocks new friends being added if one is removed and one is added.
       # need to check the stuff with friends count
-      unless friends.empty? || friends.count == existing_friends_count
+      # unless friends.empty? || friends.count == existing_friends_count
+      unless friends.empty?
         friends.each do |friend_fb|
           friend = User.find_by uid: friend_fb["id"]
           check_and_build_friendships(friend)
@@ -102,7 +103,7 @@ class User < ActiveRecord::Base
   def check_and_build_friendships(friend)
     if !friend.nil? && (Friendship.find_by user_id: self.id, friend_id: friend.id).nil?
       Friendship.create(user_id: self.id, friend_id: friend.id)
-      # Friendship.create(user_id: friend.id, friend_id: self.id)
+      Friendship.create(user_id: friend.id, friend_id: self.id)
     end
   end
 end
